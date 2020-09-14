@@ -41,12 +41,12 @@ detail_sub=""
 detail_sub2=""		
 quiztime="salah"						
 IFS=#
-get_rcnt=$(cat "recent-login.txt")
+get_rcnt=$(cat "user-log/recent-login.txt")
 read -a recent_arr <<< "$get_rcnt"
-get_usr=$(cat "$username-login.txt")
+get_usr=$(cat "user-log/$username-login.txt")
 read -a log_arr <<< "$get_usr"	
 username=${recent_arr[0]}
-get_event=$(cat "$username-event.txt")
+get_event=$(cat "user-log/$username-event.txt")
 read -a event_arr <<< "$get_event"	
 curtime="$(date +'%H:%M')"
 curdate="$(date +'%a, %d/%m/%Y')"
@@ -91,7 +91,7 @@ do
 	else
 		echo "${color_resv}[${alph[$inc5]}] ${sub_arr[0]} | ${sub_arr[1]}${color_reset}"
 	fi
-done < $username-task.txt
+done < "user-log/$username-task.txt"
 echo "${color_cust}+-------------------------------------------------------+${color_reset}"
 while IFS= read -r line2
 do
@@ -101,7 +101,7 @@ do
 	then
 		detail_sub2=${sub_arr7[1]}
 	fi	
-done < $username-task-detail.txt
+done < "user-log/$username-task-detail.txt"
 echo "${color_green}INFO${color_reset} : ${color_cyan}$detail_sub2${color_reset}"
 echo "${color_cust}+-------------------------------------------------------+${color_reset}"
 echo "1) Add Task 	 2) Remove Task"
@@ -147,8 +147,8 @@ check_firstime() {
 		then
 			echo ". . . . . . ."							
 			user_event="$n_event_str#$d_event_str"
-			echo "$user_event" | dd of="$username-event.txt" 
-			touch $username-task.txt
+			echo "$user_event" | dd of="user-log/$username-event.txt" 
+			touch "user-log/$username-task.txt"
 			echo ". . . . . . ."							
 	  		echo "Create event ${sym_success}"
 			echo "Now you can ${color_cyan}Add Task${color_reset} within your event !"
@@ -176,7 +176,7 @@ case $choice in
 	#mid	
 	#wrong-mid
 	#wrong-over
-	if [ -e "$username-event.txt" ]
+	if [ -e "user-log/$username-event.txt" ]
 	then
 		vd='^[0-9:-]+$'	
 		#if [[ $tasktime =~ $vd ]]
@@ -199,7 +199,7 @@ case $choice in
 		#echo "${time_left_in[0]} - ${time_left_in[1]} | ${time__in[0]} - ${time_right_in[1]}" 	
 		if [[ $tasktime == *"-"**":"* && $tasktime =~ $vd && $inc2 == "0" ]]
 		then
-			echo "$task_str" >> $username-task.txt	
+			echo "$task_str" >> "user-log/$username-task.txt"	
 			checktime="sudah"
 			inputbenar="benar"
 		fi
@@ -235,7 +235,7 @@ case $choice in
 						#((inc3--))
 						#inibukanuntukdipakai="ashiap"
 						task_counter=$inc3"i"
-						sed -i "$task_counter $task_str" $username-task.txt
+						sed -i "$task_counter $task_str" "user-log/$username-task.txt"
 						#echo "masuk less"
 						checktime="sudah"
 						inputbenar="benar"						
@@ -247,7 +247,7 @@ case $choice in
 					then
 						if [[ ${sub_arr4[0]} > ${sub_arr6[1]} || ${sub_arr4[0]} == ${sub_arr6[1]} ]]
 						then
-	 						echo "$tasktime#$taskname" >> $username-task.txt						
+	 						echo "$tasktime#$taskname" >> "user-log/$username-task.txt"						
 							#echo "masuk more"						
 							checktime="sudah"
 							inputbenar="benar"
@@ -272,12 +272,12 @@ case $choice in
 			IFS=#
 			read -a sub_arr9 <<< $letpass
 			passcheck_kanan=${sub_arr9[0]}
-		done < $username-task.txt
+		done < "user-log/$username-task.txt"
 		#read -p "Add the task durations (HH:MM-HH:MM) . . : " tasktime		
 		if [[ $inputbenar == "benar" ]]
 		then
 			read -p "Add the detail of the task . . . . . . . : " task_detail		
-			echo "$taskname#$task_detail" >> $username-task-detail.txt		
+			echo "$taskname#$task_detail" >> "user-log/$username-task-detail.txt"		
 			echo ". . . . . . ."																
 			echo "Activity ${color_cyan}'$taskname'${color_reset} have been added to ${color_cyan}'${event_arr[0]}'${color_reset}"
 			echo "Rundown have been updated ${sym_success}"
@@ -299,7 +299,7 @@ case $choice in
 	fi
 	;;
 2 )
-	if [ -e "$username-event.txt" ]
+	if [ -e "user-log/$username-event.txt" ]
 	then
 		if [ $inc2 -gt "0" ]
 		then
@@ -327,7 +327,7 @@ case $choice in
 				echo "${color_cust}[$cat_Alph]${color_reset} ${color_cyan}${sub_arr2[0]}${color_reset} ${color_cust}|${color_reset} ${color_cyan}${sub_arr2[1]}${color_reset}"
 				check="spotted"
 			fi		
-		done < $username-task.txt	
+		done < "user-log/$username-task.txt"	
 		if [[ $check == "spotted" ]]
 		then
 			choice2="y"
@@ -344,8 +344,8 @@ case $choice in
 				echo ". . . . . . . . "			
 				detail_sub=""
 				detail_sub2=""				
-				sed -i "$inc6 d" $username-task.txt
-				sed -i "$inc6 d" $username-task-detail.txt				
+				sed -i "$inc6 d" "user-log/$username-task.txt"
+				sed -i "$inc6 d" "user-log/$username-task-detail.txt"				
 				echo "You have removed ${color_cyan}'${sub_arr2[1]}'${color_reset} from ${color_cyan}'${event_arr[0]}'${color_reset} ${sym_success}"	
 				echo $ll												
 				echo "Press $sym_key_ctrl+$sym_key_z key to exit"					
@@ -368,7 +368,7 @@ case $choice in
 	fi
 	;;
 3)
-	if [ -e "$username-event.txt" ]
+	if [ -e "user-log/$username-event.txt" ]
 	then
 		detail_sub=""
 		detail_sub2=""
@@ -379,7 +379,7 @@ case $choice in
 	fi
 	;;
 4)
-	if [ -e "$username-event.txt" ]
+	if [ -e "user-log/$username-event.txt" ]
 	then
 		yn5_answ="y"
 		read -p "Input your new name of the event : " n2_event_str
@@ -397,10 +397,10 @@ case $choice in
 		done			
 		if [[ $yn5_answ == "y" || $yn5_answ == "Y" ]]
 		then
-			rm $username-event.txt
+			rm "user-log/$username-event.txt"
 			echo ". . . . . . ."							
 			user_event2="$n2_event_str#$d_event_str"
-			echo "$user_event2" | dd of="$username-event.txt" 
+			echo "$user_event2" | dd of="user-log/$username-event.txt" 
 			echo ". . . . . . ."							
 			echo "Rename event ${sym_success}"
 			echo $ll
@@ -413,7 +413,7 @@ case $choice in
 	fi
 	;;
 5)
-	if [ -e "$username-event.txt" ]
+	if [ -e "user-log/$username-event.txt" ]
 	then
 		yn3_answ="y"
 		echo "You're about to delete ${color_cyan}'${event_arr[0]}'${color_reset} as your current event"
@@ -430,11 +430,11 @@ case $choice in
 		then
 			echo ". . . . ."
 			echo "You have ${color_red}deleted${color_reset} the current event and it's tasks"													
-			rm $username-event.txt
-			rm $username-task.txt
-			rm $username-task-detail.txt						
-			touch $username-task-detail.txt			
-			touch $username-task.txt
+			rm "user-log/$username-event.txt"
+			rm "user-log/$username-task.txt"
+			rm "user-log/$username-task-detail.txt"						
+			touch "user-log/$username-task-detail.txt"			
+			touch "user-log/$username-task.txt"
 			detail_sub=""
 			detail_sub2=""			
 			echo $ll

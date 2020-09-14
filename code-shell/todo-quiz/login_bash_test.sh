@@ -42,14 +42,14 @@ do
 	sym_user="'${color_magenta}$username${color_reset}'"
 	#
 	#--Cek kalau file xxx-login.txt itu udah dibuat atau belum
-	if [ -e "$username-login.txt" ]
+	if [ -e "user-log/$username-login.txt" ]
 	then
 		echo "Searching account . . . . $sym_ok"
 		#
 		#--Ambil isi xxx-login.txt ke variabel 'get_usr'
 		#--Delimiternya '#'
 		#--'get_usr' dipotong lewat delimiter, dimasukin ke array 'log_arr'
-		get_usr=$(cat "$username-login.txt")
+		get_usr=$(cat "user-log/$username-login.txt")
 		IFS=#
 		read -a log_arr <<< "$get_usr"
 		#
@@ -61,7 +61,7 @@ do
 			echo "You have logged in $sym_success"
 			echo ". . . . ."			
 			hist_str="$username#pakaiindex0"
-			echo "$hist_str" | dd of="recent-login.txt"										
+			echo "$hist_str" | dd of="user-log/recent-login.txt"										
 			echo ". . . . ."
 			echo "Recent log in has been ${color_yellow}updated${color_reset} !"
 			echo $ll		
@@ -118,13 +118,13 @@ do
 				#--Write Out (bukan append) file baru
 				#--Format file baru : username-login.txt
 				log_str="$username#$password"
-				echo "$log_str" | dd of="$username-login.txt"
-				touch "$username-task.txt" 
-				touch "$username-task-detail.txt" 				
+				echo "$log_str" | dd of="user-log/$username-login.txt"
+				touch "user-log/$username-task.txt" 
+				touch "user-log/$username-task-detail.txt" 				
 				echo ". . . . ."								
-				echo "$total_correct#$total_wrong" | dd of="$username-quiz-stats.txt"														
+				echo "$total_correct#$total_wrong" | dd of="user-log/$username-quiz-stats.txt"														
 				#buat lagi, untuk last-login.txt, isinya username doang
-				get_usr=$(cat "$username-login.txt")
+				get_usr=$(cat "user-log/$username-login.txt")
 				IFS=#
 				read -a log_arr <<< "$get_usr"
 				echo ". . . . ."		
@@ -135,7 +135,7 @@ do
 				echo "This is not a public-account. Keep it private !"
 				echo ". . . . ."
 				hist_str="$username#pakaiindex0"
-				echo "$hist_str" | dd of="recent-login.txt"										
+				echo "$hist_str" | dd of="user-log/recent-login.txt"										
 				echo ". . . . ."
 				echo "Recent log in has been ${color_yellow}updated${color_reset} !"
 				echo $ll		
@@ -166,5 +166,5 @@ do
 done
 #
 #
-#file : irsyadnu-logintxt
+#file : user-log/irsyadnu-logintxt
 #isi  : irsyadndu#pass123

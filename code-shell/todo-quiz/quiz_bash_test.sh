@@ -37,11 +37,11 @@ curdate="$(date +'%a, %d/%m/%Y')"
 #
 while [[ 1 == 1 ]]
 do
-get_user=$(cat "recent-login.txt")
+get_user=$(cat "user-log/recent-login.txt")
 IFS=#
 read -a user_arr <<< "$get_user"
 username=${user_arr[0]}
-get_quiz_score=$(cat "$username-quiz-stats.txt")
+get_quiz_score=$(cat "user-log/$username-quiz-stats.txt")
 read -a score_arr <<< "$get_quiz_score"
 total_correct=${score_arr[0]}
 total_wrong=${score_arr[1]}
@@ -140,7 +140,7 @@ case $choice in
 			total_correct=0
 			total_wrong=0
 			echo ". . . . ."															
-			echo "$total_correct#$total_wrong" | dd of="$username-quiz-stats.txt"	
+			echo "$total_correct#$total_wrong" | dd of="user-log/$username-quiz-stats.txt"	
 			echo ". . . . ."															
 			echo "You have empty your quiz stats ${sym_success}"
 			echo $ll												
@@ -471,7 +471,7 @@ CORRECTANSWER(){
 	total_correct=$(( $answered_c + $total_correct ))
 	total_wrong=$(( $answered_f + $total_wrong ))
 	echo ". . . . ."
-	echo "$total_correct#$total_wrong" | dd of="$username-quiz-stats.txt"														
+	echo "$total_correct#$total_wrong" | dd of="user-log/$username-quiz-stats.txt"														
 }
 BANNER() {
 	echo "+----------------------------+"

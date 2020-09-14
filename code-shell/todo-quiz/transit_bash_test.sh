@@ -37,7 +37,7 @@ curdate="$(date +'%a, %d/%m/%Y')"
 while [[ 1 == 1 ]]
 do
 IFS=#
-get_rcnt=$(cat "recent-login.txt")
+get_rcnt=$(cat "user-log/recent-login.txt")
 read -a recent_arr <<< "$get_rcnt"	
 username=${recent_arr[0]}
 clear	
