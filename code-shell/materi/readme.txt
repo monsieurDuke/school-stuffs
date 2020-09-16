@@ -1,3 +1,0 @@
-- touch nama_file.sh
-- chmod +x nama_file.sh
-- // header interpreter : #! /bin/bash
