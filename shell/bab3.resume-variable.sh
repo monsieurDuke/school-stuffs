@@ -46,4 +46,40 @@ assigning_values_read_2() {
 
 }
 
-assigning_values_read_2
+assigning_values_subt() {
+
+	get_day=$(date +'%A, %d %B %Y') 
+	get_time_later=$(date -d '+4 hour' +'%H:%M')
+	get_time_now=$(date +'%H:%M')
+	printf "today is $get_day\n"
+	printf "and i have a meeting in $get_time_later\n"
+
+}
+	
+passing_args() {
+
+	printf "this file is called $0\n---------\n"
+	printf "my name is $1, and my hobby is $2\n"
+	printf "im sorry, my real hobbies are $2, $3, $4, and more !\n"
+
+	printf "Here are the list of my hobbies:\n"
+	get_hobbies="$@"
+	for each_hobby in $get_hobbies
+	do
+		echo "- $each_hobby"
+	done 
+	##passing_args $@
+
+}
+
+
+return_code() {
+
+	get_list=$(ls -l /home/cookie/)
+	get_result=$?
+	echo "$get_list"	
+	echo "return result: $get_result"
+
+}
+
+return_code
