@@ -18,9 +18,11 @@ printf "active user\t: %s - %s (%s)\n" "$user_name" "$mchn_name" "$user_id"
 printf "work directory\t: %s\n" "$pwd"
 printf "%s ip address\t: %s\n" "$net_int" "$user_ip"
 printf "linux distro\t: %s %s\n" "${get_dstr_name[1]}" "${get_dstr_code[1]}"
+printf "shell-type\t: %s - %s\n\n" "$SHELL" "$BASH_VERSION"
 
 read -p "username : " name
 read -s -p "password : " pwd
+echo ""
 read -p "notrobot : " check
 
 echo "$name | $pwd ($check)"
