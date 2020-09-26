@@ -34,11 +34,11 @@ assigning_values_read_1() {
 
 assigning_values_read_2() {
 
-	read get_line < readme.txt
+	read get_line < "dummy-sample/readme.txt"
 	while read pass_file
 	do
 		get_file+=$pass_file
-	done < readme.txt
+	done < "dummy-sample/readme.txt"
 
 	printf "the first line of readmet.txt is   : $get_line\n\n"
 	printf "the full content of readmet.txt is : $get_file\n"
@@ -92,7 +92,7 @@ return_code() {
 assigning_values_read_3() {
 
 	read -p "what is your account ? " account
-	read username password create_date role < "$account-userlogin.txt"
+	read username password create_date role < "dummy-sample/$account-userlogin.txt"
 	echo "username : $username"
 	echo "password : $password"
 	echo "job-role : $role"
@@ -158,6 +158,79 @@ debugging() {
 
 random() {
 
-	
+	min=10
+	max=50
+	range=$(($max-$min+1))
+	loop=$(seq 1 5)
+
+	echo "Randomize your number and unique serial code:"
+	for i in $loop
+	do
+		getrand_str=""
+		getrand_str+=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1)		
+		getrand_num=$(($RANDOM%$range+$min))
+
+		for m in $loop
+		do
+			getrand_str+="-"			
+			getrand_str+=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1)
+		done
+		echo "$i. $getrand_num/$max  --  $getrand_str"
+	done
 
 }
+
+reply() {
+
+	echo "Jame: Good morning. What is your name, kid ? "
+	read -p "xxxx: my name is "
+	nickname=${REPLY:0:4}	
+	echo "Jame: oh, hi $nickname! are you one of my students ?"
+	echo "$nickname: yes sir, im in class CS120 with Kirl Hughe, your son lmao"
+
+}
+
+checkdir() {
+
+	read -p "username: " username
+	read -s -p "password: " password
+	printf "\n---\n"
+
+	log_path="dummy-sample/account-regist.log"
+	get_date=$(date +'%d-%m-%Y') 	
+	acc_check="FALSE"	
+	if [ -e $log_path ] # cek apakah file sudah ada
+	then
+		while IFS= read -r get_line # read berdasarkan line dari file
+		do
+			IFS="#"	# pisah kalimat berdasarkan tanda '#'
+			read -a get_info <<< "$get_line"
+			if [[ $username == ${get_info[1]} && $password == ${get_info[2]} ]]
+			then
+				printf "Logged on successfully!\n"
+				printf "Welcome, $username!\n"
+				acc_check="TRUE"
+				break
+			fi
+		done < $log_path
+		if [[ $acc_check == "FALSE" ]]
+		then
+			read -p "detecting new account. create one (y/n) ? " answer
+			if [[ $answer == "y" ]]
+			then
+				printf "#$username#$password#$get_date#user\n" >> $log_path
+				printf "Create account successfully!\n"	
+			fi
+		fi		
+	fi
+}
+
+checkdir
+#pwd
+#list
+#check file
+
+
+#checkdir
+#writefile
+#ifs
