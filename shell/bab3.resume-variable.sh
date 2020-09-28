@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 typing() {
 
@@ -190,11 +190,27 @@ reply() {
 
 }
 
+#set -eE -o functrace
+#trap 'catch $? ${LINENO}' EXIT
+
+catch() {
+	if [[ "$1" != "0"  && "$1" != "1"  ]] # aktifkan catch apabila return code diluar 0 (exit dengan error)
+	then
+		printf "\n---\nit seems that something have interrupted the program\n"
+		printf "[EXEC]: Raising catch() handler ...\n"
+		printf "[CODE]: $1, occured on $0 at line $2\n"
+		printf "[STAT]: Quitting ...\n"
+		exit 1
+	fi
+}
+
 checkdir() {
 
 	read -p "username: " username
 	read -s -p "password: " password
 	printf "\n---\n"
+
+	unknown-bad-command-ashiaap # line digunakan untuk menghasilkan error 'command not found'
 
 	log_path="dummy-sample/account-regist.log"
 	get_date=$(date +'%d-%m-%Y') 	
@@ -225,7 +241,88 @@ checkdir() {
 	fi
 }
 
-checkdir
+glob() {
+
+	GLOBIGNORE=*.txt # pengecualian ls -l !(*.txt|*.gif)
+	ls -l *
+
+}
+
+array() {
+
+	arr[0]="Zara"
+	arr[1]="Za"
+	arr[2]="Ra"
+	arr[3]="Zar"
+	arr[4]="ara"
+
+	for i in ${arr[@]}
+	do 
+		echo "$i"
+	done
+}
+
+math() {
+
+	read -p "num1 : " num1
+	read -p "num2 : " num2
+	echo "---"
+
+	add=`expr $num1 + $num2`
+	sub=`expr $num1 - $num2`
+	tim=`expr $num1 \* $num2`
+	div=`expr $num1 / $num2`
+	mod=`expr $num1 % $num2`
+
+	echo "---"
+	echo "$num1 + $num2 = $add"
+	echo "$num1 - $num2 = $sub"
+	echo "$num1 x $num2 = $tim"
+	echo "$num1 : $num2 = $div"
+	echo "$num1 % $num2 = $mod"
+
+	arr[0]=$add
+	arr[1]=$sub
+	arr[2]=$tim
+	arr[3]=$div
+	arr[4]=$mod
+	arr2=($add $sub $tim $div $mod)
+	arr3=("satu" "dua" "tiga")
+
+	echo "---"
+	add2=`expr ${arr[0]} + ${arr[1]}`
+	echo "${arr[0]} + ${arr[1]} =  $add2"
+	echo "range indx : ${arr[@]:0:3}"
+	echo "range indx : ${arr2[@]:0:2}"
+	echo "all indx number : ${arr[@]}"
+	echo "all indx string : ${arr3[@]}"
+
+	echo "---"
+	echo "length array number : ${#arr[@]} index"
+	echo "length array string : ${#arr3[@]} index"
+
+}
+
+condit() {
+
+	read -p "username : " usr
+	echo "---"
+
+	if [ $usr == $USER ]
+	then
+	    echo "benar, masuk pak echo"
+	    echo "penting.txt: jangan diapus pls" > penting.txt
+	    cat penting.txt
+	else
+	    echo "salah, harusnya $USER"
+	    rm penting.txt
+	    cat penting.txt
+	fi	
+	
+}
+
+condit
+
 #pwd
 #list
 #check file
