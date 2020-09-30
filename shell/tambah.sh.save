@@ -1,0 +1,8 @@
+#!/bin/bash
+
+num1=10
+num2=30
+
+addition_2=`expr $num1 + $num2`
+
+echo "$addition_2"
