@@ -1,13 +1,5 @@
 #!/bin/bash
 # ----------
-# buat login sistem, pengecekan berdasarkan filetext
-# kalau login salah, ada opsi untuk buat akun baru
-# setelah login selesai, user buat folder dengan namanya, isinya file nya sendiri
-# 1. setiap buat akun, buat dir dengan nama user
-# 2. setiap login kelar, ubah timestampnya di line yang sama
-# 3. migrasi code userlogin ke sini
-
-
 
 dir_path="log"
 file_path="$dir_path/account.lst"
@@ -28,16 +20,15 @@ login() {
 	fi	
 
 	count_src=$(ls $dir_path/* | wc -l)
-	get_date=$(date +'%d/%m/%y %T')
 
-	echo "[NICE]: intiating timestamp $get_date ..."; sleep 0.5
+	echo "[NICE]: intiating new timestamp ..."; sleep 0.5
 	echo "[NICE]: collecting dependencies ($count_src) ..."; sleep 0.5
 	echo "[NICE]: deploying $0 ..."; sleep 1.5
-	echo "---"
+	echo "--------------------------------------------"
 
-	read -p  "username: " username
-	read -sp "password: " password
-	printf "\n---\n"
+	read -p  "username : " username
+	read -sp "password : " password
+	printf "\n--------------------------------------------\n"
 
 	while IFS= read -r get_line
 	do
@@ -49,8 +40,11 @@ login() {
 			if [[ $password == ${get_account[1]} ]]
 			then
 				account_found=TRUE
-				echo "[NICE]: logggin in successfully, $username !"
-				read
+				get_date=$(date +'%d-%m-%y %T')								
+				sed -i "s/$get_line/${get_account[0]}#${get_account[1]}#$get_date/" $file_path
+				echo "[NICE]: logggin in successfully, $username !"; sleep 1.5
+				#./bab3.menu.sh "${get_account[0]}" "${get_account[1]}" "${get_account[2]}"
+				break
 				# ... masuk ke home
 			fi
 		fi				
@@ -64,9 +58,14 @@ login() {
 			read -p "[INFO]: proceed to create an account as $username (y/n) ? " answ
 			if [[ "$answ" == "y" ]]
 			then
+				get_date=$(date +'%d-%m-%y %T')								
+				mkdir "$dir_path/$username"
 				printf "$username#$password#$get_date\n" >> $file_path
-				printf "[NICE]: create account successfully! ...\n"	
-				read
+				printf "[NICE]: create account successfully! ...\n"; sleep 0.5	
+				echo "[NICE]: logggin in successfully, $username !"; sleep 1.5				
+				#./bab3.menu.sh "$username" "$password" "$get_date"				
+				account_found=TRUE
+				account_match=TRUE
 				# ... masuk ke home
 			else
 				echo "[MISS]: aborting the procedure ..."; sleep 1.5
@@ -77,13 +76,119 @@ login() {
 			echo "[MISS]: redirecting to login prompt ..."; sleep 2.5
 		fi
 	fi
+
+	if [[ "$account_match" == "TRUE" && "$account_found" == "TRUE" ]]
+	then
+		user_path="$dir_path/$username"
+		clear
+		while [[ "TRUE" == "TRUE" ]]
+		do
+			echo "USER: $username | $get_date"
+			echo "--------------------------------------------"
+			echo "[1] CREATE FILE      -       RENAME FILE [5]"
+			echo "[2] REMOVE FILE      -    LIST DIRECTORY [6]"	
+			echo "[3] READ FILE        -      CLEAR SCREEN [7]"		
+			echo "[4] APPEND FILE      -           LOG-OUT [8]"			
+			echo "--------------------------------------------"		
+			while [[ "TRUE" == "TRUE" ]]
+			do
+				read -p ">> " new_ans
+				case $new_ans in
+					"1")
+						echo "--------------------------------------------"		
+						read -p "NEW FILENAME : " filename								
+						if [[ ! -e "$user_path/$filename" ]]
+						then
+							touch "$user_path/$filename"
+							printf "$filename have been created!\n"							
+							echo "--------------------------------------------"															
+							continue
+						fi
+						printf "$filename is already exits!\n"
+						echo "--------------------------------------------"								
+						;;
+					"2")
+						echo "--------------------------------------------"
+						read -p "FILENAME     : " filename
+						if [[ -e "$user_path/$filename" ]]
+						then
+							rm "$user_path/$filename"
+							printf "$filename have been deleted!\n"							
+							echo "--------------------------------------------"															
+							continue
+						fi
+						printf "$filename is not found!\n"
+						echo "--------------------------------------------"								
+						;;						
+					"3")
+						echo "--------------------------------------------"		
+						read -p "FILENAME     : " filename
+						if [[ -e "$user_path/$filename" ]]
+						then
+							echo "--"
+							cat "$user_path/$filename"
+							echo "--"
+							echo "--------------------------------------------"															
+							continue
+						fi
+						printf "$filename is not found!\n"
+						echo "--------------------------------------------"								
+						;;
+					"4")
+						echo "--------------------------------------------"		
+						read -p "FILENAME     : " filename
+						if [[ -e "$user_path/$filename" ]]
+						then
+							read -p "INSERT LINE  : " content
+							echo "$content" >> "$user_path/$filename"
+							echo "--------------------------------------------"															
+							continue
+						fi
+						printf "$filename is not found!\n"
+						echo "--------------------------------------------"								
+						;;
+					"5")
+						echo "--------------------------------------------"		
+						read -p "OLD FILENAME : " filename														
+						if [[ -e "$user_path/$filename" ]]
+						then
+							read -p "NEW FILENAME : " new_filename
+							mv "$user_path/$filename" "$user_path/$new_filename"
+							printf "$filename have been renamed to $new_filename!\n"														
+							echo "--------------------------------------------"															
+							continue
+						fi
+						printf "$filename is not found!\n"
+						echo "--------------------------------------------"								
+						;;												
+					"6")
+						echo "--------------------------------------------"		
+						arr_list=("$user_path/*")				
+						for i in ${arr_list[@]}
+						do
+							echo "- $i"
+						done
+						echo "--------------------------------------------"								
+						;;						
+					"7")
+						clear
+						break
+						;;
+					"8")
+						echo "--------------------------------------------"								
+						echo "[NICE]: redirecting to login prompt ..."; sleep 2.5
+						./bab3.login.sh
+						;;						
+				esac
+			done	
+		done	
+	fi
 }
 
-menu() {
-	echo
-}
+
 # Main Method
-while [[ TRUE == TRUE ]]; do
+while [[ "TRUE" == "TRUE" ]]
+do
 	clear
 	login
 done
