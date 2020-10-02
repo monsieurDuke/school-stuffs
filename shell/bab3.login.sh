@@ -62,7 +62,7 @@ login() {
 				mkdir "$dir_path/$username"
 				printf "$username#$password#$get_date\n" >> $file_path
 				printf "[NICE]: create account successfully! ...\n"; sleep 0.5	
-				echo "[NICE]: logggin in successfully, $username !"; sleep 1.5				
+				echo "[NICE]: logggin in successfully, $username !"; sleep 5.5				
 				#./bab3.menu.sh "$username" "$password" "$get_date"				
 				account_found=TRUE
 				account_match=TRUE

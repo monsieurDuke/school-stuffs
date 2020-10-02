@@ -28,6 +28,8 @@ then
 		echo "3. Baca File"
 		echo "4. Isi File"
 		echo "5. Lihat File"
+		echo "6. Log Out"
+		echo "7. List"
 		echo "---"
 		read -p "masukan menu (1/2/3/4/5) : " jawab
 		case $jawab in
@@ -57,6 +59,12 @@ then
 				done
 				echo ""
 				;;												
+			"6")
+				./bab3.userlogin.sh
+				;;
+			"7")
+				ls
+				;;				
 		esac
 		read
 	done
