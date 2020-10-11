@@ -321,7 +321,7 @@ condit() {
 	
 }
 
-condit
+random
 
 #pwd
 #list
