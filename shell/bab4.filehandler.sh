@@ -93,7 +93,7 @@ do
 			clear
 			;;
 		"df")
-			df | grep -e "/mnt/c" -e "/mnt/d"
+			df -h
 			echo ""			
 			;;
 	esac
