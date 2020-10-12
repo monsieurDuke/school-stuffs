@@ -1,0 +1,25 @@
+total 108
+drwxr-xr-x 7 cookie cookie 4096 Oct 12 10:08 .
+drwxr-xr-x 6 cookie cookie 4096 Sep 18 17:27 ..
+-rwxr-xr-- 1 cookie cookie  765 Sep 24 22:48 bab2.getinfo.sh
+-rwxr-xr-x 1 cookie cookie 2462 Sep 21 11:50 bab3.biodata.sh
+-rwxr-xr-x 1 cookie cookie 1851 Oct  5 10:40 bab3.dimasloop.sh
+-rwxr-xr-x 1 cookie cookie  266 Sep 26 13:57 bab3.err-test.sh
+-rwxr-xr-x 1 cookie cookie 7296 Oct  9 13:20 bab3.funcpyramid.sh
+-rwxr-xr-x 1 cookie cookie 7343 Oct 12 08:14 bab3.funcpyramid2.sh
+-rwxr-xr-x 1 cookie cookie 6075 Oct  5 08:09 bab3.login.sh
+-rwxr-xr-x 1 cookie cookie  851 Oct  5 09:47 bab3.loop.sh
+-rwxr-xr-x 1 cookie cookie  494 Sep 30 14:34 bab3.menu.sh
+-rwxr-xr-x 1 cookie cookie 1493 Oct  5 14:17 bab3.piramid.sh
+-rwxr--r-- 1 cookie cookie 6669 Oct 11 11:28 bab3.resume-variable.sh
+-rwxr-xr-x 1 cookie cookie  319 Sep 30 20:52 bab3.test-login.sh
+-rwxr-xr-x 1 cookie cookie 2187 Oct  9 12:54 bab3.test-pyramid.sh
+-rwxr-xr-x 1 cookie cookie 1321 Oct  1 22:57 bab3.userlogin.sh
+-rwxr-xr-x 1 cookie cookie 1186 Oct 12 10:27 bab4.filehandler.sh
+drwxr-xr-x 2 cookie cookie 4096 Oct 12 08:47 dummy-sample
+-rw-r--r-- 1 cookie cookie    7 Oct 12 09:50 filebaru.txt
+drwxr-xr-x 7 cookie cookie 4096 Oct  5 08:10 log
+-rw-r--r-- 1 cookie cookie    0 Oct 12 09:48 ok.txt
+drwxr-xr-x 2 cookie cookie 4096 Oct 11 20:00 task-reminder
+drwxr-xr-x 2 root   root   4096 Oct 12 10:09 test
+drwxr-xr-x 3 cookie cookie 4096 Sep 30 14:29 todo-quiz

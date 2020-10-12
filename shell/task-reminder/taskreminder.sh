@@ -3,10 +3,12 @@
 # [ OK ] | ECEF | 2018-11-30 | H-10 | ENG : Buat paragraf tengang Produk
 # [ -- ] | 12VG | 2018-11-30 | H-10 | WSR : Buat Paragraf Produk Bahasa Inggris
 # ENG - FRS - SHL - SQL - RSW - WSR - DRS - CRY
-# bubble sort  vv
-# H-7 warna kuning, H-3 warna merah, > H-7 warna biru, OK warna ijo
-# kalau sukses, replace line dengan status -- jadi OK vv
+# vv | bubble sort 
+# vv | kalau sukses, replace line dengan status -- jadi OK
+# -- | H-7 warna kuning, H-3 warna merah, > H-7 warna biru, OK warna ijo
+# -- | update interface menu, dengan pilihan subject
 
+subj_tsk=("ENG" "FRS" "WSC" "R&S" "SQL" "SHL" "DRS" "CRY")
 log_path="saved-task.log"
 dmp_path="dumped-task.log"
 if [[ ! -e "$log_path" || ! -e "$dmp_path" ]]
@@ -21,10 +23,16 @@ echo "$get_date"
 
 add_task() {
 	read -p "add task subject  : " tsk_subj
-	read -p "add task descs    : " tsk_desc
-	read -p "add task due date : " tsk_due
-	getrand_str=$(cat /dev/urandom | tr -dc 'A-Z0-9' | fold -w 5 | head -n 1)					
-	printf "$tsk_due#$tsk_subj#$tsk_desc#--#$getrand_str\n" >> "$log_path"
+	for i in ${subj_tsk[@]}
+	do
+		if [[ $tsk_subj == $i ]]
+		then
+			read -p "add task descs    : " tsk_desc
+			read -p "add task due date : " tsk_due
+			getrand_str=$(cat /dev/urandom | tr -dc 'A-Z0-9' | fold -w 5 | head -n 1)					
+			printf "$tsk_due#$tsk_subj#$tsk_desc#--#$getrand_str\n" >> "$log_path"
+		fi
+	done
 }
 
 list_task() {
