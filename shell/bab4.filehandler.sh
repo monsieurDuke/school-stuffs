@@ -96,5 +96,20 @@ do
 			df -h
 			echo ""			
 			;;
+		"join")
+			read -p "nama file 1 : " file1
+			read -p "nama file 2 : " file2			
+			read -p "migrasi file baru : " file3						
+			join "$file1" "$file2" > "$file3"
+			echo ""			
+			;;												
 	esac
 done
+
+#ID PELANGGAN       TELEFON      ALAMAT
+#== =============== ============ =========================
+#01 M.ANANDA.SYAMSU 081318420901 Jl.SiagaRaya.Komp.LAN.C13
+#02 HABIBAH.A.B.... 021-79754483 Jl.PejatenResident.A1....
+#03 M.NUR.IRSYAD... 082125337746 Jl.Ampera.Gg.12A.........
+#04 ARUANDI........ ............ Jl.Mampang.Prptn.12.G9...
+#05 NURWULAN.K.D... 082123895755 .........................
