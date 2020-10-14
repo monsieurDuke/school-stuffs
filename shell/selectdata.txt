@@ -1,0 +1,5 @@
+ID NAMA-PELANGGAN..... TGL-MASUK. TGL-KELUAR
+== =================== ========== ==========
+01 Muhammad.Nur.Irsyad 2020/11/02 2020/11/30
+02 Muhammad.Nur.Ikhsan 2020/11/30 2020/12/30
+03 Ahmad.Subarjo...... 2020/12/30 2020/12/13

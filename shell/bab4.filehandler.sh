@@ -16,10 +16,11 @@ clear
 while :
 do
 	echo "touch  o| cp        o| rm      o|"
-	echo "mkdir  o| move      o| join     |"
-	echo "inst   o| redirect  o| mktemp   |"
+	echo "mkdir  o| move      o| join    o|"
+	echo "inst   o| redirect  o| mktemp  o|"
 	echo "df     o| clear     o| ls      o|"
 	echo "cat    o| nano      o| rename  o|"
+	echo "dd      | split      | find     |"
 	echo "---------------------------------"
 	read -p "menu : " menu
 	case $menu in
@@ -100,9 +101,21 @@ do
 			read -p "nama file 1 : " file1
 			read -p "nama file 2 : " file2			
 			read -p "migrasi file baru : " file3						
-			join "$file1" "$file2" > "$file3"
+			join -o 1.1,1.2,2.3,2.4 "$file1" "$file2" > "$file3"
 			echo ""			
-			;;												
+			;;				
+		"mktemp")
+			read -p "nama file untuk di backup: " file
+			if [ -e $file ]
+			then
+				out=$(mktemp)
+				get_file=$(cat $file)
+				echo "$get_file" > $out
+				echo "$file berhasil di backup di $out"
+			fi
+			;;
+		"dd")								
+			;;
 	esac
 done
 
