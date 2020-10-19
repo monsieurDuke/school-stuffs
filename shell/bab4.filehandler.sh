@@ -20,7 +20,7 @@ do
 	echo "- touch    - cp        - rm     "
 	echo "- mkdir    - move      - join   "
 	echo "- install  - redirect  - mktemp "
-	echo "- df       - clear     - ls     "
+	echo "- df       - clear     - ls / ll"
 	echo "- cat      - tee       - rename "
 	echo "- dd       - split     - find   "
 	echo "--------------------------------"
@@ -67,7 +67,7 @@ do
 				fi
 				echo    ":: LISTED DIRECTORY         : $path_dir/"
 				echo "::"	
-				ls $dir
+				ls -h $dir
 				echo ""
 				;;				
 			"redirect")
@@ -169,9 +169,10 @@ do
 					echo "$get_file" > $out
 					echo ":: FILE HAVE BEEN BACKED-UP, $file to $out !"
 				fi
+				echo ""
 				;;
 			"dd")		
-				read -p ":: CREATING BACKUP OR RESTORING BACKUP (c/r) ? : " choose
+				read -p ":: CREATE BACKUP/RESTORE BACKUP (c/r) ? : " choose
 				case $choose in
 					"c")	
 						read -p "-- NEW NAME OF ISO               : " file				
@@ -199,9 +200,10 @@ do
 						fi
 						;;
 				esac
+				echo ""
 				;;
 			"find")
-				read -p "REMOVING FILES OR COPYING FILES (r/c) ? : " choose
+				read -p "REMOVE FILES/COPY FILES/FIND (r/c/f) ? : " choose
 				case $choose in
 					"r")
 						read -p "-- SEARCH BY REGEX : " regex
@@ -218,6 +220,13 @@ do
 						echo ":: FILES WITH '$regex' HAVE BEEN COPIED TO $path_dir !"												
 						echo ""
 						;;					
+					"f")
+						read -p "-- SEARCH BY REGEX    : " regex
+						read -p "-- DESTINATION FOLDER : " path_dir
+						regex="*$regex*"
+						find . -type f -name "$regex" -exec echo {} \;
+						echo ""
+						;;
 				esac
 				;;
 			"tee")
@@ -228,6 +237,7 @@ do
 					cat "$file" | tee -a "$file2"
 				fi
 				echo ":: FILE HAVE BEEN SAVED, $file2 !"																
+				echo ""
 				;;
 			"split")
 				read -p "-- NAME OF FILE  : " file
@@ -237,10 +247,26 @@ do
 					read -p "-- PREFIX NAME   : " prefix
 					split -l "$line" -e "$file" "$prefix"
 				fi
+				echo ""
 				;;
 			"ex")
 				exit 0
 				;;
+			"ll")
+				pwd=$(pwd)
+				read -p "-- VIEW DIRECTORY (current) : " dir
+				if [ ! $dir ]
+				then
+					path_dir=$pwd
+					path_dir=$(realpath -s "$path_dir")					
+				else
+					path_dir=$(realpath -s "$dir")					
+				fi
+				echo    ":: LISTED DIRECTORY         : $path_dir/"
+				echo "::"	
+				ls -lah $dir
+				echo ""
+				;;				
 		esac
 	done
 done

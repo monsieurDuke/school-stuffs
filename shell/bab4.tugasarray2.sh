@@ -77,7 +77,11 @@ do
 		     read -p "nama file awal : " file
 		     read -p "nama file baru : " file2
 		     read -p "tujuan folder : " folder
-		     cp "$file" "$folder$$file2"
+		     if [[ "$folder" ]]
+		     then
+		     	file2="$folder/$file2"
+		     fi
+		     cp "$file" "$file2"
 		     ;;
 		  "rm")
 		     read -p "nama file awal : " file

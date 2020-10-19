@@ -1,0 +1,95 @@
+#!/bin/bash
+# ---------
+# od, cut, echo, paste, pr
+# printf, fmt, head, tail
+
+list_path=".load.lst"
+while : 
+do
+	clear	
+	echo "+--------------------------------------------+"				
+	echo "| cut  @| od     @| echo  x| printf  x| pr  x|"
+	echo "| fmt  x| paste  @| head  @| tail    @| wc  x|"
+	echo "| shuf x| sort   x| tr    x| uniq    x| ..   |"
+	echo "+--------------------------------------------+"		
+	echo "| [EDIT] : TXT // STR // LS // EXT           |"          
+	echo "+--------------------------------------------+"	
+	echo "::::::::::::::::::::::::::::::::::::::::::::::"		
+	while :
+	do
+		read -p "| >> " opsi
+		case $opsi in
+			"txt"|"TXT")
+				read -p "| -- :: LOAD FILE(S) : " file
+				fl_list=$(ls -lah $file)				
+				if [[ "$file" && "$fl_list" ]]
+				then
+					echo "$fl_list" > "$list_path"
+					echo "| -- :: SELECTED FILE(S) ..."
+					while IFS= read -r get_list
+					do
+						echo "| -- :: $get_list"						
+					done < $list_path
+				fi
+				echo ""
+				;;
+			"string")
+				read -p "masukan string: " string
+				echo ""
+				;;			
+			"cut")
+				cut_c=$(cut -c 1-10 $file)
+				cut_d=$(cut -d "#" -f 1 $file)
+				cut_s=$(cut -s -d "#" -f 2 $file)
+				printf "cut -c 1-10      : print range of char\n$cut_c\n\n"
+				printf "cut -d # -f 1    : print delimiter '#' in specified field\n$cut_d\n\n"
+				printf "cut -s -d # -f 2 : only print with delimiter symbol\n$cut_s\n\n"
+				;;
+			"od")
+				od_b=$(od -Ax -b $file)
+				od_c=$(od -Ax -c $file)
+				od_w=$(od -w20 -Ax -c $file)
+				printf "od -b   : print char in octal byte\n$od_b\n\n"
+				printf "od -c   : print char and escapes\n$od_c\n\n"
+				printf "od -w20 : print char in specified width\n$od_w\n\n"			
+				;;
+			"echo")
+				for i in `seq 1 3`
+				do
+					echo_n+=$(echo -n "\t$string\n")
+					echo_E+=$(echo -E "\t$string\n")
+					echo_e+=$(echo -e "\t$string\n")
+				done
+				printf "echo -n : \n$echo_n\n\n"
+				printf "echo -E : \n$echo_E\n\n"
+				printf "echo -e : \n$echo_e\n\n"			
+				;;
+			"head")
+				head_n=$(head -n 5 $file)
+				head_c=$(head -c 50 $file)
+				head_v=$(head -v $file)
+				printf "head -n 5  : print lines from top\n$head_n\n\n"
+				printf "head -c 50 : print chars to certain limit \n$head_c\n\n"
+				printf "head -v    : print header of file\n$head_v\n\n"			
+				;;			
+			"tail")
+				tail_n=$(tail -n 5 $file)
+				tail_c=$(tail -c 50 $file)
+				tail_v=$(tail -v $file)
+				printf "tail -n 5  : print lines from top\n$tail_n\n\n"
+				printf "tail -c 50 : print chars to certain limit \n$tail_c\n\n"
+				printf "tail -v    : print header of file\n$tail_v\n\n"			
+				;;	
+			"paste")
+				paste_d=$(paste -d ",|" $file)
+				paste_s=$(paste -s -d ":" $file)
+				printf "paste -d ',|' : merge files with delimter symbol\n$paste_d\n\n"
+				printf "paste -s      : merge\n$paste_s\n\n"			
+				;;					
+			"clear")
+				break
+				;;
+		esac
+	done
+done
+
