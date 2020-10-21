@@ -8,11 +8,11 @@ while :
 do
 	clear	
 	echo "+--------------------------------------------+"				
-	echo "| cut  @| od     @| echo  x| printf  x| pr  x|"
-	echo "| fmt  x| paste  x| head  x| tail    x| wc  x|"
+	echo "| cut  @| od     @| echo  @| printf  x| pr  x|"
+	echo "| fmt  x| paste  x| head & tail      @| wc  x|"
 	echo "| shuf x| sort   x| tr    x| uniq    x| ..   |"
 	echo "+--------------------------------------------+"		
-	echo "| [EDIT] : TXT // STR // LS // EXT           |"          
+	echo "| [OPTS] : TXT // STR // LS // EXT // CLEAR  |"          
 	echo "+--------------------------------------------+"	
 	echo "::::::::::::::::::::::::::::::::::::::::::::::"		
 	while :
@@ -26,10 +26,10 @@ do
 				then
 					echo "$fl_list" > "$list_path"
 					wc_get=$(cat $list_path | wc -l)
-					echo ":: -- SELECTED FILE ($wc_get) ..."
+					echo -e ":: -- SELECTED FILE ($wc_get) ...\\n--"
 					while IFS= read -r get_list
 					do
-						echo ":: -- $get_list"						
+						echo "$get_list"						
 					done < $list_path
 					echo ""										
 				else
@@ -107,32 +107,45 @@ do
 				fi
 				;;
 			"echo")
-				for i in `seq 1 3`
-				do
-					echo_n+=$(echo -n "\t$string\n")
-					echo_E+=$(echo -E "\t$string\n")
-					echo_e+=$(echo -e "\t$string\n")
-				done
-				printf "echo -n : \n$echo_n\n\n"
-				printf "echo -E : \n$echo_E\n\n"
-				printf "echo -e : \n$echo_e\n\n"			
+				if [[ "$string" ]]
+				then
+					echo -e "--\n[-n] : print strings without adding trailing newlines"					
+					for i in `seq 1 3`
+					do
+						echo -n "$string"
+					done
+					echo ""
+					echo -e "--\n[-E] : print strings without interprating backslash escpases (default)"					
+					for i in `seq 1 3`
+					do
+						echo -E "$string"
+					done
+					echo -e "--\n[-e] : print strings with interprating backslash escpases"															
+					for i in `seq 1 3`
+					do
+						echo -e "$string"
+					done
+					echo ""
+				fi
 				;;
-			"head")
-				head_n=$(head -n 5 $file)
-				head_c=$(head -c 50 $file)
-				head_v=$(head -v $file)
-				printf "head -n 5  : print lines from top\n$head_n\n\n"
-				printf "head -c 50 : print chars to certain limit \n$head_c\n\n"
-				printf "head -v    : print header of file\n$head_v\n\n"			
+			"ht")
+				if [[ "$file" ]]
+				then
+					read -p ":: -- [-n] ENTER HEIGHT (H) : " h_n			
+					read -p ":: -- [-n] ENTER HEIGHT (T) : " t_n			
+					read -p ":: -- [-c] ENTER CHAR (H)   : " h_c			
+					read -p ":: -- [-c] ENTER CHAR (T)   : " t_c			
+					if [[ "$h_n" && "$h_c" && "$t_c" && "$t_n" ]]
+					then
+						ht_n=$(head -n $h_n $file | tail -n $t_n)
+						ht_c=$(head -c $h_c $file | tail -c $t_c)
+						ht_v=$(head -v $file)
+						echo -e "--\\n[-n] : print lines within a range from top and bottom\\n$ht_n"
+						echo -e "--\\n[-c] : print characters within a range from top and bottom\\n$ht_c"
+						echo -e "--\\n[-v] : print the file names as the header\\n$ht_v\\n"
+					fi
+				fi
 				;;			
-			"tail")
-				tail_n=$(tail -n 5 $file)
-				tail_c=$(tail -c 50 $file)
-				tail_v=$(tail -v $file)
-				printf "tail -n 5  : print lines from top\n$tail_n\n\n"
-				printf "tail -c 50 : print chars to certain limit \n$tail_c\n\n"
-				printf "tail -v    : print header of file\n$tail_v\n\n"			
-				;;	
 			"paste")
 				paste_d=$(paste -d ",|" $file)
 				paste_s=$(paste -s -d ":" $file)

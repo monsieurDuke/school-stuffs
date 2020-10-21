@@ -54,15 +54,13 @@ do
 				printf "od -w20 : print char in specified width\n$od_w\n\n"			
 				;;
 			"echo")
+				string="ikan\\tayam\\vburung\\npaus \\\ beruang"
 				for i in `seq 1 3`
 				do
-					echo_n+=$(echo -n "\t$string\n")
-					echo_E+=$(echo -E "\t$string\n")
-					echo_e+=$(echo -e "\t$string\n")
+					echo -n "$string"
+					echo -E "$string"
+					echo -e "$string"
 				done
-				printf "echo -n : \n$echo_n\n\n"
-				printf "echo -E : \n$echo_E\n\n"
-				printf "echo -e : \n$echo_e\n\n"			
 				;;
 			"head")
 				head_n=$(head -n 5 $file)
