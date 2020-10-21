@@ -8,11 +8,11 @@ while :
 do
 	clear	
 	echo "+--------------------------------------------+"				
-	echo "| cut  @| od     @| echo  @| printf  x| pr  x|"
-	echo "| fmt  x| paste  x| head & tail      @| wc  x|"
+	echo "| cut  @| od     @| echo  @| printf  @| pr  @|"
+	echo "| fmt  x| paste  @| head & tail      @| wc  @|"
 	echo "| shuf x| sort   x| tr    x| uniq    x| ..   |"
 	echo "+--------------------------------------------+"		
-	echo "| [OPTS] : TXT // STR // LS // EXT // CLEAR  |"          
+	echo "| [OPTS] : TXT // STR // NUM // LS // EXT // |"          
 	echo "+--------------------------------------------+"	
 	echo "::::::::::::::::::::::::::::::::::::::::::::::"		
 	while :
@@ -46,6 +46,17 @@ do
 					unset string
 				fi
 				;;							
+			"NUM"|"num")
+				read -p ":: -- INSERT NUMBER : " number
+				re='^[+-]?[0-9]+([.][0-9]+)?$'
+				if [[ "$number" ]]
+				then
+	  			   	echo ":: -- VARIABLE HAVE BEEN SET, ${#number} chars ..."					
+					echo ""	  			   	
+				else
+					unset number
+				fi
+				;;											
 			"LS"|"ls")
 				pwd=$(pwd)
 				read -p ":: -- VIEW DIRECTORY (current) : " dir
@@ -147,11 +158,69 @@ do
 				fi
 				;;			
 			"paste")
-				paste_d=$(paste -d ",|" $file)
-				paste_s=$(paste -s -d ":" $file)
-				printf "paste -d ',|' : merge files with delimter symbol\n$paste_d\n\n"
-				printf "paste -s      : merge\n$paste_s\n\n"			
-				;;					
+				if [[ "$file" ]]
+				then
+					read -p ":: -- [-d] ENTER DELI  : " ps_d								
+					read -p ":: -- [-f] ENTER FIELD : " ps_f		
+					if [[ "$ps_d" == "space" ]]
+					then
+						ps_d=" "
+					fi					
+					if [[ "$ps_d" && "$ps_f" ]]									
+					then
+						paste_n=$(paste $file)						
+						paste_d=$(paste -d "$ps_d" $file)
+						paste_s=$(paste -s -d "$ps_d" $file)
+						echo -e "--\\n[..] : print combined files with tab spacing\\n$paste_n"						
+						echo -e "--\\n[-d] : print combined files, seperated by delimiter symbol\\n$paste_d"
+						echo -e "--\\n[-s] : print combined files in serial format \\n$paste_s\\n"
+					fi
+				fi
+				;;		
+			"printf")
+				if [[ "$string" && "$number" ]]
+				then
+					conv=$(printf "%.0f" "$number")
+					int=$(printf "%d" "$conv")					
+					flt=$(printf "%.3f" "$number")
+					str=$(printf "%s" "$string")		
+					echo -e "--\\nSTRING : $string // NUMBER : $number"								
+					echo -e "[%s] : print strings within 's' placeholder  : $str"
+					echo -e "[%f] : print floats within 'f' placeholder   : $flt"
+					echo -e "[%s] : print integers within 'd' placeholder : $int\\n"					
+				fi
+				;;			
+			"pr")
+				#-n : line number, -h : custom header, -2 : n column
+				if [[ "$file" ]]
+				then
+					read -p ":: -- [-w] ENTER COLUMN : " p_n										
+					read -p ":: -- [-h] ENTER HEADER : " p_h
+					if [[ "$p_n" && "$p_h" ]]
+					then					
+						p_n="-$p_n"
+						pr_n=$(pr -f -n $file)
+						pr_h=$(pr -f -h "$p_h" $file)
+						pr_c=$(pr $p_n -f $file)
+						echo -en "--\\n[-n] : print line numbers along with the column$pr_n"						
+						echo -en "--\\n[-h] : print a centered custom header$pr_h"						
+						echo -en "--\\n[-c] : print contents in a spesific column width$pr_c"						
+					fi
+				fi
+				;;
+			"wc")
+				# -l : total line, -c : total character, -w : total word count
+				if [[ "$file" ]]
+				then
+					wc_l=$(cat $file | wc -l)
+					wc_c=$(cat $file | wc -c)
+					wc_w=$(cat $file | wc -w)					
+					echo -e "--\\nFILE : $file, ($wc_get) selected"								
+					echo -e "[-l] : print the newline counts of a file   : $wc_l lines"					
+					echo -e "[-c] : print the character counts of a file : $wc_c chars"					
+					echo -e "[-w] : print the word counts of a file      : $wc_w words\\n"										
+				fi
+				;;
 			"clear")
 				break
 				;;
