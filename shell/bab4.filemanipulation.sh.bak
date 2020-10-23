@@ -10,7 +10,7 @@ do
 	echo "+--------------------------------------------+"				
 	echo "| cut  @| od     @| echo  x| printf  x| pr  x|"
 	echo "| fmt  x| paste  @| head  @| tail    @| wc  x|"
-	echo "| shuf x| sort   x| tr    x| uniq    x| ..   |"
+	echo "| shuf x| sort   @| tr    x| uniq    x| ..   |"
 	echo "+--------------------------------------------+"		
 	echo "| [EDIT] : TXT // STR // LS // EXT           |"          
 	echo "+--------------------------------------------+"	
