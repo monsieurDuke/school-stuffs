@@ -75,6 +75,7 @@ do
 				exit 0
 				;;				
 			"cut")
+				file="exp.nama-kecil.txt"
 				if [[ "$file" ]]
 				then
 					read -p "| :: -- [-c] ENTER CHAR  : " cut_c_o			
@@ -97,6 +98,7 @@ do
 				fi
 				;;
 			"od")
+				file="exp.nama-kecil.txt"
 				if [[ "$file" ]]
 				then
 					read -p ":: -- [-w] ENTER WIDTH : " od_w_o					
@@ -117,6 +119,7 @@ do
 				fi
 				;;
 			"echo")
+				string="\\tOreo\\vSmoothie\\nSalad"
 				if [[ "$string" ]]
 				then
 					echo -e "--\n[ echo -n ]: print strings without adding trailing newlines\n--"					
@@ -139,6 +142,7 @@ do
 				fi
 				;;
 			"ht")
+				file="exp.nama-besar.txt"
 				if [[ "$file" ]]
 				then
 					read -p ":: -- [-n] ENTER HEIGHT (H) : " h_n			
@@ -157,6 +161,7 @@ do
 				fi
 				;;			
 			"paste")
+				file="exp.nomor.txt exp.nama-kecil.txt"
 				if [[ "$file" ]]
 				then
 					read -p ":: -- [-d] ENTER DELI  : " ps_d								
@@ -176,6 +181,8 @@ do
 				fi
 				;;		
 			"printf")
+				string="Ini adalah String Biasa"
+				number="3.142129391"
 				if [[ "$string" && "$number" ]]
 				then
 					conv=$(printf "%.0f" "$number")
@@ -185,11 +192,12 @@ do
 					echo -e "--\\nSTR : $string"
 					echo -e "NUM : $number\\n--"								
 					echo -e "[ printf '%s' ]: print strings within 's' placeholder  : $str"
-					echo -e "[ printf '%f' ]: print floats within 'f' placeholder   : $flt"
+					echo -e "[ printf '%.3f' ]: print floats within 'f' placeholder : $flt"
 					echo -e "[ printf '%s' ]: print integers within 'd' placeholder : $int\\n"					
 				fi
 				;;			
 			"pr")
+				file="exp.nama-kecil.txt"
 				#-n : line number, -h : custom header, -2 : n column
 				if [[ "$file" ]]
 				then
@@ -209,12 +217,13 @@ do
 				;;
 			"wc")
 				# -l : total line, -c : total character, -w : total word count
+				file="exp.paragraf.txt"
 				if [[ "$file" ]]
 				then
 					wc_l=$(cat $file | wc -l)
 					wc_c=$(cat $file | wc -c)
 					wc_w=$(cat $file | wc -w)					
-					echo -e "--\\nTXT : $file, ($wc_get) selected\\n--"								
+					echo -e "--\\nTXT : $file\\n--" # ($wc_get) selected\\n--"								
 					echo -e "[ cat | wc -l ]: print the newline counts of a file   : $wc_l lines"					
 					echo -e "[ cat | wc -c ]: print the character counts of a file : $wc_c chars"					
 					echo -e "[ cat | wc -w ]: print the word counts of a file      : $wc_w words\\n"
@@ -222,6 +231,7 @@ do
 				;;
 			"fmt")
 				# -w : max width of column, -t : indent paragrapsh format, -s : spacing long lines (default 75)
+				file="exp.paragraf.txt"				
 				if [[ "$file" ]]				
 				then
 					read -p ":: -- [-w] ENTER WIDTH : " fmt_w_o										
@@ -238,6 +248,7 @@ do
 				;;
 			"sort")
 				# -r : sort descending, -n: sort by numerical value, .. : sort by 
+				file="exp.numeric.txt"
 				if [[ "$file" ]]
 				then
 					sort_d=$(sort $file)
@@ -250,6 +261,7 @@ do
 				;;
 			"shuf")
 				# .. : pure shuffle, -n : limit output, -e : argument shuffle (variabel)
+				file="exp.nama-besar.txt"
 				if [[ "$file" ]]
 				then
 					read -p ":: -- [-n] ENTER LINE OUT  : " shuf_n_o															
@@ -267,6 +279,7 @@ do
 				;;
 			"tr")
 				#-s : replace, -d : delete, -c : exception to next opt, ::
+				file="exp.nama-kecil.txt"
 				if [[ "$file" ]]
 				then
 					read -p ":: -- [-s] REPLACE CHAR : " tr_s_o_1																			
@@ -289,6 +302,7 @@ do
 				;;
 			"uniq")
 				# -c : count repeated / identical line, -D : print all duplicated lines, -w : compare chars
+				file="exp.duplikat.txt"
 				if [[ "$file" ]]
 				then
 					read -p ":: -- [-w] CHECK CHAR : " uniq_w_o																							

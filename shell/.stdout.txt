@@ -1,0 +1,10 @@
+total 0
+l-wx------ 1 cookie cookie 64 Oct 26 16:43 0 -> /home/cookie/gitrepo/school-stuffs/shell/.stdinn.txt
+l-wx------ 1 cookie cookie 64 Oct 26 16:43 1 -> /home/cookie/gitrepo/school-stuffs/shell/.stdout.txt
+l-wx------ 1 cookie cookie 64 Oct 26 16:43 2 -> /home/cookie/gitrepo/school-stuffs/shell/.stderr.txt
+lr-x------ 1 cookie cookie 64 Oct 26 16:43 3 -> /proc/1700/fd
+total 0
+l-wx------ 1 cookie cookie 64 Oct 26 16:45 0 -> /home/cookie/gitrepo/school-stuffs/shell/.stdinn.txt
+l-wx------ 1 cookie cookie 64 Oct 26 16:45 1 -> /home/cookie/gitrepo/school-stuffs/shell/.stdout.txt
+l-wx------ 1 cookie cookie 64 Oct 26 16:45 2 -> /home/cookie/gitrepo/school-stuffs/shell/.stderr.txt
+lr-x------ 1 cookie cookie 64 Oct 26 16:45 3 -> /proc/1739/fd
