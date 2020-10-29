@@ -28,14 +28,15 @@
 meminfo_path=".meminfo.part"
 if [[ "$UID" -eq "0" ]]
 then
+	set -m	
 	while :
 	do
 		clear
 		echo "+---------------------------------------------+"
 		echo "| list-proc   @| list-mem    @| nohup-comm   @|"
-		echo "| gen-proc    o| kill-proc   @| foreg-backg   |"
+		echo "| gen-proc    @| kill-proc   @| foreg-backg  o|"
 		echo "| check-proc  @| exec-redir   | wait-comm     |"
-		echo "| tail-proc   @| clear        | ex            |"
+		echo "| tail-proc   @| ..           | ..            |"
 		echo "+---------------------------------------------+"
 		echo ""
 		while :
@@ -95,28 +96,39 @@ then
 					read -p "TAIL LOG-FILE : " tail_path
 					if [[ "$tail_path" && -e "$tail_path" ]]
 					then
-						log_tail=$(cat "$tail_path" | tail -n 5)
-						log_wc=$(cat "$tail_path" | wc -l)
-						log_wc=$((--log_wc))
-						echo -e "--\\n$log_tail\\n--\\nTotal sequences are $log_wc to 0.0.0.0 ...\\n"
+						if [[ "$tail_path" == "tail-apk.log" ]]
+						then
+							log_tail=$(cat "$tail_path" | tail -n 5)
+							log_apt=$(cat "$tail_path" | tail -n 5 | grep "apt-get" | cut -c 14-)
+							echo -e "--\\n$log_tail\\n--\\nRecent installation, $log_apt ..."							
+						else
+							log_tail=$(cat "$tail_path" | tail -n 5)
+							log_wc=$(cat "$tail_path" | wc -l)
+							log_wc=$((--log_wc))
+							echo -e "--\\n$log_tail\\n--\\nTotal sequences are $log_wc to 0.0.0.0 ..."
+						fi
 					fi
 					echo ""
 					;;
 				"kill-proc")
 					echo "--"
-					read -p "SPECIFY PID NUMBER : " pid_num
-					pid_num2=$pid_num
-					if [[ "$pid_num2" == *"%"* ]]
+					read -p "SPECIFY PID NUMBER / JOB SESSION : " pid_num
+					if [[ "$pid_num" ]]
 					then
-						pid_num2=$(echo "$pid_num" | cut -c 2-)
-						pid_comm="nohup background"											
-					else
-						pid_comm=$(ps -fp "$pid_num2" | cut -c 49-100 | tail -n 1)											
+						pid_num2=$pid_num
+						if [[ "$pid_num2" == *"%"* ]]
+						then
+							pid_num2=$(echo "$pid_num" | cut -c 2-)
+							pid_comm="nohup background"											
+						else
+							pid_comm=$(ps -fp "$pid_num2" | cut -c 49-100 | tail -n 1)											
+						fi
+						kill "$pid_num"					
+						echo "--"
+						echo "Terminating PID $pid_num ($pid_comm) ..."
+						echo -e "Updating snapshot of current process ..."
 					fi
-					kill "$pid_num"					
-					echo "--"
-					echo "Terminating PID $pid_num ($pid_comm) ..."
-					echo -e "Updating snapshot of current process ...\\n"
+					echo ""
 					;;
 				"check-proc")
 					echo "--"
@@ -128,6 +140,9 @@ then
 				"gen-proc")
 					restart_ser1=$(service apache2 restart | cut -c 2-)
 					restart_ser2=$(service ssh restart | cut -c 2-)
+					echo "$restart_ser1" > ".service.part.1"
+					echo "$restart_ser2" > ".service.part.2"
+					get_ser=$(cat .service.part.* | grep "Restarting")
 					min=1000
 					max=3000
 					range=$(($max-$min+1))					
@@ -135,14 +150,31 @@ then
 					sleep "$getrand_num" &
 					nohup tail -f /var/log/apt/history.log &> "tail-apk.log" &
 					ncat -l -p "$getrand_num" > "message.txt" &
-					echo -e "--\\n$restart_ser1\\n$restart_ser2"										
+					echo -e "--\\n$get_ser\\n--"										
 					regex_proc=("sleep $getrand_num &" "tail -f /var/log/apt/history.log &" "ncat -l -p $getrand_num > message.txt &")
 					for i in "${regex_proc[@]}"
 					do
 						echo "Backgrounding: $i ..."						
 					done
-					echo ""
+					echo -e "--\\nUpdating snapshot of current process ...\\n"
 					;;
+				"foreg-backg")
+					echo "--"
+					read -p "MANAGE PROC (F/B)   : " pid_man
+					read -p "SPECIFY JOB SESSION : " pid_num
+					if [[ "$pid_num" && "$pid_man" ]]
+					then
+						case $pid_man in
+							"F")
+								exec bash bab4.process.sh &								
+								fg "$pid_num"
+								;;
+							"B")
+								bg "$pid_num"
+								;;
+						esac
+					fi
+					echo ""
 			esac
 		done
 	done
