@@ -1,0 +1,5 @@
+Oct 30 01:13:50  - kill: failed to parse argument: 'a'
+Oct 30 01:22:58  - CMDkill: (50000): No such process
+Oct 30 01:24:28  - kill: failed to parse argument: 'a'
+Oct 30 01:26:08  - kill: failed to parse argument: 'a'
+Oct 30 01:26:14  - CMDkill: (50000): No such process

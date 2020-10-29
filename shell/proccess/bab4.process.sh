@@ -26,18 +26,20 @@
 # gen_proc : htop v, ncat, iptraf v, tail /var/log/apt/history.log v
 
 meminfo_path=".meminfo.part"
+log_apk="tail-apk.log"
+log_err="tail-err.log"
 if [[ "$UID" -eq "0" ]]
 then
 	set -m	
 	while :
 	do
 		clear
-		echo "+---------------------------------------------+"
-		echo "| list-proc   @| list-mem    @| nohup-comm   @|"
-		echo "| gen-proc    @| kill-proc   @| foreg-backg  o|"
-		echo "| check-proc  @| exec-redir   | wait-comm     |"
-		echo "| tail-proc   @| ..           | ..            |"
-		echo "+---------------------------------------------+"
+		echo "+----------------------------------------------+"
+		echo "| list-proc   @| list-mem     @| nohup-comm   @|"
+		echo "| gen-proc    @| kill-proc    @| foreg-proc   x|"
+		echo "| check-proc  @| exec-stderr   | wait-comm     |"
+		echo "| tail-log    @| net-stat     @| ..            |"
+		echo "+----------------------------------------------+"
 		echo ""
 		while :
 		do
@@ -50,7 +52,7 @@ then
 					exit 0
 					;;
 				"ls")
-					get_ls=$(ls -lah)
+					get_ls=$(ls -lh)
 					echo -e "--\\n$get_ls\\n"
 					;;
 				"list-proc")
@@ -96,7 +98,7 @@ then
 					read -p "TAIL LOG-FILE : " tail_path
 					if [[ "$tail_path" && -e "$tail_path" ]]
 					then
-						if [[ "$tail_path" == "tail-apk.log" ]]
+						if [[ "$tail_path" == "$log_apk" ]]
 						then
 							log_tail=$(cat "$tail_path" | tail -n 5)
 							log_apt=$(cat "$tail_path" | tail -n 5 | grep "apt-get" | cut -c 14-)
@@ -119,14 +121,25 @@ then
 						if [[ "$pid_num2" == *"%"* ]]
 						then
 							pid_num2=$(echo "$pid_num" | cut -c 2-)
-							pid_comm="nohup background"											
+							pid_comm=$(jobs | grep "$pid_num2" | cut -c 31-)
+							kill "$pid_num"
+							echo "--"
+							echo "Terminating PID $pid_num ($pid_comm) ..."
+							echo -e "Updating snapshot of current process ..."							
 						else
-							pid_comm=$(ps -fp "$pid_num2" | cut -c 49-100 | tail -n 1)											
+							check1=$(exec ps -fp "$pid_num2" 2>&1 | cut -c 49-100 | tail -n 1)
+							check2=$(exec kill "$pid_num" 2>&1 > /dev/null)
+							time=$(date | cut -c 5-20)
+							echo "$time - $check1$check2" >> "$log_err"							
+							if [[ "$check2" =~ *"failed"* || "$check2" =~ *"No such"* ]]
+							then
+								echo "$check2"
+								pid_comm="$check1"
+								echo "--"
+								echo "Terminating PID $pid_num ($pid_comm) ..."
+								echo -e "Updating snapshot of current process ..."								
+							fi
 						fi
-						kill "$pid_num"					
-						echo "--"
-						echo "Terminating PID $pid_num ($pid_comm) ..."
-						echo -e "Updating snapshot of current process ..."
 					fi
 					echo ""
 					;;
@@ -166,7 +179,6 @@ then
 					then
 						case $pid_man in
 							"F")
-								exec bash bab4.process.sh &								
 								fg "$pid_num"
 								;;
 							"B")
@@ -175,6 +187,17 @@ then
 						esac
 					fi
 					echo ""
+					;;
+				"net-stat")
+					get_net=$(netstat -lptan)
+					tst_net=$(netstat -lptan | grep "tcp")
+					if [[ "$tst_net" ]]
+					then
+						echo -e "--\\n$get_net\\n"
+					else
+						echo -e "--\\nNo Active Internet connections (servers were not established) ...\\n"
+					fi
+					;;
 			esac
 		done
 	done
