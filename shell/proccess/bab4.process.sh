@@ -23,6 +23,7 @@
 # LP (PS + SERVICE STATUS + JOBS) / LM (PROC/MEMINFO + I/O REDIRECTION + PIPELINE) 
 # BG+FG (BACKGROUNDING) / KP (KILL) /  XR (EXEC + I/O REDIRECTION) / WB (WAIT) 
 # CP (CHECK PS + PGREP) / RP (SERVICE START, SLEEP, NANO) / NP (NOHUP NETDISCOVER)
+# gen_proc : htop v, ncat, iptraf v, tail /var/log/apt/history.log v
 
 meminfo_path=".meminfo.part"
 if [[ "$UID" -eq "0" ]]
@@ -30,12 +31,12 @@ then
 	while :
 	do
 		clear
-		echo "+-----------------------------------------------+"
-		echo "| list-proc   @| list-mem   @| nohup-comm      @|"
-		echo "| rand-proc   o| kill-proc  @| foreground-proc  |"
-		echo "| check-proc  @| exec-redir  | wait-comm        |"
-		echo "| tail-proc   @| clear       | ex               |"
-		echo "+-----------------------------------------------+"
+		echo "+---------------------------------------------+"
+		echo "| list-proc   @| list-mem    @| nohup-comm   @|"
+		echo "| gen-proc    o| kill-proc   @| foreg-backg   |"
+		echo "| check-proc  @| exec-redir   | wait-comm     |"
+		echo "| tail-proc   @| clear        | ex            |"
+		echo "+---------------------------------------------+"
 		echo ""
 		while :
 		do
@@ -77,7 +78,6 @@ then
 				"nohup-comm")
 					echo -e "--\\nCURRENT COMMAND : ping 0.0.0.0"
 					read -p "CREATE LOG-FILE : " nohup_path
-					echo "--"
 					if [[ "$nohup_path" ]]
 					then
 						if [[ -e "$nohup_path" ]]
@@ -85,6 +85,7 @@ then
 							echo "Overwriting file ..."
 						fi
 						nohup ping 0.0.0.0 &> "$nohup_path" &
+						echo "--"													
 						echo "Backgrounding stderr and stdout to '$nohup_path' ..."
 					fi
 					echo ""
@@ -124,19 +125,23 @@ then
 					check_proc2=$(ps -fp "$pid_num")
 					echo -e "--\\n$check_proc1\\n$check_proc2\\n"
 					;;
-				"rand-proc")
+				"gen-proc")
 					restart_ser1=$(service apache2 restart | cut -c 2-)
 					restart_ser2=$(service ssh restart | cut -c 2-)
 					min=1000
 					max=3000
 					range=$(($max-$min+1))					
-					echo -e "--\\n$restart_ser1\\n$restart_ser2"
-					for i in `seq 1 3`
+					getrand_num=$(($RANDOM%$range+$min))
+					sleep "$getrand_num" &
+					nohup tail -f /var/log/apt/history.log &> "tail-apk.log" &
+					ncat -l -p "$getrand_num" > "message.txt" &
+					echo -e "--\\n$restart_ser1\\n$restart_ser2"										
+					regex_proc=("sleep $getrand_num &" "tail -f /var/log/apt/history.log &" "ncat -l -p $getrand_num > message.txt &")
+					for i in "${regex_proc[@]}"
 					do
-						getrand_num=$(($RANDOM%$range+$min))
-						sleep "$getrand_num" &
-						echo "Backgrounding : sleep $getrand_num &"
+						echo "Backgrounding: $i ..."						
 					done
+					echo ""
 					;;
 			esac
 		done

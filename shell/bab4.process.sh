@@ -18,26 +18,86 @@
 # param    : $! recen bg, $? recent fg
 # wait     : test-update.sh
 # exec     : test-exec.sh 
-# nohup    : nohup [command] > 
+# nohup    : nohup netdiscover > .netscan.log (log stdout dan stderr) 
 # --------------
 # LP (PS + SERVICE STATUS + JOBS) / LM (PROC/MEMINFO + I/O REDIRECTION + PIPELINE) 
 # BG+FG (BACKGROUNDING) / KP (KILL) /  XR (EXEC + I/O REDIRECTION) / WB (WAIT) 
-# 
+# CP (CHECK PS + PGREP) / RP (SERVICE START, SLEEP, NANO) / NP (NOHUP NETDISCOVER)
 
+meminfo_path=".meminfo.part"
+bridge="_________________________________________________________________________"
 if [[ "$UID" -eq "0" ]]
 then
 	while :
 	do
-		echo "[LP] LIST PROCESS   | [LM] LIST MEMORY  | [BG] BACKGROUND PROCESS"
-		echo "[RP] RANDOM PROCESS | [KP] KILL PROCESS | [FG] FOREGROUND PROCESS"
-		echo "[CP] CHECK PROCESS  | [XR] EXEC REDIRCT | [WB] WAIT BACKGROUND "
-		echo "-----------------------------------------------------------------"
-		sleep 100
+		clear
+		echo "+-----------------------------------------------+"
+		echo "| list-proc   @| list-mem   @| nohup-comm      @|"
+		echo "| rand-proc    | kill-proc  o| foreground-proc  |"
+		echo "| check-proc  o| exec-redir  | wait-comm        |"
+		echo "| tail-proc   @| clear       | ex               |"
+		echo "+-----------------------------------------------+"
+		echo ""
+		while :
+		do
+			read -p ">> " opt
+			case $opt in
+				"clear")
+					break
+					;;
+				"list-proc")
+					sleep 5000 &
+					nohup man echo &					
+					ps_tree=$(ps axjf | cut -c 2-)
+					ps_jobs=$(jobs)
+					if [[ "$ps_jobs" ]]
+					then
+						echo -e "$bridge\\n\\n$ps_tree\\n---\\n$ps_jobs\\n"
+					else
+						echo -e "$bridge\\n\\n$ps_tree\\n$bridge\\n"						
+					fi
+					;;
+				"list-mem")
+					get_meminfo1=$(cat /proc/meminfo | head -n 8)
+					get_meminfo2=$(cat /proc/meminfo | head -n 16 | tail -n 8)
+					get_meminfo3=$(cat /proc/meminfo | head -n 24 | tail -n 8)
+					echo "$get_meminfo1" > "$meminfo_path.1"
+					echo "$get_meminfo2" > "$meminfo_path.2"
+					echo "$get_meminfo3" > "$meminfo_path.3"
+					paste_meminfo=$(paste -d " " $meminfo_path.1 /dev/null $meminfo_path.2 /dev/null $meminfo_path.3)
+					echo -e "---\\n$paste_meminfo\\n"
+					;;
+				"nohup-comm")
+					read -p "CREATE LOG FILE : " nohup_path
+					nohup ping 0.0.0.0 &> "$nohup_path" &
+					echo -e "backgrounding : Ping Command\\n"
+					;;
+				"tail-proc")
+					read -p "TAIL LOG FILE : " tail_path
+					log_head=$(cat "$tail_path" | head -n 1)
+					log_tail=$(cat "$tail_path" | tail -n 3)
+					log_cntr=$(cat "$tail_path" | wc -l)	
+					log_cntr=$((--log_cntr))
+					log_head+="\\n$log_tail"				
+					echo -e "$log_head\\n..."
+					echo -e "total sequence, $log_cntr\\n"
+					;;
+				"kill-proc")
+					read -p "SPECIFY PID NUMBER : " pid_num
+					kill "$pid_num"
+					echo ""
+					;;
+				"check-proc")
+					read -p "SPECIFY PID NUMBER : " pid_num
+					check_proc1=$(ls -la /proc/"$pid_num"/ | grep -e "cwd" -e "exe")					
+					check_proc2=$(ps -fp "$pid_num")
+					echo -e "$check_proc1\\n$check_proc2\\n"
+					;;
+			esac
+		done
 	done
 else
 	echo "This program requires root access"
 	echo "Exitting ..."
 	exit 0
 fi
-get_meminfo=$(cat /proc/meminfo | grep -e "Mem" -e "Swap" -e "Cached")
-echo "$get_meminfo"

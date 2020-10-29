@@ -28,3 +28,6 @@ then
 fi	
 exec 1>> "$out_path"
 echo "$stat_catch"
+
+arr=("aku" "kamu" "a" "b")
+echo "${#arr[@]}"
