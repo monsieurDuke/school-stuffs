@@ -3,9 +3,7 @@
 #          : wait $!
 echo -e "---\\nUpdating packages ...\\n---"
 apt-get update &
-wait $!
 echo -e "---\\nInstalling packages ...\\n---"
-apt-get install vim &
-wait $!
+apt-get install vim
 echo -e "---\\nDone, Installation Successfully"
 

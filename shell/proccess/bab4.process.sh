@@ -16,7 +16,7 @@
 # check ps : ls -la /proc/[PID/ | grep -e "cwd" -e "exe"
 #		   : cat /proc/[PID]/comm : cat /proc/[PID]/cmdline		
 # param    : $! recen bg, $? recent fg
-# wait     : test-update.sh
+# wait     : test-update.sh (satu command dipastikan kelar dulu)
 # exec     : test-exec.sh  (check all bug / stderr from this program)
 # nohup    : nohup netdiscover > .netscan.log (log stdout dan stderr) 
 # --------------
@@ -35,10 +35,10 @@ then
 	do
 		clear
 		echo "+----------------------------------------------+"
-		echo "| list-proc   @| list-mem     @| nohup-comm   @|"
-		echo "| gen-proc    @| kill-proc    @| foreg-proc   x|"
-		echo "| check-proc  @| exec-stderr   | wait-comm     |"
-		echo "| tail-log    @| net-stat     @| ..            |"
+		echo "| list-proc   v| list-mem     v| nohup-comm   @|"
+		echo "| gen-proc    v| kill-proc    @| wait-comm    @|"
+		echo "| check-proc  v| exec-stderr  @| ..            |"
+		echo "| tail-log    @| net-stat     v| ..            |"
 		echo "+----------------------------------------------+"
 		echo ""
 		while :
@@ -56,6 +56,7 @@ then
 					echo -e "--\\n$get_ls\\n"
 					;;
 				"list-proc")
+
 					ps_tree=$(ps axjf | cut -c 2-)
 					ps_jobs=$(jobs)
 					ps_ser1=$(service apache2 status)
@@ -67,8 +68,10 @@ then
 					else
 						echo -e "--\\n$ps_serv\\n--\\n$ps_tree\\n"						
 					fi
+
 					;;
 				"list-mem")
+
 					get_meminfo1=$(cat /proc/meminfo | head -n 8)
 					get_meminfo2=$(cat /proc/meminfo | head -n 16 | tail -n 8)
 					get_meminfo3=$(cat /proc/meminfo | head -n 24 | tail -n 8)
@@ -77,6 +80,7 @@ then
 					echo "$get_meminfo3" > "$meminfo_path.3"
 					paste_meminfo=$(paste -d " " $meminfo_path.1 /dev/null $meminfo_path.2 /dev/null $meminfo_path.3)
 					echo -e "--\\n$paste_meminfo\\n"
+
 					;;
 				"nohup-comm")
 					echo -e "--\\nCURRENT COMMAND : ping 0.0.0.0"
@@ -130,10 +134,11 @@ then
 							check1=$(exec ps -fp "$pid_num2" 2>&1 | cut -c 49-100 | tail -n 1)
 							check2=$(exec kill "$pid_num" 2>&1 > /dev/null)
 							time=$(date | cut -c 5-20)
-							echo "$time - $check1$check2" >> "$log_err"							
-							if [[ "$check2" =~ *"failed"* || "$check2" =~ *"No such"* ]]
+							if [[ "$check2" == *"failed"* || "$check2" == *"No such"* ]]
 							then
-								echo "$check2"
+								echo -e "--\\nProcess not found with PID $pid_num. Aborting ..."
+								echo "$time - $check1$check2" >> "$log_err"
+							else
 								pid_comm="$check1"
 								echo "--"
 								echo "Terminating PID $pid_num ($pid_comm) ..."
@@ -144,13 +149,16 @@ then
 					echo ""
 					;;
 				"check-proc")
+
 					echo "--"
 					read -p "SPECIFY PID NUMBER : " pid_num
 					check_proc1=$(ls -la /proc/"$pid_num"/ | grep -e "cwd" -e "exe")
 					check_proc2=$(ps -fp "$pid_num")
 					echo -e "--\\n$check_proc1\\n$check_proc2\\n"
+
 					;;
 				"gen-proc")
+
 					restart_ser1=$(service apache2 restart | cut -c 2-)
 					restart_ser2=$(service ssh restart | cut -c 2-)
 					echo "$restart_ser1" > ".service.part.1"
@@ -170,23 +178,7 @@ then
 						echo "Backgrounding: $i ..."						
 					done
 					echo -e "--\\nUpdating snapshot of current process ...\\n"
-					;;
-				"foreg-backg")
-					echo "--"
-					read -p "MANAGE PROC (F/B)   : " pid_man
-					read -p "SPECIFY JOB SESSION : " pid_num
-					if [[ "$pid_num" && "$pid_man" ]]
-					then
-						case $pid_man in
-							"F")
-								fg "$pid_num"
-								;;
-							"B")
-								bg "$pid_num"
-								;;
-						esac
-					fi
-					echo ""
+
 					;;
 				"net-stat")
 					get_net=$(netstat -lptan)
@@ -197,6 +189,32 @@ then
 					else
 						echo -e "--\\nNo Active Internet connections (servers were not established) ...\\n"
 					fi
+					;;
+				"exec-stderr")
+					get_tail=$(cat "$log_err")
+					echo -e "--\\n$get_tail\\n"
+					;;
+				"wait-comm")
+					echo "--"
+					read -p "INSTALL PACKAGE : " package
+					if [[ "$package" ]]
+					then
+						echo -e "--\\nUpdating packages ...\\n--"
+						apt-get update &
+						wait $!
+						check1=$(exec apt-get install "$package" -y 2>&1)
+						check2=$(echo "$check1" | grep "E:")
+						time=$(date | cut -c 5-20)
+						if [[ "$check2" == *"E:"* ]]
+						then
+							echo -e "--\\nPackage not found. Aborting ..."
+							echo "$time - $check2" >> "$log_err"	
+						else
+							echo -e "--\\nInstalling package ...\\n--\\n$check1"
+							echo -e "--\\nPackage have been installed, $package ..."							
+						fi
+					fi
+					echo ""
 					;;
 			esac
 		done
