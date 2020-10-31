@@ -2,6 +2,7 @@ addpath('func');
 addpath('materi');
 addpath('img');
 
+
 alpha = 'ABCDEabcde'
 to_ascii = double(alpha)
 to_char = char(to_ascii)

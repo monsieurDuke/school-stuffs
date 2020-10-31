@@ -1,14 +1,11 @@
-function [cipher_return] = func_enc_playfair(plain_str)
-	
+function [cipher_return] = func_enc_playfair(cipher_str)
+
 	% // Muhammad Nur Irsyad - 1807422020 - CCITSEC5
 	% // A : 65 -- 90
 	% // a : 97 -- 122
-	% // huruf selanjutnya dabel, tambah 'x'
-	% // huruf terakir, tambah 'x'    
-	% // huruf spasi, jadiin 'z'
 
-	key_arr = ['L','G','D','B','A';'Q','M','H','E','C';'U','R','N','I','F';'X','V','S','O','K';'Z','Y','W','T','P'];
-	to_ascii = double(plain_str);
+	key_arr = ['l','g','d','b','a';'q','m','h','e','c';'u','r','n','i','f';'x','v','s','o','k';'z','y','w','t','p'];
+	to_ascii = double(cipher_str);
 	[x,y] = size(to_ascii);
 	z = x;
 	cipher_return = '';
@@ -16,27 +13,13 @@ function [cipher_return] = func_enc_playfair(plain_str)
 	inc = 0;
 
 	for indx = x:y
-		if inc == brd
-			brd = brd + 2;
-			cipher_return = strcat(cipher_return,{' '});            
-		end
-		inc = inc + 1;
-		cipher_return = strcat(cipher_return,char(to_ascii(indx))); 
-		if char(to_ascii(indx)) == ' '
-			cipher_return = strcat(cipher_return,'z');
-		end
-		if indx < y
-			if mod(inc,2) ~= 0            
-				if char(to_ascii(indx)) == char(to_ascii(indx+1))
-					inc = inc + 1;
-					cipher_return = strcat(cipher_return,'x');
-				end
+		if char(to_ascii(indx)) ~= ' '
+			if inc == brd
+				brd = brd + 2;
+				cipher_return = strcat(cipher_return,{' '});            
 			end
-		end
-		if indx == y
-			if mod(inc,2) ~= 0
-				cipher_return = strcat(cipher_return,'x');
-			end
+			inc = inc + 1;
+			cipher_return = strcat(cipher_return,char(to_ascii(indx))); 
 		end
 	end
 
@@ -68,11 +51,8 @@ function [cipher_return] = func_enc_playfair(plain_str)
 			brd = brd + 2;            
 			continue
 		end        
-		if char(to_ascii2(indx2)) == 'j'       
-			to_ascii2(indx2) = double('i'); 
-		end
 		inc = inc + 1;        
-		new_ascii2(indx2) = (to_ascii2(indx2)-97)+65;
+		new_ascii2(indx2) = (to_ascii2(indx2)-65)+97;
 		for row = 1:a
 			for col = 1:b
 				if char(new_ascii2(indx2)) == key_arr(row,col); 
@@ -89,25 +69,25 @@ function [cipher_return] = func_enc_playfair(plain_str)
 		if inc == brd
 			if col_1 == col_2
 			% // kalau 2 huruf ada di kolom yang sama                
-				row_1 = row_1 + 1;
-				row_2 = row_2 + 1;
-				if row_1 > 5
-					row_1 = 1;
+				row_1 = row_1 - 1;
+				row_2 = row_2 - 1;
+				if row_1 < 1
+					row_1 = 5;
 				end
-				if row_2 > 5
-					row_2 = 1;
+				if row_2 < 1
+					row_2 = 5;
 				end
 				frs_char = key_arr(row_1,col_1);
 				sec_char = key_arr(row_2,col_2);                
 			elseif row_1 == row_2
 			% // kalau 2 huruf ada di baris yang sama                
-				col_1 = col_1 + 1;
-				col_2 = col_2 + 1;
-				if col_1 > 5
-					col_1 = 1;
+				col_1 = col_1 - 1;
+				col_2 = col_2 - 1;
+				if col_1 < 1
+					col_1 = 5;
 				end
-				if col_2 > 5
-					col_2 = 1;
+				if col_2 < 1
+					col_2 = 5;
 				end
 				frs_char = key_arr(row_1,col_1);
 				sec_char = key_arr(row_2,col_2);                                
@@ -125,14 +105,13 @@ function [cipher_return] = func_enc_playfair(plain_str)
 	end
 
 	% // kembaliin ke string awal tanpa spasi
-	
 	cipher_return = char(cipher_return);
 	catch_cipher2 = '';
 	x = 0; y = 0; inc = 1;
 	[x,y] = size(cipher_return);    
 
 	for indx3 = x:y
-		if cipher_return(indx3) ~= ' '
+		if ((cipher_return(indx3) ~= ' ')) && ((cipher_return(indx3) ~= 'x'))
 			if indx3 < y
 				if ((catch_cipher1(indx3) == 'z')) && ((catch_cipher1(indx3+1)) ~= ' ')
 					catch_cipher2 = strcat(catch_cipher2,{' '});
@@ -148,5 +127,25 @@ function [cipher_return] = func_enc_playfair(plain_str)
 			catch_cipher2 = strcat(catch_cipher2,cipher_return(indx3));								
 		end
 	end
+
+	% // huruf selanjutnya dabel, tambah 'x' | hilangkan x
+	% // huruf terakir, tambah 'x'           | hilangkan x
+	% // huruf spasi, jadiin 'z'             | ubah z jadi spasi kembali
+
 	cipher_return = char(catch_cipher2);
+	catch_cipher3 = '';
+	x = 0; y = 0;
+	[x,y] = size(cipher_return);
+
+	for indx4 = x:y
+		if cipher_return(indx4) ~= 'x'
+			if cipher_return(indx4) == 'z'
+				catch_cipher3 = strcat(catch_cipher3,{' '});
+			else
+				catch_cipher3 = strcat(catch_cipher3,cipher_return(indx4));				
+			end
+		end
+	end
+	cipher_return = char(catch_cipher3);
+
 end
