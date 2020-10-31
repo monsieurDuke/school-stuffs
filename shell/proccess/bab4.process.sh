@@ -35,10 +35,10 @@ then
 	do
 		clear
 		echo "+----------------------------------------------+"
-		echo "| list-proc   v| list-mem     v| nohup-comm   @|"
-		echo "| gen-proc    v| kill-proc    @| wait-comm    @|"
+		echo "| list-proc   v| list-mem     v| nohup-comm   X|"
+		echo "| gen-proc    v| kill-proc    @| wait-comm    X|"
 		echo "| check-proc  v| exec-stderr  @| ..            |"
-		echo "| tail-log    @| net-stat     v| ..            |"
+		echo "| tail-log    X| net-stat     v| ..            |"
 		echo "+----------------------------------------------+"
 		echo ""
 		while :
@@ -83,6 +83,7 @@ then
 
 					;;
 				"nohup-comm")
+
 					echo -e "--\\nCURRENT COMMAND : ping 0.0.0.0"
 					read -p "CREATE LOG-FILE : " nohup_path
 					if [[ "$nohup_path" ]]
@@ -96,8 +97,10 @@ then
 						echo "Backgrounding stderr and stdout to '$nohup_path' ..."
 					fi
 					echo ""
+
 					;;
 				"tail-proc")
+
 					echo "--"
 					read -p "TAIL LOG-FILE : " tail_path
 					if [[ "$tail_path" && -e "$tail_path" ]]
@@ -115,8 +118,10 @@ then
 						fi
 					fi
 					echo ""
+
 					;;
 				"kill-proc")
+
 					echo "--"
 					read -p "SPECIFY PID NUMBER / JOB SESSION : " pid_num
 					if [[ "$pid_num" ]]
@@ -147,6 +152,7 @@ then
 						fi
 					fi
 					echo ""
+					
 					;;
 				"check-proc")
 
@@ -181,6 +187,7 @@ then
 
 					;;
 				"net-stat")
+
 					get_net=$(netstat -lptan)
 					tst_net=$(netstat -lptan | grep "tcp")
 					if [[ "$tst_net" ]]
@@ -189,12 +196,14 @@ then
 					else
 						echo -e "--\\nNo Active Internet connections (servers were not established) ...\\n"
 					fi
+
 					;;
 				"exec-stderr")
 					get_tail=$(cat "$log_err")
 					echo -e "--\\n$get_tail\\n"
 					;;
 				"wait-comm")
+
 					echo "--"
 					read -p "INSTALL PACKAGE : " package
 					if [[ "$package" ]]
@@ -215,6 +224,7 @@ then
 						fi
 					fi
 					echo ""
+
 					;;
 			esac
 		done

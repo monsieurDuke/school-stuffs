@@ -1,10 +1,8 @@
 function [cipher_return] = func_enc_multiplication(plain_str,n_multi)
-    % A : 65 -- 90
-    % a : 97 -- 122
-    inv_multi = [27,53,79,105,131,157];
-    [a,b] = size(inv_multi);
-    for i = a:b
-        r = rem(inv_multi(i),n_multi);
+    inv_multi = 1;
+    for i = 1:100
+        inv_multi = inv_multi + 26;
+        r = rem(inv_multi,n_multi);
         if r == 0
             break
         end
