@@ -20,8 +20,8 @@ function [cipher_return] = func_enc_vigenere(plain_str,key_str)
 	end
 
 	% // panjang kunci == panjang plain text
-	[x,y] = size(plain_space);
-	[a,b] = size(key_lower);
+	[x,y] = size(plain_lower)
+	[a,b] = size(key_lower)
 	key_combine = '';
 	inc = 1;
 	for idx = x:y
@@ -38,7 +38,8 @@ function [cipher_return] = func_enc_vigenere(plain_str,key_str)
 	end
 
 	% // Cipher = Plain.i + Key.i
-	key_combine = char(key_combine);
+	plain_space
+	key_combine = char(key_combine)
 	[x,y] = size(plain_space);
 	cipher_return = '';
 	for idx = x:y

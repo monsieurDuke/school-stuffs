@@ -20,7 +20,7 @@ function [cipher_return] = func_enc_vigenere(plain_str,key_str)
 	end
 
 	% // panjang kunci == panjang plain text
-	[x,y] = size(plain_space);
+	[x,y] = size(plain_lower);
 	[a,b] = size(key_lower);
 	key_combine = '';
 	inc = 1;

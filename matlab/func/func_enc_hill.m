@@ -69,55 +69,69 @@ function [cipher_return] = func_enc_hill(plain_str,key_str,n_mod)
 		end
 	end
 
-	% // perkalian C = mod((P * K),26)
-	mtx_cipher = mod((mtx_plain * mtx_key),n_mod)
+    get_det = round(mod(det(mtx_key),n_mod));
+    if get_det ~= 0
+        [get_gcd,s,t] = gcd(get_det,n_mod);
+        get_inv = mod(round(inv(mtx_key)*det(mtx_key)*s),n_mod);        
+	    mtx_key_inv = get_inv;        
+		mtx_key
 
-	% // ubah mtx_cipher jadi bentuk string
-	catch_mtx = '';
-	cipher_return = '';
-	for idx_r = 1:len_mtx
-		for idx_c = 1:len_mtx
-			catch_mtx = char((mtx_cipher(idx_r,idx_c))+65);
-			cipher_return = strcat(cipher_return,catch_mtx);
+    end
+
+    if get_det ~= 0
+		% // perkalian C = mod((P * K),26)
+		mtx_cipher = mod((mtx_plain * mtx_key),n_mod)
+
+		% // ubah mtx_cipher jadi bentuk string
+		catch_mtx = '';
+		cipher_return = '';
+		for idx_r = 1:len_mtx
+			for idx_c = 1:len_mtx
+				catch_mtx = char((mtx_cipher(idx_r,idx_c))+65);
+				cipher_return = strcat(cipher_return,catch_mtx);
+			end
 		end
-	end
 
-	% // pakai spasi untuk cipher akhir
-	cipher_return = char(cipher_return);
-	cipher_space = cipher_return
-	catch_cipher = '';
-	inc = 0;
-	space_inc = 0;
-	[x,y] = size(cipher_return);
-	[a,b] = size(plain_str);
-	for idx = x:y
-		if idx <= b
-			if plain_str(idx) == ' '
-				space_inc = space_inc + 1;				
-				catch_cipher = strcat(catch_cipher,{' '});
+		% // pakai spasi untuk cipher akhir
+		cipher_return = char(cipher_return);
+		cipher_space = cipher_return;
+		catch_cipher = '';
+		inc = 0;
+		space_inc = 0;
+		[x,y] = size(cipher_return);
+		[a,b] = size(plain_str);
+		for idx = x:y
+			if idx <= b
+				if plain_str(idx) == ' '
+					space_inc = space_inc + 1;				
+					catch_cipher = strcat(catch_cipher,{' '});
+					continue
+				end
+				inc = inc + 1;			
+				catch_cipher = strcat(catch_cipher,cipher_return(inc));
 				continue
 			end
-			inc = inc + 1;			
+			inc = inc + 1;		
 			catch_cipher = strcat(catch_cipher,cipher_return(inc));
-			continue
 		end
-		inc = inc + 1;		
-		catch_cipher = strcat(catch_cipher,cipher_return(inc));
-	end
-	cipher_return = char(catch_cipher);
-	space_inc
-	[x,y] = size(cipher_space)
-	[a,b] = size(cipher_return)
-	real_len = y + space_inc
-	inc = y - space_inc 
-	if real_len > b
-		for idx = 1:real_len
-			if inc < b;
-				inc = inc + 1;
-				cipher_return = strcat(cipher_return,cipher_space(inc))
+		cipher_return = char(catch_cipher);
+		[x,y] = size(cipher_space);
+		[a,b] = size(cipher_return);
+		real_len = y + space_inc;
+		inc = y - space_inc;
+		if real_len > b
+			for idx = 1:real_len
+				if inc < b;
+					inc = inc + 1;
+					cipher_return = strcat(cipher_return,cipher_space(inc));
+				end
 			end
 		end
+		cipher_return = char(cipher_return);	
+	else
+        fprintf('\nmatrix key tidak memiliki bentuk invers\nberikut contoh yang bisa dipakai :');
+        fprintf('\n- plain : "enkripsi ccit tmj"\n- key   : "cipher pascal"\n- mod   : 26\n');		
+		cipher_return = 'NaN';		
 	end
-	cipher_return = char(cipher_return)	
 
 end
