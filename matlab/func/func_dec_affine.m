@@ -9,6 +9,7 @@ function [plain_return] = func_dec_affine(cipher_str,n_multi,n_shift)
         end
     end  
     if r == 0
+        n_multi
         to_ascii = double(cipher_str);
         [x,y] = size(to_ascii);
         plain_return = '';

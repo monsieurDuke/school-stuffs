@@ -1,6 +1,8 @@
 addpath('func');
 addpath('materi');
 addpath('img');
+addpath('sample');
+
 
 
 alpha = 'ABCDEabcde'

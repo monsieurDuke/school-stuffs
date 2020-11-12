@@ -1,4 +1,5 @@
 function [cipher_return] = func_enc_affine(plain_str,n_multi,n_shift)
+    plain_str = lower(plain_str);
     inv_multi = 1;
     for i = 1:100
         inv_multi = inv_multi + 26;

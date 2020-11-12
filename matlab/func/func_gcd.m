@@ -67,6 +67,14 @@ function [return_gcd] = func_gcd(in1,in2)
 			end
 			turn_mtx(idx_1,idx_2) = catch_multi;
 			return_gcd = turn_mtx;
+
+			% // extending euclidian
+			% // fpb = sa + tb
+			% // 5 = 15s + 20t
+			% // 20t = 5 - 15s
+			% // t = 5 - 15s/20
+			% // 5 = 15s + (5-15s)
+			% // 5 - 
 		end
 	end
 end

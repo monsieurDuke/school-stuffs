@@ -2,6 +2,7 @@ function [cipher_return] = func_enc_ceasar(plain_str,n_shift)
     % A : 65 -- 90
     % a : 97 -- 122
     % C = (P + K)mod26
+    plain_str = lower(plain_str);
     to_ascii = double(plain_str);
     [x,y] = size(to_ascii);
     cipher_return = '';
