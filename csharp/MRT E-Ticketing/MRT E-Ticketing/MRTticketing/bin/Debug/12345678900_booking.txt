@@ -1,0 +1,4 @@
+0
+1#54094F25#07:05:48 ( 28/05/19 )#07:05:48 ( 11/06/19 )#St Lebak Bulus#St Dukuh Atas BNI#2 adult ( 0 faint )#33 minutes#11 km#Rp 28.000,00#Rp 14.000,00#
+2#AA497D53#07:05:48 ( 28/05/19 )#07:05:48 ( 25/06/19 )#St Bendungan Hilir#St Senayan#1 adult ( 0 faint )#6 minutes#2 km#Rp 11.000,00#Rp 11.000,00#
+3#43043D64#07:05:48 ( 28/05/19 )#07:05:48 ( 09/07/19 )#St Blok M#St Dukuh Atas BNI#1 adult ( 0 faint )#18 minutes#6 km#Rp 6.000,00#Rp 6.000,00#

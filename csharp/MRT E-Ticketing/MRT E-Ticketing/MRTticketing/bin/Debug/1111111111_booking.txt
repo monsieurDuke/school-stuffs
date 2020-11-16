@@ -1,0 +1,13 @@
+0
+1#251D9422#07:13:06 ( 28/05/19 )#07:13:06 ( 11/06/19 )#St Lebak Bulus#St Bendungan Hilir#1 adult ( 0 faint )#27 minutes#9 km#Rp 12.000,00#Rp 12.000,00#
+2#91F909EF#07:13:06 ( 28/05/19 )#07:13:06 ( 25/06/19 )#St ASEAN#St Bendungan Hilir#1 adult ( 0 faint )#9 minutes#3 km#Rp 3.000,00#Rp 3.000,00#
+3#5446D4EA#07:13:06 ( 28/05/19 )#07:13:06 ( 03/09/19 )#St Lebak Bulus#St Senayan#1 adult ( 0 faint )#21 minutes#7 km#Rp 1.000,00#Rp 1.000,00#
+1#30D93CD1#07:39:40 ( 28/05/19 )#07:39:40 ( 11/06/19 )#St Blok A#St Bundaran HI#1 adult ( 0 faint )#21 minutes#7 km#Rp 7.000,00#Rp 7.000,00#
+1#6B4A35B5#13:34:23 ( 5/28/2019 ) #13:34:23 ( 6/4/2019 ) #St Lebak Bulus#St Bendungan Hilir#1 adult ( 0 faint )#27 minutes#9 km#Rp 12.000,00#Rp 12.000,00#
+1#B6BF90BB#14:41:16 ( 5/28/2019 ) #14:41:16 ( 6/4/2019 ) #St Bundaran HI#St Haji Nawi#1 adult ( 0 faint )#24 minutes#8 km#Rp 8.000,00#Rp 8.000,00#
+1#48B6436F#14:47:17 ( 5/28/2019 ) #14:47:17 ( 6/4/2019 ) #St ASEAN#St Blok M#1 adult ( 0 faint )#3 minutes#1 km#Rp 1.000,00#Rp 1.000,00#
+2#404889F8#14:47:17 ( 5/28/2019 ) #14:47:17 ( 6/4/2019 ) #St Lebak Bulus#St Bundaran HI#1 adult ( 0 faint )#33 minutes#11 km#Rp 14.000,00#Rp 14.000,00#
+1#26CA9D26#14:51:08 ( 5/28/2019 ) #14:51:08 ( 6/4/2019 ) #St Lebak Bulus#St Bundaran HI#1 adult ( 0 faint )#33 minutes#11 km#Rp 14.000,00#Rp 14.000,00#
+1#22878869#15:06:16 ( 5/28/2019 ) #15:06:16 ( 6/4/2019 ) #St Bendungan Hilir#St Haji Nawi#9 adult ( 0 faint )#18 minutes#6 km#Rp 54.000,00#Rp 6.000,00#
+2#2BEAD30F#15:06:16 ( 5/28/2019 ) #15:06:16 ( 6/4/2019 ) #St Bendungan Hilir#St Haji Nawi#9 adult ( 0 faint )#18 minutes#6 km#Rp 54.000,00#Rp 6.000,00#
+1#7413D96A#15:54:52 ( 5/28/2019 ) #15:54:52 ( 6/4/2019 ) #St Dukuh Atas BNI#St Setia Budi Astra#6 adult ( 0 faint )#3 minutes#1 km#Rp 0.000,00#Rp 0.000,00#
