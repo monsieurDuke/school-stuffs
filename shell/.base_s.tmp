@@ -13,8 +13,8 @@ bab3.test-login
 bab3.test-pyramid
 bab3.userlogin
 bab4.filehandler
+bab4.filemanipulation.bak
 bab4.filemanipulation
-bab4.filemanipulation.sh.bak
 bab4.process
 bab4.sysadmin
 bab4.tugasarray2
@@ -22,8 +22,12 @@ dirtest
 dummy-sample
 err.txt
 exam-sem5-uts
+id_nam.tmp
+id_num.tmp
 log
+ok.md5
 ok.txt
+okc.txt
 proccess
 ssh-cracker
 task-reminder
