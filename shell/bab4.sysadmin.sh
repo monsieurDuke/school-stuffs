@@ -4,10 +4,10 @@ while :
 do
 	clear
 	echo "| basename @| date    @| dirname  @| factor @| id/grp @|"
-	echo "| ..        | getent  @| logger   @| md5sum  | mkfifo  |"
-	echo "| netcat    | ssh-scp  | openssl   | nohup   | seq     |"
-	echo "| timeout   | uname    | uuencode  | xargs   | yes     |"
-	echo "| telnet    | ping     | sleep     | ..      | ..      |"
+	echo "| nano     @| getent  @| logger   @| md5sum @| mkfifo  |"
+	echo "| netcat   o| ssh-scp  | openssl   | nohup   | seq     |"
+	echo "| timeout   | uname   o| uuencode  | xargs   | yes     |"
+	echo "| telnet   o| ping    o| sleep     | ..      | ..      |"
 	echo "--------------------------------------------------------"
 	while :
 	do
@@ -31,7 +31,16 @@ do
 				echo "--"
 				ls $dir
 				echo ""
-				;;						
+				;;					
+			"nano")
+				echo "--"
+				read -p ":: INSERT FILE : " nan_f
+				if [[ -e $nan_f ]]
+				then
+					nano $nan_f
+				fi
+				echo ""
+				;;	
 			"basename")
 				#cek kalau direktori doang
 				echo "--"
@@ -181,7 +190,7 @@ do
 			"logger")
 				#logger [input] , logger -f [file] , logger -t [tag]
 				id_list=$(ls -l proccess/ | grep -e "log" -e "total")
-				echo -e "--\\n$id_list\\n--\\nSYSLOG FILE : /var/log/syslog"
+				echo -e "--\\n$id_list\\n--\\n:: SYSLOG FILE : /var/log/syslog\\n--"
 				read -p ":: INSERT TAG  : " log_t
 				read -p ":: INSERT HEAD : " log_m				
 				read -p ":: INSERT FILE : " log_f
@@ -199,10 +208,65 @@ do
 			"md5sum")
 				# md5sum file.txt > file.md5 | md5sum -c file.md5
 				echo "--"
-				read -p ":: INSERT FILE : " md_file
+				read -p ":: CHECK OR CREATE FILE ? (ch/cr) : " md_opt
+				read -p ":: INSERT FILE : " md_source				
 				chck_file=$(exec ls $md_file 2>&1)
-				if [[ "$md_file" && "$chck_file" != *"cannot access"* ]]
+				if [[ "$md_source" && "$chck_file" != *"cannot access"* ]]
 				then
+					case $md_opt in
+						"ch")
+							echo "--"
+							md_file=$md_source
+							md_lst=$(md5sum -c $md_file 2>/dev/null | cut -d ":" -f 1 | tr -s '\n' ' ')
+							md_hsh=$(md5sum $md_file | cut -d " " -f 1)
+							md_stt=$(md5sum -c $md_file 2>/dev/null | cut -d ":" -f 2 | tr -s '\n' ' ')
+							echo -e "MD5 FILE : $md_file ( $md_lst)"
+							echo -e "MD5 HASH : $md_hsh"
+							echo -e "MD5 STAT :$md_stt"
+							;;
+						"cr")
+							read -p ":: INSERT NAME : " md_file
+							md_file+=".md5"
+							md5sum $md_source > $md_file
+							echo "--"
+							md_lst=$(md5sum -c $md_file | cut -d ":" -f 1 | tr -s '\n' ' ')
+							md_hsh=$(md5sum $md_file | cut -d " " -f 1)
+							echo -e "MD5 FILE : $md_file ( $md_lst)"
+							echo -e "MD5 HASH : $md_hsh"
+							;;
+					esac
+				fi				
+				echo ""
+				;;
+			"netcat")
+				## ncat -l -p 8080 > [filename] /opsi listen atau send
+				ipad=$(ifconfig | grep inet | head -1 | tr -s '\t' ' ' | cut -d ' ' -f 3)
+				ipnm=$(ifconfig | grep inet | head -1 | tr -s '\t' ' ' | cut -d ' ' -f 5)
+				echo -e "--\\n:: HOST IP ADD : $ipad $ipnm"
+				read -p ":: SEND OR RECIEVE FILE ? (se/re) : " nt_opt
+				echo "--"
+				read -p ":: INSERT FILE : " nt_file
+				read -p ":: INSERT DEST : " nt_dest
+				read -p ":: INSERT PORT : " nt_port
+				chck_file=$(exec ls $nt_file 2>&1)				
+				if [[ "$nt_file" && "$nt_dest" && "$nt_port" ]]
+				then
+					case $nt_opt in
+						"re")
+							echo -e "--\\nLISTENING FROM : $nt_dest:$nt_port ..."
+							echo -e "SELECTED FILE  : $nt_file ..."
+							ncat -l --recv-only $nt_dest -p $nt_port -w1 > $nt_file &
+							;;
+						"se")
+							chck_file=$(exec ls $nt_file 2>&1)
+							if [[ "$chck_file" != *"cannot access"* ]]
+							then				
+								echo -e "SPEAKING TO   : $nt_dest:$nt_port ..."
+								echo -e "SELECTED FILE : $nt_file ..."
+								ncat --send-only $nt_dest -p $nt_port < $nt_file
+							fi
+							;;
+					esac
 				fi
 				echo ""
 				;;
