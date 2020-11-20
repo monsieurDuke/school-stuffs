@@ -1,0 +1,57 @@
+nohup: ignoring input
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  alsa-topology-conf alsa-ucm-conf libasound2 libasound2-data libcanberra0
+  libtdb1 libvorbisfile3 sound-theme-freedesktop vim-runtime
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  vim
+0 upgraded, 0 newly installed, 1 to remove and 11 not upgraded.
+After this operation, 3111 kB disk space will be freed.
+Do you want to continue? [Y/n] Abort.
+nohup: ignoring input
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  alsa-topology-conf alsa-ucm-conf libasound2 libasound2-data libcanberra0
+  libtdb1 libvorbisfile3 sound-theme-freedesktop vim-runtime
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  vim
+0 upgraded, 0 newly installed, 1 to remove and 11 not upgraded.
+After this operation, 3111 kB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 54249 files and directories currently installed.)
+Removing vim (2:8.1.2269-1ubuntu5) ...
+update-alternatives: using /usr/bin/vim.tiny to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.tiny to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.tiny to provide /usr/bin/ex (ex) in auto mode
+update-alternatives: using /usr/bin/vim.tiny to provide /usr/bin/rview (rview) in auto mode
+nohup: ignoring input
+logger: invalid option -- 'y'
+Try 'logger --help' for more information.
+nohup: ignoring input
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  vim
+0 upgraded, 1 newly installed, 0 to remove and 11 not upgraded.
+Need to get 0 B/1238 kB of archives.
+After this operation, 3111 kB of additional disk space will be used.
+Selecting previously unselected package vim.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 54240 files and directories currently installed.)
+Preparing to unpack .../vim_2%3a8.1.2269-1ubuntu5_amd64.deb ...
+Unpacking vim (2:8.1.2269-1ubuntu5) ...
+Setting up vim (2:8.1.2269-1ubuntu5) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode

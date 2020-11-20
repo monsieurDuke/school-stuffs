@@ -1,5 +1,5 @@
-64 bytes from 127.0.0.1: icmp_seq=537 ttl=64 time=0.034 ms
-64 bytes from 127.0.0.1: icmp_seq=538 ttl=64 time=0.027 ms
-64 bytes from 127.0.0.1: icmp_seq=539 ttl=64 time=0.025 ms
-64 bytes from 127.0.0.1: icmp_seq=540 ttl=64 time=0.024 ms
-64 bytes from 127.0.0.1: icmp_seq=541 ttl=64 time=0.024 ms
+Oct 30 08:37:22  - E: Unable to locate package vi2
+Oct 30 09:06:04  - E: Unable to locate package okok
+Oct 30 09:46:48  - kill: failed to parse argument: 'a'
+Oct 30 09:47:10  - CMDkill: (1203): No such process
+Oct 30 16:21:24  - kill: failed to parse argument: 'abcd'

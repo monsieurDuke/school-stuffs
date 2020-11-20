@@ -1,5 +1,5 @@
 #!/bin/bash
-# ----------
+# -----------
 
 dir_path="log"
 file_path="$dir_path/account.lst"
