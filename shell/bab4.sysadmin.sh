@@ -1,5 +1,7 @@
 #!/bin/bash
 #------------------
+# run in root lmao
+#------------------
 if [[ "$UID" -eq "0" ]]
 	then
 	nohup tail -f /var/log/apt/history.log &> "process/tail-apt.log" &
