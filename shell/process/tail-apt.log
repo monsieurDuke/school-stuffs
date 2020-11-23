@@ -8,3 +8,9 @@ Commandline: apt-get install vim -y
 Requested-By: cookie (1000)
 Install: vim:amd64 (2:8.1.2269-1ubuntu5)
 End-Date: 2020-11-20  22:14:47
+
+Start-Date: 2020-11-22  20:46:33
+Commandline: apt-get install bluez
+Requested-By: cookie (1000)
+Install: bluez:amd64 (5.53-0ubuntu3)
+End-Date: 2020-11-22  20:46:49
