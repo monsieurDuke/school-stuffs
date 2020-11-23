@@ -1,0 +1,90 @@
+# Library of networking functions
+# Assumes RedHat Enterprise Linux style
+[ -f /etc/redhat-release ] || return
+
+function addroute
+{
+  # Add a route to a device
+  # $1 = network adapter (eg eth0, bond0)
+  # $2 = destination
+  # $3 = router
+  cd /etc/sysconfig/network-scripts
+  echo "$2 via $3" >> route-$1
+}
+
+function makeslave
+{
+  # $1 = network adapter
+  # $2 = bond
+  cat - > ifcfg-$1 <<EOF
+DEVICE=$1
+BOOTPROTO=none
+ONBOOT=yes
+MASTER=$2
+SLAVE=yes
+USERCTL=no
+EOF
+}
+
+function addbond
+{
+  # $1 = bond, $2=network adapter 1, $3 = network adapter 2
+  # $4 = IP address or name, $5 = netmask
+  BOND=$1
+  DEV1=$2
+  DEV2=$3
+  IP=`getent hosts $4 | awk '{ print $1 }'`
+  NAME=`getent hosts $4 | awk '{ print $1 }'`
+  NETMASK=$5
+
+  if [ -z "$NAME" ] || [ -z "$5" ]; then
+    echo "Usage: addbond bond dev1 dev2 ip netmask"
+    return 1
+  fi
+
+  /bin/ip a | grep "^    inet ${IP}/" > /dev/null
+  if [ "$?" -ne "0" ]; then
+    if ping -c1 -w1 $IP > /dev/null 2>&1
+    then
+      echo "Error: $NAME ($IP) is responding to ping. Not configuring $IP"
+      return 
+    fi
+  fi
+
+  cd /etc/sysconfig/network-scripts
+  if [ -f ifcfg-$BOND ]; then
+    echo "Error: $BOND is already configured"
+  fi
+  [ -f ifcfg-$DEV1 ] && mv ifcfg-$DEV1 bak.ifcfg-$DEV1
+  [ -f ifcfg-$DEV2 ] && mv ifcfg-$DEV2 bak.ifcfg-$DEV2
+    
+  if grep $BOND /etc/modprobe.conf > /dev/null
+  then
+    echo "Error: $BOND is already defined in /etc/modprobe.conf"
+    return
+  fi
+
+  echo "Creating bond device $BOND from $DEV1 and $DEV2"
+  echo "with the IP address ${IP}/${NETMASK}"
+
+  makeslave $DEV1 $BOND
+  makeslave $DEV2 $BOND
+
+  cat - > ifcfg-$BOND <<EOF
+DEVICE=$BOND
+BOOTPROTO=none
+IPADDR=$IP
+NETMASK=$NETMASK
+ONBOOT=yes
+EOF
+
+  cat - >> /etc/modprobe.conf << EOF
+alias $BOND bonding
+options $BOND mode=1 miimon=100 fail_over_mac=1
+EOF
+
+  ifdown $DEV1
+  ifdown $DEV2
+  modprobe $BOND
+  ifup $BOND
+}

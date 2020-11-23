@@ -1,16 +1,41 @@
-Commandline: apt-get remove vim -y
+Commandline: apt-get remove tcpdump
 Requested-By: cookie (1000)
-Remove: vim:amd64 (2:8.1.2269-1ubuntu5)
-End-Date: 2020-11-20  12:44:09
+Remove: tcpdump:amd64 (4.9.3-4)
+End-Date: 2020-11-23  08:31:45
 
-Start-Date: 2020-11-20  22:14:44
-Commandline: apt-get install vim -y
+Start-Date: 2020-11-23  08:33:04
+Commandline: apt-get install tcpdump -y
 Requested-By: cookie (1000)
-Install: vim:amd64 (2:8.1.2269-1ubuntu5)
-End-Date: 2020-11-20  22:14:47
+Install: tcpdump:amd64 (4.9.3-4)
+End-Date: 2020-11-23  08:33:07
 
-Start-Date: 2020-11-22  20:46:33
-Commandline: apt-get install bluez
+Start-Date: 2020-11-23  14:00:55
+Commandline: apt-get install rpm
 Requested-By: cookie (1000)
-Install: bluez:amd64 (5.53-0ubuntu3)
-End-Date: 2020-11-22  20:46:49
+Install: librpmsign8:amd64 (4.14.2.1+dfsg1-1build2, automatic), rpm2cp
+Start-Date: 2020-11-23  14:00:55
+Commandline: apt-get install rpm
+Requested-By: cookie (1000)
+Install: librpmsign8:amd64 (4.14.2.1+dfsg1-1build2, automatic), rpm2cpio:am
+Start-Date: 2020-11-23  14:00:55
+Commandline: apt-get install rpm
+Requested-By: cookie (1000)
+Install: librpmsign8:amd64 (4.14.2.1+dfsg1-1build2, automatic), rpm2cpio:amd64 (4.14.2.1+dfsg1-1build2, automatic), libdw1:amd64 (0.176-1.1build1, automatic), librpmbuild8:amd64 (4.14.2.1+dfsg1-1build2, automaticEnd-Date: 2020-11-23  14:01:12
+
+Start-Date: 2020-11-23  14:16:09
+Commandline: apt-get install alien
+Requested-By: cookie (1000)
+Install: libltdl-dev:amd64 (2.4.6-14, automatic), libcroco3:amd64 (0
+Start-Date: 2020-11-23  14:16:09
+Commandline: apt-get install alien
+Requested-By: cookie (1000)
+Install: libltdl-dev:amd64 (2.4.6-14, automatic), libcroco3:amd64 (0.6.13
+Start-Date: 2020-11-23  14:16:09
+Commandline: apt-get install alien
+Requested-By: cookie (1000)
+Install: libltdl-dev:amd64 (2.4.6-14, automatic), libcroco3:amd64 (0.6.13-1, automatic), autotools-dev:amd64 (20180224.1, automatic), libsub-override-perl:amd64 (0.09-2, automatic), libmail-sendmail-perl:amd64 (0.80-1, automatic), m4:amd64 (1.4.18-4, automatic), intltool-debian:amd64 (0.35.0+20060710.5, automatic), libarchive-zip-perl:amd64 (1.67-2, automatic), libarchive-cpio-perl:amd64 (0.10-1, automatic), dwz:amd64 (0.13-5, automatic), dh-autoreconf:amd64 (19, automatic), alien:amd64 (8.95), automake:amd64 (1:1.16.1-4ubuntu6, automatic), libdebhelper-perl:amd64 (12.10ubuntu1, automatic), dh-strip-nondeterminism:amd64 (1.7.0-1, automatic), libfile-stripnondeterminism-End-Date: 2020-11-23  14:16:59
+, po-debconf:amd64 (1.0.21, automatic), autoconf:amd64 (2.69-11.1, automatic), debhelper:amd64 (12.10ubuntu1, automatic), autopoint:amEnd-Date: 2020-11-23  14:16:59
+ic), gettext:amd64 (0.19.8.1-10build1, automatic), libsys-hostname-long-perl:amd64 (1.5-1, automatic), libtool:amd64 (2.4.6-14, automatic)
+End-Date: 2020-11-23  14:16:59
+), gettext:amd64 (0.19.8.1-10build1, automatic), libsys-hostname-long-perl:amd64 (1.5-1, automatic), libtool:amd64 (2.4.6-14, automatic)
+End-Date: 2020-11-23  14:16:59

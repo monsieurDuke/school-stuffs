@@ -8,13 +8,13 @@ if [[ "$UID" -eq "0" ]]
 	while :
 	do
 		clear
-		echo -e "RUNNING NOHUP ...\\n--------------------------------------------------------"	
-		echo "| basename @| date    @| dirname  @| factor @| id/grp @|"
-		echo "| nano     @| getent  @| logger   @| md5sum @| mkfifo  |"
-		echo "| netcat   @| ssh-scp  | openssl  @| nohup  @| seq     |"
-		echo "| timeout   | uname   @| uuencode  | xargs   | yes     |"
-		echo "| telnet    | ping    @| sleep    @| ..      | ..      |"
-		echo "--------------------------------------------------------"
+		echo -e "RUNNING NOHUP ...\\n---------------------------------------------------------"	
+		echo "| basename @| date    @| dirname  @| openssl @| id/grp @|"
+		echo "| nano     @| getent  @| logger   @| md5sum  @| mkfifo  |"
+		echo "| netcat   @| ssh-scp  | factor   @| nohup   @| seq     |"
+		echo "| timeout   | uname   @| uuencode  | xargs    | yes     |"
+		echo "| telnet    | ping    @| sleep    @| ..       | ..      |"
+		echo "---------------------------------------------------------"
 		while :
 		do
 			read -p ">> " ans
@@ -50,7 +50,7 @@ if [[ "$UID" -eq "0" ]]
 					echo -e ":: CURRENT DIR : $PWD"
 					read -p ":: INSERT PATH : " b_path
 					read -p ":: INSERT SUFF : " b_suff
-					if [[ "$b_path" && "$b_suff" && -d "$b_path" ]]
+					if [[ "$b_path" && "$b_suff" ]]
 					then
 						ext_path=$b_path
 						len_path=${#b_path}
@@ -118,29 +118,10 @@ if [[ "$UID" -eq "0" ]]
 					read -p ":: INSERT NUMBER(2) : " num2		
 					if [[ "$num1" && "$num2" ]]
 					then
-						f_1=$(factor $num1)
-						f_2=$(factor $num2)				
-						m=$num1
-						gcd=0
-						if [[ $num2 -lt $m ]]
-						then
-							m=$num2
-						fi
-						while [[ "$m" -ne 0 ]]
-						do
-							x=$(($num1%$m))
-							y=$(($num2%$m))
-							if [[ $x -eq 0 && $y -eq 0 ]]
-							then
-								break
-							fi
-							m=$(($m-1))
-						done
 						echo "--"
 						f_1=$(factor $num1 | cut -d ":" -f 2)
 						f_2=$(factor $num2 | cut -d ":" -f 2)
-						f_3=$(factor $m | cut -d ":" -f 2)								
-						echo -e "FACTOR-1 :$f_1 ($num1)\\nFACTOR-2 :$f_2 ($num2)\\nGET FPB  :$f_3 ($m)"
+						echo -e "FACTOR-1 :$f_1 ($num1)\\nFACTOR-2 :$f_2 ($num2)"
 					fi
 					echo ""
 					;;

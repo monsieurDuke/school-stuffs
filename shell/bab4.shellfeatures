@@ -1,0 +1,22 @@
+#!/bin/bash
+#------------------------
+## INIT SCRIPTS 15-1
+#- apa itu init scripts + kegunaan
+#- apa itu init.d
+#- perbedaan init.d dan sysctl.d
+#- init_dir=/etc/init.d ## config nya dimana / main config
+#	$ ls /etc/init.d/  ## list registered service
+#	$ /etc/init.d/[service] start/stop/restart/reload
+#------------------------
+## DPKG REPORT 15-2
+#- apa itu rpm vs dpkg
+#- list dpkg database
+#	$ dkpg -l | grep -e "||/" -e "+++" -e "[regex-pkg]" 
+#	$ dpkg -s [pkg] | grep -e "Package:" -e "Status:" -e "Section:" -e "Maintainer:" -e "Architecture:" -e "Source:" -e "Version:" -e "Provides:" -e "Recommends:" -e "Suggests:"
+#	$ dpkg -s [pkg] | grep -e "Depends:" | tr -s ',' '\n' | tr -d ' ' | sed s/"Depends:"//
+#------------------------
+## POST-INSTALL SCRIPTS (ubuntu)
+#- apa itu ethernet bonding / LCAP ?
+#------------------------
+
+echo "Hello World"
