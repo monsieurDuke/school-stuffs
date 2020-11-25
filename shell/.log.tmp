@@ -1,5 +1,0 @@
-Oct 30 08:37:22  - E: Unable to locate package vi2
-Oct 30 09:06:04  - E: Unable to locate package okok
-Oct 30 09:46:48  - kill: failed to parse argument: 'a'
-Oct 30 09:47:10  - CMDkill: (1203): No such process
-Oct 30 16:21:24  - kill: failed to parse argument: 'abcd'
