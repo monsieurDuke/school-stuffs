@@ -15,8 +15,16 @@
 #	$ dpkg -s [pkg] | grep -e "Package:" -e "Status:" -e "Section:" -e "Maintainer:" -e "Architecture:" -e "Source:" -e "Version:" -e "Provides:" -e "Recommends:" -e "Suggests:"
 #	$ dpkg -s [pkg] | grep -e "Depends:" | tr -s ',' '\n' | tr -d ' ' | sed s/"Depends:"//
 #------------------------
-## POST-INSTALL SCRIPTS (ubuntu)
+## POST-INSTALL SCRIPTS (ubuntu) 15-3
 #- apa itu ethernet bonding / LCAP ?
-#------------------------
-
-echo "Hello World"
+#	$ sudo apt-get install ifslave ifupdown
+#	$ lsmod | grep bond # cek status bonding
+#	$ modprobe --first-time bonding # cat /etc/modules
+#	$ modprobe bonding
+#	$ sudo nano /etc/network/interfaces >> ...
+#	$ sudo nano /etc/modprobe.d/bonding >> alias bond0 bonding
+#	$ sudo systemctl restart networking.service
+#   ...
+#	$ ifconfig
+#	$ cat /proc/net/bonding/bond0
+#------------------------	
