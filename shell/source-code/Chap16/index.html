@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>example.com</title>
+  </head>
+<body>
+<h1>CGI Scripting</h1>
+<table>
+  <form action="/cgi-bin/hello.cgi" method="get">
+    <tr><td colspan=2><h2>Submit Text (GET)</h2></td></tr>
+    <tr><th>First Text:</th>
+    <td><input type=text name=one></td></tr>
+    <tr><th>Second Text:</th>
+    <td><input type=text name=two></td></tr>
+    <tr><th>Check These</th>
+    <td>
+      1<input type=checkbox name=check1>&nbsp;&nbsp;
+      2<input type=checkbox name=check2>&nbsp;&nbsp;
+      3<input type=checkbox name=check3>&nbsp;&nbsp;
+    </td></tr>
+    <tr><td>&nbsp;</td><td>
+    <input type=submit value="Submit Form">
+    </td></tr>
+  </form>
+  <form action="/cgi-bin/upload.cgi?foo=bar"
+        method="post" enctype="multipart/form-data">
+    <tr><td colspan=2><h2>File Upload (POST)</h2></td></tr>
+    <tr><th>File One:</th>
+    <td><input type=file name=fileone></td></tr>
+  
+    <tr><th>File two:</th>
+    <td><input type=file name=filetwo></td></tr>
+  
+    <tr><th>File Three:</th>
+    <td><input type=file name=filethree"></td></tr>
+    
+    <tr><td>&nbsp;</td><td>
+    <input type=submit value="Upload Files">
+    </td></tr>
+  </form>
+</table>
+</body>
+</html>
