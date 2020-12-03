@@ -1,41 +1,10 @@
-Commandline: apt-get remove tcpdump
+Commandline: apt-get upgrade
 Requested-By: cookie (1000)
-Remove: tcpdump:amd64 (4.9.3-4)
-End-Date: 2020-11-23  08:31:45
+Upgrade: libefivar1:amd64 (37-2ubuntu2, 37-2ubuntu2.1), libkrb5-3:amd64 (1.17-6ubuntu4, 1.17-6ubuntu4.1), libgssapi-krb5-2:amd64 (1.17-6ubuntu4, 1.17-6ubuntu4.1), netplan.io:amd64 (0.100-0ubuntu4~20.04.2, 0.100-0ubuntu4~20.04.3), linux-libc-dev:amd64 (5.4.0-52.57, 5.4.0-54.60), alsa-ucm-conf:amd64 (1.2.2-1ubuntu0.4, 1.2.2-1ubuntu0.5), libldap-2.4-2:amd64 (2.4.49+dfsg-2ubuntu1.3, 2.4.49+dfsg-2ubuntu1.5), python3-software-properties:amd64 (0.98.9.2, 0.98.9.3), libsystemd0:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), libpulsedsp:amd64 (1:13.99.1-1ubuntu3.7, 1:13.99.1-1ubuntu3.8), mysql-client-8.0:amd64 (8.0.21-0ubuntu0.20.04.4, 8.0.22-0ubuntu0.20.04.2), libasound2-data:amd64 (1.2.2-2.1ubuntu2, 1.2.2-2.1ubuntu2.2), zlib1g:amd64 (1:1.2.11.dfsg-2ubuntu1.1, 1:1.2.11.dfsg-2ubuntu1.2), libefiboot1:amd64 (37-2ubuntu2, 37-2ubuntu2.1), libk5crypto3:amd64 (1.17-6ubuntu4, 1.17-6ubuntu4.1), udev:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), plymouth-theme-ubuntu-text:amd64 (0.9.4git20200323-0ubuntu6.1, 0.9.4git20200323-0ubuntu6.2), zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.1, 1:1.2.11.dfsg-2ubuntu1.2), libpq5:amd64 (12.4-0ubuntu0.20.04.1, 12.5-0ubuntu0.20.04.1), libudev1:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), build-essential:amd64 (12.8ubuntu1, 12.8ubuntu1.1), libplymouth5:amd64 (0.9.4git20200323-0ubuntu6.1, 0.9.4git20200323-0ubuntu6.2), krb5-locales:amd64 (1.17-6ubuntu4, 1.17-6ubuntu4.1), systemd-timesyncd:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), apport:amd64 (2.20.11-0ubuntu27.10, 2.20.11-0ubuntu27.12), python3-cryptography:amd64 (2.8-3, 2.8-3ubuntu0.1), libpulse0:amd64 (1:13.99.1-1ubuntu3.7, 1:13.99.1-1ubuntu3.8), python3-apport:amd64 (2.20.11-0ubuntu27.10, 2.20.11-0ubuntu27.12), libkrb5support0:amd64 (1.17-6ubuntu4, 1.17-6ubuntu4.1), mysql-client-core-8.0:amd64 (8.0.21-0ubuntu0.20.04.4, 8.0.22-0ubuntu0.20.04.2), systemd-sysv:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), libldap-common:amd64 (2.4.49+dfsg-2ubuntu1.3, 2.4.49+dfsg-2ubuntu1.5), libpam-systemd:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), distro-info-data:amd64 (0.43ubuntu1.1, 0.43ubuntu1.4), systemd:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), libnss-systemd:amd64 (245.4-4ubuntu3.2, 245.4-4ubuntu3.3), libasound2:amd64 (1.2.2-2.1ubuntu2, 1.2.2-2.1ubuntu2.2), libnetplan0:amd64 (0.100-0ubuntu4~20.04.2, 0.100-0ubuntu4~20.04.3), plymouth:amd64 (0.9.4git20200323-0ubuntu6.1, 0.9.4git20200323-0ubuntu6.2), libmaxminddb0:amd64 (1.4.2-0ubuntu1, 1.4.2-0ubuntu1.20.04.1), ca-certificates:amd64 (20190110ubuntu1.1, 20201027ubuntu0.20.04.1), tmux:amd64 (3.0a-2ubuntu0.1, 3.0a-2ubuntu0.2), accountsservice:amd64 (0.6.55-0ubuntu12~20.04.2, 0.6.55-0ubuntu12~20.04.4), pulseaudio-utils:amd64 (1:13.99.1-1ubuntu3.7, 1:13.99.1-1ubuntu3.8), python3-problem-report:amd64 (2.20.11-0ubuntu27.10, 2.20.11-0ubuntu27.12), libaccountsservice0:amd64 (0.6.55-0ubuntu12~20.04.2, 0.6.55-0ubuntu12~20.04.4), tzdata:amd64 (2020a-0ubuntu0.20.04, 2020d-0ubuntu0.20.04), software-properties-common:amd64 (0.98.9.2, 0.98.9.3)
+End-Date: 2020-11-24  07:54:45
 
-Start-Date: 2020-11-23  08:33:04
-Commandline: apt-get install tcpdump -y
+Start-Date: 2020-12-01  22:25:40
+Commandline: apt-get install dos2unix
 Requested-By: cookie (1000)
-Install: tcpdump:amd64 (4.9.3-4)
-End-Date: 2020-11-23  08:33:07
-
-Start-Date: 2020-11-23  14:00:55
-Commandline: apt-get install rpm
-Requested-By: cookie (1000)
-Install: librpmsign8:amd64 (4.14.2.1+dfsg1-1build2, automatic), rpm2cp
-Start-Date: 2020-11-23  14:00:55
-Commandline: apt-get install rpm
-Requested-By: cookie (1000)
-Install: librpmsign8:amd64 (4.14.2.1+dfsg1-1build2, automatic), rpm2cpio:am
-Start-Date: 2020-11-23  14:00:55
-Commandline: apt-get install rpm
-Requested-By: cookie (1000)
-Install: librpmsign8:amd64 (4.14.2.1+dfsg1-1build2, automatic), rpm2cpio:amd64 (4.14.2.1+dfsg1-1build2, automatic), libdw1:amd64 (0.176-1.1build1, automatic), librpmbuild8:amd64 (4.14.2.1+dfsg1-1build2, automaticEnd-Date: 2020-11-23  14:01:12
-
-Start-Date: 2020-11-23  14:16:09
-Commandline: apt-get install alien
-Requested-By: cookie (1000)
-Install: libltdl-dev:amd64 (2.4.6-14, automatic), libcroco3:amd64 (0
-Start-Date: 2020-11-23  14:16:09
-Commandline: apt-get install alien
-Requested-By: cookie (1000)
-Install: libltdl-dev:amd64 (2.4.6-14, automatic), libcroco3:amd64 (0.6.13
-Start-Date: 2020-11-23  14:16:09
-Commandline: apt-get install alien
-Requested-By: cookie (1000)
-Install: libltdl-dev:amd64 (2.4.6-14, automatic), libcroco3:amd64 (0.6.13-1, automatic), autotools-dev:amd64 (20180224.1, automatic), libsub-override-perl:amd64 (0.09-2, automatic), libmail-sendmail-perl:amd64 (0.80-1, automatic), m4:amd64 (1.4.18-4, automatic), intltool-debian:amd64 (0.35.0+20060710.5, automatic), libarchive-zip-perl:amd64 (1.67-2, automatic), libarchive-cpio-perl:amd64 (0.10-1, automatic), dwz:amd64 (0.13-5, automatic), dh-autoreconf:amd64 (19, automatic), alien:amd64 (8.95), automake:amd64 (1:1.16.1-4ubuntu6, automatic), libdebhelper-perl:amd64 (12.10ubuntu1, automatic), dh-strip-nondeterminism:amd64 (1.7.0-1, automatic), libfile-stripnondeterminism-End-Date: 2020-11-23  14:16:59
-, po-debconf:amd64 (1.0.21, automatic), autoconf:amd64 (2.69-11.1, automatic), debhelper:amd64 (12.10ubuntu1, automatic), autopoint:amEnd-Date: 2020-11-23  14:16:59
-ic), gettext:amd64 (0.19.8.1-10build1, automatic), libsys-hostname-long-perl:amd64 (1.5-1, automatic), libtool:amd64 (2.4.6-14, automatic)
-End-Date: 2020-11-23  14:16:59
-), gettext:amd64 (0.19.8.1-10build1, automatic), libsys-hostname-long-perl:amd64 (1.5-1, automatic), libtool:amd64 (2.4.6-14, automatic)
-End-Date: 2020-11-23  14:16:59
+Install: dos2unix:amd64 (7.4.0-2)
+End-Date: 2020-12-01  22:25:52

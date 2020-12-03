@@ -35,7 +35,7 @@ if [[ "$UID" -eq "0" ]]
 					fi
 					echo ":: LISTED DIRECTORY : $path_dir/"
 					echo "--"
-					ls $dir
+					ls -F $dir
 					echo ""
 					;;					
 				"nano")
