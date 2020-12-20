@@ -78,3 +78,25 @@ function [return_gcd] = func_gcd(in1,in2)
 		end
 	end
 end
+
+% // CEASAR : C = ( P + K ) mod26
+% // AFFINE : C = ( ( P + KS ) x KM ) mod26
+% // EUCLADIAN = gcd(a,b)
+% // CHECK INVERSE = rem(x,z) == 0
+% // EXTENDED EUCLADIAN = gcd(a,b) = sa + tb
+% // ---------------------------------------
+% // r1 = a = 161
+% // r2 = b = 28
+% // s1 = 1, s2 = 0
+% // t1 = 0, t2 = 1
+% // q = floor(r1/r2) = 5 
+% // r = rem(r1/r2)
+% // s = s1-(s2*q)
+% // t = t1-(t2*q)
+% // ---------------------------------------
+% // q | r1  r2 |  r | s1 s2 | s | t1 t2 | t
+% // ---------------------------------------
+% // 5 | 161 28 | 21 | 1   0 | 1 | 0   1 | -5
+% // 1 | 28  21 | 7  | 0   1 |   | 1  -5 | 
+% //
+% //
