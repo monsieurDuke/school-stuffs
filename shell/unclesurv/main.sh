@@ -9,9 +9,9 @@ if [[ "$UID" -eq "0" ]]
 then
 	sudo bash run-init.sh
 	sudo bash run-backg.sh &
-	echo -e "\n[NICE]: initiating program at $!"
+	echo -e "\n[DONE]: Initiating program ..."
 else
-	echo -e "[INFO] Program requires root permission ..."
-	echo -e "[EXIT] Exitting program ..."
+	echo -e "[INFO]: Program requires root permission ..."
+	echo -e "[EXIT]: Exitting program ..."
 	exit 0
 fi
