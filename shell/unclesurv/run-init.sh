@@ -40,3 +40,28 @@ do
 	wait $!
 		echo -ne " [$i/$arr_len]"'\r\t\t\t\t\t'; sleep 1;
 done
+
+rules_check=$(sudo iptables -L -n -v | grep UNCLE)
+if [[ $rules_check == '' ]]
+then
+	sudo iptables -I INPUT -p icmp --icmp-type echo-request -j LOG --log-prefix "LOGGING_PING_UNCLESURV"
+fi
+
+echo -ne "\n[WAIT]: Loading recent iptables rules ..."
+nohup sudo service netfilter-persistent save &> /dev/null &
+wait $!
+nohup sudo service netfilter-persistent restart &> /dev/null &
+wait $!
+
+echo -ne "\n[WAIT]: Restarting rsyslog daemon ..."
+nohup sudo service rsyslog restart &> /dev/null &
+wait $!
+
+#echo -ne "\n[WAIT]: Enabling firewall ..."
+#ufw_check=$(sudo ufw verbose | cut -d ':' -f 2 | tr -d ' ')
+#if [[ $ufw_check == 'inactive' ]]
+#then
+#	nohup sudo ufw enable &> /dev/null &
+#fi
+
+### allow outbound ip

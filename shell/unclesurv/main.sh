@@ -7,9 +7,16 @@
 #--------------------------
 if [[ "$UID" -eq "0" ]]
 then
-	sudo bash run-init.sh
-	sudo bash run-backg.sh &
-	echo -e "\n[DONE]: Initiating program ..."
+	case $1 in
+		"start")
+			sudo bash run-init.sh
+			sudo bash run-backg.sh &
+			echo -e "\n[DONE]: Initiating program ..."
+			;;
+		"stop")
+			sudo pkill -f "sudo bash run-backg.sh"
+			;;
+	esac
 else
 	echo -e "[INFO]: Program requires root permission ..."
 	echo -e "[EXIT]: Exitting program ..."
