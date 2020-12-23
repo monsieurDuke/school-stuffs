@@ -24,21 +24,22 @@ do
 	then
 		cat /dev/null > "log/$file_prefix.$date_year.db"
 		echo $curr_md5 > "log/.md5"
+S		echo    "--------------------------------------------------------------------------------------------------------------" >> "log/$file_prefix.$date_year.db"		
 		printf "%-41s | %-17s | %-17s | %-8s | %-6s\n" "MAC ADDR" "SOURCE ADDR" "DESTINATION ADDR" "PROTOCOL" "SEQ" >> "log/$file_prefix.$date_year.db"
 		echo    "--------------------------------------------------------------------------------------------------------------" >> "log/$file_prefix.$date_year.db"
 
 		IFS=$'\n'
-		raw_mac=$(cat "log/$file_prefix.$date_year.log" | cut -c 78- | cut -d ' ' -f 1 | sort | uniq -d | cut -d '=' -f 2)
-		raw_ptc=$(cat "log/$file_prefix.$date_year.log" | cut -c 78- | cut -d ' ' -f 9 | sort | uniq -d | cut -d '=' -f 2)
+		raw_mac=$(cat "log/$file_prefix.$date_year.log" | cut -d '=' -f 4 | cut -d ' ' -f 1 | sort | uniq -d)
+		raw_ptc=$(cat "log/$file_prefix.$date_year.log" | cut -d '=' -f 12 | cut -d ' ' -f 1 | sort | uniq -d)
 		arr_mac=("$raw_mac")
 		for i_mac in ${arr_mac[@]}
 		do
-			raw_src=$(cat "log/$file_prefix.$date_year.log" | grep "$i_mac" | cut -c 78- | cut -d ' ' -f 2 | sort | uniq -d | cut -d '=' -f 2)
+			raw_src=$(cat "log/$file_prefix.$date_year.log" | grep "$i_mac" | cut -d '=' -f 5 | cut -d ' ' -f 1 | sort | uniq -d)
 			arr_src=("$raw_src")
 			for i_src in ${arr_src[@]}
 			do
 				timeinc=$(cat "log/$file_prefix.$date_year.log" | grep "$i_mac" | grep "$i_src" | wc -l)
-				raw_dst=$(cat "log/$file_prefix.$date_year.log" | grep "$i_mac" | grep "$i_src" | cut -c 78- | cut -d ' ' -f 3 | sort | uniq -d | cut -d '=' -f 2)
+				raw_dst=$(cat "log/$file_prefix.$date_year.log" | grep "$i_mac" | grep "$i_src" | cut -d '=' -f 6 | cut -d ' ' -f 1 | sort | uniq -d)
 				arr_dst=("$raw_dst")
 				for i_dst in ${arr_dst[@]}
 				do
@@ -46,7 +47,6 @@ do
 				done
 			done
 		done
+		echo    "--------------------------------------------------------------------------------------------------------------" >> "log/$file_prefix.$date_year.db"		
 	fi
 done
-
-## COBA FORMATTING
