@@ -33,7 +33,6 @@ do
 		arr_mac=("$raw_mac")
 		for i_mac in ${arr_mac[@]}
 		do
-			echo "${arr_mac[@]}" > "log/ok"
 			raw_src=$(cat "log/$file_prefix.$date_year.log" | grep "$i_mac" | cut -c 78- | cut -d ' ' -f 2 | sort | uniq -d | cut -d '=' -f 2)
 			arr_src=("$raw_src")
 			for i_src in ${arr_src[@]}
