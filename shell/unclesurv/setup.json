@@ -1,9 +1,9 @@
 {
     "setup_param":
     {
-        "max_ping_attempt": 50,
+        "max_ping_attempt": 10,
         "max_days_release": 7,
-        "disable_protocol": ["tcp","icmp","udp"],
+        "disable_protocol": ["tcp","icmp"],
         "detection_method": "ip",
         "rule_chain_match": "DROP"
     }

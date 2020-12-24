@@ -6,35 +6,40 @@
 # o MAIN RUN (BACKGROUND)
 #--------------------------
 IFS=$'\n'
+date_year=$(date +'%Y')	
+file_prefix=$(sudo cat /var/log/syslog | tail -n 1 | cut -c 1-6 | tr -s ' ' '.')
+regx_prefix=$(sudo cat /var/log/syslog | tail -n 1 | cut -c 1-6)	
+
 max_param=$(jq '.setup_param.max_ping_attempt' setup.json)
 rule_param=$(jq '.setup_param.rule_chain_match' setup.json | cut -d '"' -f 2)
 detect_param=$(jq '.setup_param.detection_method' setup.json | cut -d '"' -f 2)
 proto_param=$(jq '.setup_param.disable_protocol[]' setup.json | cut -d '"' -f 2)
 arr_proto=("$proto_param")
 
+curr_md5=$(md5sum "log/$file_prefix.$date_year.log" | cut -d ' ' -f 1)
+curr_md5_2=$(md5sum "setup.json" | cut -d ' ' -f 1)	
+load_md5=$(cat "log/.md5-log")
+load_md5_2=$(cat "log/.md5-json")
+
 while :
 do
-	if [[ ! -e "log/.md5" ]]
-	then
-		touch "log/.md5"
-	fi
-	if [[ ! -e "log/.rules" ]]
-	then
-		touch "log/.rules"
-	fi
-
 	date_year=$(date +'%Y')	
 	file_prefix=$(sudo cat /var/log/syslog | tail -n 1 | cut -c 1-6 | tr -s ' ' '.')
-	regx_prefix=$(sudo cat /var/log/syslog | tail -n 1 | cut -c 1-6)	
+	regx_prefix=$(sudo cat /var/log/syslog | tail -n 1 | cut -c 1-6)
+
 	grep -a "UNCLE" /var/log/syslog | grep -a "$regx_prefix" > "log/$file_prefix.$date_year.log"
-
 	curr_md5=$(md5sum "log/$file_prefix.$date_year.log" | cut -d ' ' -f 1)
-	load_md5=$(cat "log/.md5")	
+	load_md5=$(cat "log/.md5-log")
 
-	if [[ $curr_md5 != $load_md5 ]]
+	if [[ $curr_md5 != $load_md5 || $curr_md5_2 != $load_md5_2 ]]
 	then
 		cat /dev/null > "log/$file_prefix.$date_year.db"
-		echo $curr_md5 > "log/.md5"
+		echo $curr_md5 > "log/.md5-log"
+		echo $curr_md5_2 > "log/.md5-json"
+		curr_md5=$(md5sum "log/$file_prefix.$date_year.log" | cut -d ' ' -f 1)
+		curr_md5_2=$(md5sum "setup.json" | cut -d ' ' -f 1)	
+		load_md5=$(cat "log/.md5-log")
+		load_md5_2=$(cat "log/.md5-json")
 		echo    "------------------------------------------------------------------------------------------------------------------------" >> "log/$file_prefix.$date_year.db"		
 		printf "%-41s | %-17s | %-17s | %-8s | %-15s | %-7s\n" "MAC ADDR" "SOURCE ADDR" "DESTINATION ADDR" "PROTOCOL" "SEQ" "STAT" >> "log/$file_prefix.$date_year.db"
 		echo    "------------------------------------------------------------------------------------------------------------------------" >> "log/$file_prefix.$date_year.db"

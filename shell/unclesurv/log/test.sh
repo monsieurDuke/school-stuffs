@@ -1,7 +1,5 @@
 #!/bin/bash
-check_rule=$(sudo iptables -S INPUT | grep "172")
-if [[ ! $check_rule ]]
+if [[ 'aa' != 'a' || 'c' != 'c' ]]
 then
-	echo "no entry. proceed"
+	echo "fail seir"
 fi
-

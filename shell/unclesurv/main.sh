@@ -12,17 +12,19 @@ then
 			sudo bash source/run-init.sh
 			sudo bash source/run-backg.sh &
 			echo -e "\n[DONE]: Initiating program ..."; sleep 2;			
-			#sudo bash source/run-foreg.sh
 			;;
 		"stop")
 			sudo pkill -f "sudo bash source/run-backg.sh"
+			sudo iptables -F
+			sudo cat /dev/null > "log/.rules"
 			;;
 		"restart")
 			sudo pkill -f "sudo bash source/run-backg.sh"
+			sudo iptables -F
+			sudo cat /dev/null > "log/.rules"			
 			sudo bash source/run-init.sh
 			sudo bash source/run-backg.sh &
 			echo -e "\n[DONE]: Initiating program ..."; sleep 2;			
-			#sudo bash source/run-foreg.sh
 			;;			
 	esac
 else

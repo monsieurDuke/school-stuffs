@@ -18,6 +18,11 @@ do
 	fi
 done
 
+touch "log/.md5-log"
+touch "log/.md5-json"
+touch "log/.rules"
+
+
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 
@@ -46,6 +51,10 @@ if [[ $rules_check == '' ]]
 then
 	sudo iptables -I INPUT -p icmp --icmp-type echo-request -j LOG --log-prefix "LOGGING_PING_UNCLESURV"
 fi
+
+curr_md5=$(md5sum "setup.json" | cut -d ' ' -f 1)
+load_md5=$(cat "log/.md5-json")
+
 
 echo -ne "\n[WAIT]: Loading recent iptables rules ..."; sleep 1;
 nohup sudo service netfilter-persistent save &> /dev/null &
