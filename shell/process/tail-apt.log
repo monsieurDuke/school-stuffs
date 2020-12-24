@@ -8,3 +8,9 @@ Start-Date: 2020-12-21  10:37:43
 Commandline: apt-get install tcpdump -y
 Install: tcpdump:amd64 (4.9.3-4)
 End-Date: 2020-12-21  10:37:45
+
+Start-Date: 2020-12-23  14:49:12
+Commandline: apt-get install jq
+Requested-By: cookie (1000)
+Install: jq:amd64 (1.6-1), libjq1:amd64 (1.6-1, automatic)
+End-Date: 2020-12-23  14:49:30

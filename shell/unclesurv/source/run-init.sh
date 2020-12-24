@@ -5,7 +5,7 @@
 #--------------------------
 # o PRE-REQUESITES CHECK
 #--------------------------
-pkg_arr=("tcpdump" "debconf-utils" "iptables" "netfilter-persistent" "ufw" "rsyslog")
+pkg_arr=("tcpdump" "debconf-utils" "iptables" "netfilter-persistent" "ufw" "rsyslog" "jq")
 pth_arr=("log")
 arr_len=${#pth_arr[@]}
 echo -ne "[WAIT]: Preparing internal directory ... "
@@ -47,13 +47,26 @@ then
 	sudo iptables -I INPUT -p icmp --icmp-type echo-request -j LOG --log-prefix "LOGGING_PING_UNCLESURV"
 fi
 
-echo -ne "\n[WAIT]: Loading recent iptables rules ..."
+echo -ne "\n[WAIT]: Loading recent iptables rules ..."; sleep 1;
 nohup sudo service netfilter-persistent save &> /dev/null &
 wait $!
 nohup sudo service netfilter-persistent restart &> /dev/null &
 wait $!
+if [[ -s "log/.rules" ]]
+then
+	while IFS= read -r get_line
+	do
+		IFS=$'\t'
+		read -a arr_rule <<< "$get_line"
+		check_rule=$(sudo iptables -S INPUT | grep "${arr_rule[1]}" | grep "${arr_rule[2]}")
+		if [[ ! $check_rule ]]
+		then
+			sudo iptables -A INPUT -s ${arr_rule[1]} -p ${arr_rule[2]} -j ${arr_rule[3]}
+		fi
+	done < "log/.rules"
+fi
 
-echo -ne "\n[WAIT]: Restarting rsyslog daemon ..."
+echo -ne "\n[WAIT]: Restarting rsyslog daemon ..."; sleep 1;
 nohup sudo service rsyslog restart &> /dev/null &
 wait $!
 
@@ -65,3 +78,4 @@ wait $!
 #fi
 
 ### allow outbound ip
+### baca file DB, buat load reload
