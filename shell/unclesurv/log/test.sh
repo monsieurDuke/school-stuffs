@@ -1,5 +1,4 @@
 #!/bin/bash
-if [[ 'aa' != 'a' || 'c' != 'c' ]]
-then
-	echo "fail seir"
-fi
+uniq_rules=("IP" "PROTO" "DROP" "PORT" "22")
+echo ${#uniq_rules[@]}
+echo ${uniq_rules[4]}

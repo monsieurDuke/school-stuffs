@@ -16,16 +16,21 @@ then
 		"stop")
 			sudo pkill -f "sudo bash source/run-backg.sh"
 			sudo iptables -F
-			sudo cat /dev/null > "log/.rules"
+			sudo cat /dev/null > "log/.fetch/.tmp.rules"
 			;;
 		"restart")
 			sudo pkill -f "sudo bash source/run-backg.sh"
 			sudo iptables -F
-			sudo cat /dev/null > "log/.rules"			
+			sudo cat /dev/null > "log/.fetch/.tmp.rules"
 			sudo bash source/run-init.sh
 			sudo bash source/run-backg.sh &
 			echo -e "\n[DONE]: Initiating program ..."; sleep 2;			
-			;;			
+			;;
+		"clear")
+			sudo iptables -F
+			sudo cat /dev/null > "log/.fetch/.tmp.rules"
+			sudo cat /dev/null > "log/.fetch/.load.rules"			
+			;;
 	esac
 else
 	echo -e "[INFO]: Program requires root permission ..."
