@@ -1,0 +1,7 @@
+Entity_Name,ObjectID,NumOID,ImportID,ModelID,Num_ModelID,Structured_Type_ID,Num_Structured_Type_ID,Structured_Type_Name,Number_Data_Elements,Classification_Type,Allow_Type_Substitution,Min_Volume,Expected_Volume,Max_Volume,Growth_Rate_Percents,Growth_Rate_Interval,Normal_Form,Temporary_Object_Scope,Adequately_Normalized,Substitution_Parent,Num_Substitution_Parent,Synonyms,Synonym_To_Display,Preferred_Abbreviation,SuperTypeEntity_ID,Num_SuperTypeEntity_ID,Engineering_Strategy,Owner,Entity_Source
+"BANGUNAN",EE71B636-1F75-15A6-CE3F-ED58390218CC,70,,D6786E22-E6EF-DB9F-4920-FB628BA1F6A6,69,,,,10,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
+"FASILITAS_KAMAR",8EDB0D45-1E5F-130C-2D9D-F27B2D53D62F,71,,D6786E22-E6EF-DB9F-4920-FB628BA1F6A6,69,,,,6,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
+"KAMAR",92DD10D6-EA39-ED32-AFC3-1A9826A2D92C,72,,D6786E22-E6EF-DB9F-4920-FB628BA1F6A6,69,,,,7,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
+"KARYAWAN",77E2578E-8A67-A2D7-D86E-ACD9B1988F7A,73,,D6786E22-E6EF-DB9F-4920-FB628BA1F6A6,69,,,,5,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
+"PENYEWA",184A5B00-2C96-45D4-8968-52E147C38BDC,74,,D6786E22-E6EF-DB9F-4920-FB628BA1F6A6,69,,,,5,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,
+"RIWAYAT_SEWA",73921090-F5CA-5C97-AA52-0FE24B90CA76,75,,D6786E22-E6EF-DB9F-4920-FB628BA1F6A6,69,,,,7,,Y,0,0,9999999,0,Year,Third,,N,,,,,,,,,,,

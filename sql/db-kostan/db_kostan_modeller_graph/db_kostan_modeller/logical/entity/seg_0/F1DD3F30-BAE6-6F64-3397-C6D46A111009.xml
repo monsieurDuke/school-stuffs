@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F1DD3F30-BAE6-6F64-3397-C6D46A111009" name="RIWAYAT_PENYEWA">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-27 06:39:50 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_R_PENYEWA" id="D565B47B-8620-71E3-65D0-9480CA3B4E15">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-27 06:40:10 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_P_SEWA" id="8F7F958B-8025-1A9D-6976-49D93FDA3EE9">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-27 07:03:07 UTC</createdTime>
+<generatorID>F37CDC25-8473-2463-71F5-6247DE5BCD76</generatorID>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<referedAttribute>0B1559F8-7223-9C12-0C0F-16BDAF8E8709</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_PENYEWA" id="70FAEA2A-D0BF-5197-A0D9-D6012A6DB8A3">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-27 07:02:35 UTC</createdTime>
+<generatorID>BDDF4D3D-86C4-5FDC-0181-F5A6F60116F0</generatorID>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<referedAttribute>AC9C3B73-79D7-CE90-39F1-697BACCD47F9</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A35B8ABA-FB72-0C25-2DC5-509D0C53F31E" name="STATUS_SEWA PK">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-27 06:40:30 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D565B47B-8620-71E3-65D0-9480CA3B4E15</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

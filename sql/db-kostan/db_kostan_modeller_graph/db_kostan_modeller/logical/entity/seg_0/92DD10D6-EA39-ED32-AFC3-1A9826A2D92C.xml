@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="92DD10D6-EA39-ED32-AFC3-1A9826A2D92C" name="KAMAR">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 10:05:12 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_KAMAR" id="F5D481E1-F842-9D98-1FCF-338DB25B9B45">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 10:05:35 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="KETERSEDIAAN" id="90644B8A-BAC7-1418-F536-02DBFF406749">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 10:20:32 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_F_KAMAR" id="DA4E38EE-7C4A-D569-E452-2F3FBEA69608">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 11:01:43 UTC</createdTime>
+<generatorID>C2EE2DE3-6051-6A6C-0160-65AE05668DCD</generatorID>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<referedAttribute>0D85E7FD-9987-3E1E-8F64-DFA3BF5E8B5E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_BANGUNAN" id="869B44C2-67B6-34AF-16D6-D018369E6CFE">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 11:56:47 UTC</createdTime>
+<generatorID>AFA39EF7-0CD3-DBF9-AE6B-12EE9203A00A</generatorID>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<referedAttribute>E883DC94-1AF2-3368-906B-DDB5044E2A48</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="03D2CE72-F934-F5A3-EA9F-8C6362AC0BE2" name="ROOM PK">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 10:06:24 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<engineerTo>
+<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F5D481E1-F842-9D98-1FCF-338DB25B9B45</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

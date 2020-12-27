@@ -1,0 +1,7 @@
+Type_ID,Type_Name
+1,"Fact",
+2,"Dimension",
+3,"Logging",
+4,"Summary",
+5,"Temporary",
+6,"External",

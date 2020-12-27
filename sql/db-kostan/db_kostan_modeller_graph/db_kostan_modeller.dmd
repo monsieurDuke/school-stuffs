@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="db_kostan_modeller" id="287EF48D-EC3C-588B-CAF5-04526D57E08C" version="3.5">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-26 04:49:17 UTC</createdTime>
+<ownerDesignName>db_kostan_modeller</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>287EF48D-EC3C-588B-CAF5-04526D57E08C</designId>
+</OSDM_Design>
