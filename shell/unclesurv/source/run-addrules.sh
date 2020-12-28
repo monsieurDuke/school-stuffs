@@ -36,3 +36,13 @@ then
 		fi
 	done < "log/.fetch/.load.rules"
 fi
+
+#    "JSON_README_SETUP_PARAM":
+#    {
+#        "max_ping_attempt": "number of maximum count of target that allowed to ping, i.e 20. format NUMERIC",
+#        "disable_protocol": "protocol to be disabled when ping reach its maximum, i.e icmp, udp, and tcp. format STRING ARRAY",
+#        "disable_tcp_port": "tcp port to be blocked when tcp protocol is selected to be disabled, i.e 80, 443, and 23. format NUMERIC ARRAY",
+#        "disable_udp_port": "udp port to be blocked when udp protocol is selected to be disabled. i.e 53. format NUMERIC ARRAY",
+#        "detection_method": "ways for iptables rule to specify the source, i.e ip or mac. format STRING",
+#        "rule_chain_match": "ways for iptables to chain the rule for executiion, i.e DROP, ALLOW, FORWARD, or REJECT. format STRING"
+#    },
