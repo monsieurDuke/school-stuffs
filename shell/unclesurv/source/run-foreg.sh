@@ -80,25 +80,26 @@ meth_updateparam()
 meth_checkstat()
 {
 	echo -e "--"
-	sudo iptables -S INPUT -v; echo "--"
-	sudo iptables -S OUTPUT -v; echo "--"
-	sudo iptables -S FORWARD -v; echo -e "--\n"	
+	sudo iptables -S INPUT ; echo "--"
+	sudo iptables -S OUTPUT ; echo "--"
+	sudo iptables -S FORWARD ; echo -e "--\n"	
 }
 meth_addrule()
 {
+	chain=""; ip_source=""; ip_destination=""; port=""; proto=""; rule="";
 	###############Implementasi aturan yang akan di buat############
-	echo -e "--\n 1 | INPUT/INCOME" #Aturan ini akan berlaku untuk jaringan dari luar mencoba akses ke jaringan lokal
-	echo " 2 | OUTPUT/OUTGOING" #Aturan ini akan berlaku untuk jaringan lokal yang akan mencoba akses jaringan luar/internet
-	echo -e " 3 | FORWARD\n--" #Aturan ini mengizinkan jaringan lokal/internet untuk bypass aturan yang telah di implementasikan
+	echo -e "--\n1 | INPUT/INCOME" #Aturan ini akan berlaku untuk jaringan dari luar mencoba akses ke jaringan lokal
+	echo "2 | OUTPUT/OUTGOING" #Aturan ini akan berlaku untuk jaringan lokal yang akan mencoba akses jaringan luar/internet
+	echo -e "3 | FORWARD\n--" #Aturan ini mengizinkan jaringan lokal/internet untuk bypass aturan yang telah di implementasikan
 	read -p ":: SPECIFY CHAIN FOR THE CONNECTION : " opt_ch
 	if [ ! -z $opt_ch ]
 	then
 		case $opt_ch in
-			1)	chain="INPUT"
+			1)	chain="-A INPUT"
 				S_ipaddress;;
-			2)	chain="OUTPUT"
+			2)	chain="-A OUTPUT"
 				S_ipaddress;;
-			3)	chain="FORWARD"
+			3)	chain="-A FORWARD"
 				S_ipaddress;;
 		esac
 	fi
@@ -106,9 +107,9 @@ meth_addrule()
 S_ipaddress()
 {
 	#########Source IP Address##########
-	echo -e "--\n 1 | CREATE RULES FOR SINGLE SOURCE IP ADDRESS"
-	echo -e " 2 | CREATE RULES FOR SUBNET SOURCE NETWORK ADDRESS"
-	echo -e " 3 | CREATE RULES FOR ALL SOURCE ADDRESS\n--"
+	echo -e "--\n1 | CREATE RULES FOR SINGLE SOURCE IP ADDRESS"
+	echo -e "2 | CREATE RULES FOR SUBNET SOURCE NETWORK ADDRESS"
+	echo -e "3 | CREATE RULES FOR ALL SOURCE ADDRESS\n--"
 	read -p ":: SPECIFY SOURCE ADDRESS OPTION : " opt_ip
 	if [ ! -z $opt_ip ]
 	then
@@ -120,7 +121,7 @@ S_ipaddress()
 					D_ipaddress
 				fi
 				;;
-			2)	echo -n ":: INSERT SOURCE NETWORK ADDRESS (X.X.X.X/YY) : "
+			2)	echo -n ":: INSERT SOURCE NETWORK ADDRESS (192.168.10.0/24) : "
 				read ip_source
 				if [ ! -z $ip_source ] #kalo bisa dia detect isi variable sama bolehin angka doang
 				then
@@ -128,182 +129,137 @@ S_ipaddress()
 				fi
 				;;
 			3)	ip_source='all'
+				D_ipaddress
 				;;
 		esac
 	fi
 }
-
-## TERAKIR DISINIIII
 D_ipaddress()
 {
 	#########Tujuan akses IP Address##########
-	echo -e "--\n 1 | CREATE RULES FOR SINGLE DESTINATION IP ADDRESS"
-	echo -e " 2 | CREATE RULES FOR SUBNET DESTINATION NETWORK ADDRESS"
-	echo -e " 3 | CREATE RULES FOR ALL DESTINATION ADDRESS\n--"
+	echo -e "--\n1 | CREATE RULES FOR SINGLE DESTINATION IP ADDRESS"
+	echo -e "2 | CREATE RULES FOR SUBNET DESTINATION NETWORK ADDRESS"
+	echo -e "3 | CREATE RULES FOR ALL DESTINATION ADDRESS\n--"
 	read -p ":: SPECIFY DESTINATION ADDRESS OPTION : " opt_ipD
 	if [ ! -z $opt_ipD ]
 	then
-	case $opt_ipD in
-	1) echo -n "Masukan IP Address: "
-		 read ip_destination
-		 if [ ! -z $ip_destination ] #kalo bisa dia detect isi variable sama bolehin angka doang
-		 then
-			echo "IP Address berhasil terisi"
+		case $opt_ipD in
+		1)	echo -n ":: INSERT DESTINATION IP ADDRESS : "
+			read ip_destination
+			if [ ! -z $ip_destination ] #kalo bisa dia detect isi variable sama bolehin angka doang
+			then
+				protocol
+			fi
+			;;
+		2)	echo -n ":: INSERT DESTINATION NETWORK ADDRESS (192.168.10.0/24) : "
+			read ip_destination
+			if [ ! -z $ip_destination ] #kalo bisa dia detect isi variable sama bolehin angka doang
+			then
+				protocol
+			fi
+			;;
+		3) 	ip_destination='all'
 			protocol
-		 else
-			echo "IP Address belum terisi!!"
-			D_ipaddress
-		 fi
-		 ;;
-	2) echo -n "Masukan subnet IP Address(contoh: 192.168.10.0/24): "
-		 read ip_destination
-		 if [ ! -z $ip_destination ] #kalo bisa dia detect isi variable sama bolehin angka doang
-		 then
-			echo "IP Address berhasil terisi"
-			protocol
-		 else
-			echo "IP Address belum terisi!!"
-			D_ipaddress
-		 fi
-		 ;;
-	*) read -p "Pilihan anda tidak tersedia !!"
-		 D_ipaddress;;
-	esac
-	else
-		read -p "Pilihan anda tidak boleh kosong!!"
-		D_ipaddress
+			;;
+		esac
 	fi
 }
-
 protocol()
 {
-	clear
 	###############Protocol#############
-	echo "Jenis Protokol yang akan digunakan"
-	echo "1. Memblokir seluruh layanan TCP"
-	echo "2. Memblokir layanan TCP tertentu"
-	echo "3. Memblokir port tertentu" 
-	echo "4. Tidak menggunakan protokol"
-	echo -n "Pilihan anda: "
+	echo -e "--\n1 | APPLY RULE ON SPESIFIC PROTOCOL (TCP/UDP/ICMP)"
+	echo -e "2 | APPLY RULE TO ALL PROTOCOL\n--"
+	echo -n ":: SPECIFY PROTOCOL OPTION : "
 	read proto_ch
 	if [ ! -z $proto_ch ]
 	then
-	case $proto_ch in
-	1) proto=TCP
-		 echo "Proses berhasil dilakukan"
-		 read -p "Press any key"
-		 rule
-		 ;;
-	2) echo -n "Masukkan Nama Layanan TCP(huruf kapital): "
-		 read proto
-		 if [ ! -z $proto ] #kalo bisa dia detect isi variable sama bolehin huruf kapital
-		 then
-			echo "Protokol yang telah di pilih berhasil terisi"
+		case $proto_ch in
+		1) 	read -p ":: INSERT PROTOCOL : " proto
+			proto=$(echo "$proto" | tr '[:upper:]' '[:lower:]')
+			if [[ $proto == 'tcp' || $proto == 'udp' ]]
+			then
+				read -p ":: INSERT $proto PORT : " port
+			fi
 			rule
-		 else
-			echo "Protokol belum terisi!!"
-			protocol
-		 fi
-		 ;;
-	3) echo -n "Masukkan Nama Port(huruf kapital): "
-		 read proto_ch
-		 if [ ! -z $proto_ch ] #kalo bisa dia detect isi variable sama bolehin huruf kapital
-		 then
-			echo "Layanan port berhasil terisi"
+			;;
+		2)	proto="all"
 			rule
-		 else
-			echo "Layanan port belum terisi!!"
-			protocol
-		 fi
-		 ;;
-	4) proto="NULL"
-		 echo "Proses berhasil dilakukan"
-		 read -p "Press any key"
-		 rule
-		 ;;
-	*) read -p "Pilihan anda tidak tersedia !!"
-		 protocol;;
-	esac
-	else
-		read -p "Pilihan anda tidak boleh kosong!!"
-		protocol
+			;;
+		esac
 	fi
 }
-
 rule()
 {
-	 clear
-	 #############Aturan implementasi hak izin############# 
-	 echo "Implementasi aturan pada penerimaan koneksi/packet ?"
-	 echo "1. Menerima koneksi/packet"
-	 echo "2. Menolak koneksi/packet" #client bakal tahu kalo koneksi dia kaga keterima.
-	 echo "3. Menghapus koneksi/packet" #client ga bakal tahu keadaan packet terkirim ke server karena server tidak membalas permintaan, 
-						#dia langgsung menghapus permintaan tersebut.
-	 echo "4. Log"					
-	 echo -n "Pilihan anda: "
-	 read rule_ch
-	 if [ ! -z $rule_ch ]
-	 then
-	 case $rule_ch in
-	 1) rule="ACCEPT"
-			echo "Proses berhasil dilakukan"
-			read -p "Press any key"
-			generate_rule
-			;;
-	 2) rule="REJECT"
-			echo "Proses berhasil dilakukan"
-			read -p "Press any key"
-			generate_rule
-			;;
-	 3) rule="DROP"
-			echo "Proses berhasil dilakukan"
-			read -p "Press any key"
-			generate_rule
-			;;
-	 4) rule="LOG"
-			echo "Proses berhasil dilakukan"
-			read -p "Press any key"
-			generate_rule
-			;;
-	 *) read -p "Pilihan anda tidak tersedia !!"
-			protocol;;
-	 esac
-	 else
-		 read -p "Pilihan anda tidak boleh kosong!!"
-		 protocol
-	 fi
+	#############Aturan implementasi hak izin############# 
+	echo -e "--\n1 | ACCEPT CONNECTION/PACKET"
+	echo "2 | REJECT CONNECTION/PACKET" #client bakal tahu kalo koneksi dia kaga keterima.
+	echo -e "3 | DROP CONNECTION/PACKET\n--" #client ga bakal tahu keadaan packet terkirim ke server karena server tidak membalas permintaan,	dia langgsung menghapus permintaan tersebut. 
+	echo -n ":: SPECIFY RULE'S POLICY : "
+	read rule_ch
+	if [ ! -z $rule_ch ]
+	then
+		case $rule_ch in
+			1) 	rule="-j ACCEPT"
+				generate_rule
+				;;
+			2) 	rule="-j REJECT"
+				generate_rule
+				;;
+			 3) rule="-j DROP"
+				generate_rule
+				;;
+		esac
+	fi
 }
-
 generate_rule()
 {
-	 ###################Proses membuat aturan####################
-	 echo "Implementasi aturan yang dimasukan ke dalam iptables"
-	 echo "Aturan yang akan di implementasikan: "
-	 if [ $proto == "NULL" ]
-	 then
-	 echo "Iptables -A $chain -s $ip_source -d $ip_destination -j $rule"
-	 gen=1
-	 else
-	 echo "Iptables -A $chain -s $ip_source -d $ip_destination -p $proto -j $rule"
-	 gen=2
-	 fi
-	 echo "Informasi aturan tersebut akan di implementasikan ke dalam iptables? Yes=1, No=2"
-	 echo -n "Pilihan anda: "
-	 read yesno
-	 if [ $yesno == 1 ] && [ $gen == 1 ]; then
-	 sudo iptables -A $chain -s $ip_source -d $ip_destination -j $rule
-	 echo "Proses berhasil dilakukan"
-	 read -p "Press any key"
-	 main
-	 else if [ $yesno == 1 ] && [ $gen == 2 ]; then
-	 sudo iptables -A $chain -s $ip_source -d $ip_destination -p $proto -j $rule
-	 echo "Proses berhasil dilakukan"
-	 read -p "Press any key"
-	 main         
-	 else if [ $yesno == 2 ]; then
-	 main
-	 fi
-	 fi
-	 fi
+	###################Proses membuat aturan####################
+	if [[ $ip_source == "all" ]]
+	then
+		ip_source=""
+	else
+	 	ip_source="-s $ip_source"
+	fi
+	if [[ $ip_destination == "all" ]]
+	then
+	 	ip_destination=""
+	else
+	 	ip_destination="-d $ip_destination"
+	fi
+	if [[ $proto == "all" ]]
+	then
+	 	proto=""
+	else
+	 	proto="-p $proto"
+	fi
+	if [[ $port ]]
+	then
+		IFS=' '
+		read -a arr_port <<< "$port"	 	
+		inc=0
+		echo "--"				 
+		for i in ${arr_port[@]}
+		do
+			echo -e ":: CURRENT RULESET : iptables $chain $ip_source $ip_destination $proto --dport $i -m conntrack --ctstate NEW,ESTABLISHED $rule"
+		done		
+		echo "--"
+	else
+		echo -e "--\n:: CURRENT RULESET : iptables $chain $ip_source $ip_destination $j $rule"
+	fi
+	read -p ":: CONFIRM TO ADD RULESET TO IPTABLES (y) ? " confirm_opt
+	if [[ $confirm_opt == 'y' || $confirm_opt == 'Y' ]]
+	then
+		echo -e ":: Adding all ruleset ..."
+		if [[ $port ]]
+		then
+			for i in ${arr_port[@]}
+			do
+				sudo iptables $chain $ip_source $ip_destination $proto --dport $i -m conntrack --ctstate NEW,ESTABLISHED $rule
+			done		
+		else
+			sudo iptables $chain $ip_source $ip_destination $j $rule
+		fi		
+	fi
+	echo ""
 }
 main
