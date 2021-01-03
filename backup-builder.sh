@@ -1,5 +1,5 @@
 #! /bin/bash
-
+#-----------
 exec_help() {
     printf "[backup-builder] : it backups your python files in this directory, to other desired directory\n"
     printf "[arguments]      : -d >> the directory of the destination path\n"
