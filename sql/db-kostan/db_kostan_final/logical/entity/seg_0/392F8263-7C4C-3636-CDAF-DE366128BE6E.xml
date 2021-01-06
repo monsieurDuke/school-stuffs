@@ -1,0 +1,127 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="392F8263-7C4C-3636-CDAF-DE366128BE6E" name="PEMBAYARAN_SEWA">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>73921090-F5CA-5C97-AA52-0FE24B90CA76</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_P_SEWA" id="B343CA5B-B05A-0ED1-4493-EAFC167ADE48">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>0B1559F8-7223-9C12-0C0F-16BDAF8E8709</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TGL_AWAL_SEWA" id="0D340151-4214-5DA6-8B04-D54F5958C31D">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>ACD72FDC-106F-7656-F766-DE04D1998126</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TGL_AKHIR_SEWA" id="FE5E54F6-1A7E-E4A1-6DC7-F0411EE39A3A">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>B14A2EDA-AC27-6CE5-E6C4-8FFFD18B39FC</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="BAYAR_BULANAN" id="741F964B-B315-9417-7DC0-E25E0A4FF79B">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>6F3AC1AD-379E-DF52-A28E-1E23BAD110AA</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TGL_BAYAR" id="4634D2AF-76A2-41A8-36F2-E09865CA3AFC">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>04F71436-E001-419C-F3C3-45BCB3D9D67E</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_KAMAR" id="C76B19EA-FCC0-5EE8-84D9-268A74AA82B9">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<generatorID>2B629A17-D834-2A18-DE5A-66E4F4CDF136</generatorID>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>A7ECCD13-8BC6-9BA4-1679-CC1DAC5CC4B9</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<referedAttribute>69BA5988-81F3-9E87-8251-0E9FB38833D4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1285D4E2-0C99-926A-8CEB-45A07BFAE7CB" name="RENT PK">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>1FAEEB79-3410-DE48-A247-BF7E354A8AD2</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B343CA5B-B05A-0ED1-4493-EAFC167ADE48</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

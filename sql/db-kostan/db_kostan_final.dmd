@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="db_kostan_final" id="E9167B18-1051-10B6-F486-97DCBECDED5C" version="3.5">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:13:01 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>E9167B18-1051-10B6-F486-97DCBECDED5C</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="287EF48D-EC3C-588B-CAF5-04526D57E08C">
+<designStoragePath>C:\Users\Rizka\Documents\DATA\Code\SQL\db-kostan\db_kostan_modeller_graph\db_kostan_modeller</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

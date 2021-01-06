@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DF10B83A-EDDD-77B8-3733-B2EEEABD45D9" name="KAMAR">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>92DD10D6-EA39-ED32-AFC3-1A9826A2D92C</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_KAMAR" id="69BA5988-81F3-9E87-8251-0E9FB38833D4">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>F5D481E1-F842-9D98-1FCF-338DB25B9B45</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="KETERSEDIAAN" id="CDE66B7A-8668-974D-0A78-CEA0B822674B">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>90644B8A-BAC7-1418-F536-02DBFF406749</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_F_KAMAR" id="95A0A7D2-FD92-57BA-DB21-01936DB5D508">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<generatorID>A4BB1CA3-580D-B5CE-73E9-B52E0A039183</generatorID>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>DA4E38EE-7C4A-D569-E452-2F3FBEA69608</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<referedAttribute>4C7B4236-36BF-B746-2298-4AE574BD2B00</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1EB2CAAD-BE40-5C93-EB9E-29D3EA14DBFB" name="ROOM PK">
+<createdBy>Hania</createdBy>
+<createdTime>2020-12-31 06:17:23 UTC</createdTime>
+<ownerDesignName>db_kostan_final</ownerDesignName>
+<importedID>03D2CE72-F934-F5A3-EA9F-8C6362AC0BE2</importedID>
+<engineerTo>
+<item key="66EC11EC-4852-8813-F4ED-F1A4D8BEBD72" value="true"/>
+<item key="FD14EA98-32C9-82D3-4F62-6161960E2D7C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>69BA5988-81F3-9E87-8251-0E9FB38833D4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

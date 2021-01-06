@@ -62,8 +62,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>10</dataTypeSize>
-<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="TGL_BAYAR" id="04F71436-E001-419C-F3C3-45BCB3D9D67E">
 <createdBy>Hania</createdBy>
@@ -76,21 +76,6 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT007</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_PENYEWA" id="9AB0156A-0258-02A1-A2B6-441D4F144DFD">
-<createdBy>Hania</createdBy>
-<createdTime>2020-12-26 10:59:52 UTC</createdTime>
-<generatorID>F1BE4849-A75A-D139-D401-8769A572EC87</generatorID>
-<ownerDesignName>db_kostan_modeller</ownerDesignName>
-<engineerTo>
-<item key="2F1603CF-D2B4-8315-2D14-54A347EAA68A" value="true"/>
-</engineerTo>
-<referedAttribute>AC9C3B73-79D7-CE90-39F1-697BACCD47F9</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="ID_KAMAR" id="A7ECCD13-8BC6-9BA4-1679-CC1DAC5CC4B9">
