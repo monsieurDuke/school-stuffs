@@ -20,21 +20,18 @@ function [cipher_return] = func_enc_vigenere(plain_str,key_str)
 	end
 
 	% // panjang kunci == panjang plain text
-	[x,y] = size(plain_lower);
+	[x,y] = size(plain_space);
 	[a,b] = size(key_lower);
 	key_combine = '';
-	inc = 1;
-	for idx = x:y
-		[c,d] = size(key_combine);
-		if d <= y 
-			if mod(idx,b) == 0
-				key_combine = strcat(key_combine,key_lower(inc));
-				inc = 1;
-				continue
-			end
-			key_combine = strcat(key_combine,key_lower(inc));
-			inc = inc + 1;
+	key_resize = '';
+	for idx = a:b
+		if key_lower(idx) ~= ' '		
+			key_combine = strcat(key_combine,key_lower(idx));
 		end
+	end
+	key_combine = char(key_combine);	
+	for idx = x:y
+		key_resize = strcat(key_resize,key_combine(idx));
 	end
 
 	% // DeCipher = Cipher.i - Key.i

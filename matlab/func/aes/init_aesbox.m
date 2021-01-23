@@ -71,7 +71,7 @@ function [out_table] = init_aesbox(box_opt)
 			sbox_table = [sbox_table(1:14,:);rowe]; sbox_table = [sbox_table(1:15,:);rowf];                
 			sbox_table = upper(sbox_table);
 			out_table = sbox_table;			
-		case 'rcon'
+		case 'fwd-rcon'
 			row0 = {'01','02','04','08','10','20','40','80','1b','36'};
 			row1 = {'00','00','00','00','00','00','00','00','00','00'};
 			rcon_table = [rcon_table(1:0,:);row0];
@@ -80,6 +80,15 @@ function [out_table] = init_aesbox(box_opt)
 			rcon_table = [rcon_table(1:3,:);row1];			
 			rcon_table = upper(rcon_table);
 			out_table = rcon_table;
+		case 'inv-rcon'
+			row0 = {'36','1b','80','40','20','10','08','04','02','01'};
+			row1 = {'00','00','00','00','00','00','00','00','00','00'};
+			rcon_table = [rcon_table(1:0,:);row0];
+			rcon_table = [rcon_table(1:1,:);row1];
+			rcon_table = [rcon_table(1:2,:);row1];
+			rcon_table = [rcon_table(1:3,:);row1];			
+			rcon_table = upper(rcon_table);
+			out_table = rcon_table;			
 		case 'fwd-mcon'
 			row0 = {'02','03','01','01'};
 			row1 = {'01','02','03','01'};

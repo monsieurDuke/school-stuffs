@@ -1,10 +1,3 @@
-addpath('func');
-addpath('materi');
-addpath('img');
-addpath('sample');
-
-
-
 alpha = 'ABCDEabcde'
 to_ascii = double(alpha)
 to_char = char(to_ascii)

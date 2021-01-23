@@ -4,7 +4,7 @@ function [plain_return] = func_dec_multiplication(cipher_str,n_multi)
         inv_multi = inv_multi + 26;
         r = rem(inv_multi,n_multi);
         if r == 0
-            n_multi = (inv_multi/n_multi);            
+            n_multi = (inv_multi/n_multi)           
             break
         end
     end  
@@ -27,3 +27,7 @@ function [plain_return] = func_dec_multiplication(cipher_str,n_multi)
         plain_return = NaN;
     end
 end
+
+// angka A memiliki inverse apabila nilai modulusnya 0,
+// siapkan 2 angka, angka n sebagai pembagi dan A sebagai modulor
+// get = mod(n,A)

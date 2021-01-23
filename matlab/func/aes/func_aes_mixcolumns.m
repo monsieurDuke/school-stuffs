@@ -44,6 +44,19 @@ function [mc_state] = func_aes_mixcolumns(r_state,mcon,method_str)
 								end	
 						end
 						get_xor = bitxor(new_sub,get_xor);
+					case 'inv'
+						plainout = zeros(4,4);
+						for i=1:4
+							for j=1:4
+								for k =1:4
+									gf8res = multiplicationGF28(hex2dec(r_state(k,j)),hex2dec(mcon(i,k)));
+									plainout(i,j) = bitxor(plainout(i,j),gf8res);
+								end  
+							end
+						end
+						cur_state = dec2hexarr(plainout);
+						mc_state = cur_state;				
+						return		
 				end
 			end
 			fin_sub = dec2hex(get_xor);
