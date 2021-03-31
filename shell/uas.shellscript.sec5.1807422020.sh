@@ -6,8 +6,8 @@ touch login.db
 touch temp.creds
 
 dialog \
---title "WELCOME USER" --title "LOGIN PROMPT" --inputbox "USERNAME" 8 50 2> temp.creds \
---title "LOGIN PROMPT" --inputbox "PASSWORD" 8 50 2> temp.creds
+--title "WELCOME USER" --title "LOGIN PROMPT" --inputbox "USERNAME" 8 40 2> temp.creds \
+--title "LOGIN PROMPT" --inputbox "PASSWORD" 8 40 2> temp.creds
 
 get_user=$(cat temp.creds | tr -s '\t' '@' | cut -d '@' -f 1)
 get_pass=$(cat temp.creds | tr -s '\t' '@' | cut -d '@' -f 2)

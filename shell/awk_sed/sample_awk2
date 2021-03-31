@@ -1,0 +1,5 @@
+#!/bin/bash
+
+get_date=$(date)
+awk -v today="$get_date" 'BEGIN { print today }'
+
