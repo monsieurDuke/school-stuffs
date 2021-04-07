@@ -1,12 +1,14 @@
-from twilio.rest import Client
+import pywhatkit
+import time
+from datetime import datetime
+from pynput.keyboard import Key, Controller
 
-account_sid = 'AC907dafce445563e05036c5c2453004dd'
-auth_token = '15f37d22c3334ed4752a274d7aa0772b'
-client = Client(account_sid, auth_token)
-
-message = client.messages.create(
-                              from_='whatsapp:+6281318420901',
-                              body='Your appointment is coming up on July 21 at 3PM',
-                              to='whatsapp:+6287777537983'
-                          )
-print(message.sid)
+keyboard = Controller()
+pywhatkit.sendwhatmsg('+6287885639274','hello world im dying',21,46)
+keyboard.press(Key.ctrl)
+keyboard.press('w')
+keyboard.release('w')
+keyboard.release(Key.ctrl)
+time.sleep(5.0)
+keyboard.press(Key.enter)
+keyboard.release(Key.enter)
