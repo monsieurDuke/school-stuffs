@@ -1,0 +1,3 @@
+- sinfolitmas.pnj.ac.id
+- 103.36.14.100
+- unit-deb.pnj.ac.id
