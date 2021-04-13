@@ -1,9 +1,9 @@
 import java.lang.Math;
 
-public class Tugas1 {
+public class Determinan {
 	private double var_a, var_b, var_c, det, pass_det;
 	private double var_x1, var_x2;
-	public Tugas1(int var_a, int var_b, int var_c){
+	public Determinan(int var_a, int var_b, int var_c){
 		this.var_a = Double.valueOf(var_a); this.var_b = Double.valueOf(var_b); this.var_c = Double.valueOf(var_c);
 		this.det = (Math.pow(this.var_b,2)) - (4 * this.var_a * this.var_c);
 	}
