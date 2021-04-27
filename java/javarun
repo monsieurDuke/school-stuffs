@@ -1,0 +1,5 @@
+#!/bin/bash
+file=$(echo $1 | cut -d '.' -f 1)
+extn=$(echo $1 | cut -d '.' -f 2)
+javac $file.$extn
+java $file
