@@ -1,0 +1,9 @@
+MONOPOLY GAME
+- game (new game / load game)
+    - user (name, position, lap, point)
+    - board (size)
+    - item-skill (blok1, blok2, ...)
+    - auto-save (position)
+    - record (score)
+    
+ 
