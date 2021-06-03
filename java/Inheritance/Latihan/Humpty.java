@@ -1,0 +1,3 @@
+class Humpty {
+	void myMethod() {}
+}

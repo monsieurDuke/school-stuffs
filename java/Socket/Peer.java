@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 //
-public class Client {
+public class Peer {
 	public void respond(int pnumber, String msg) {
 		try {
 			Socket s = new Socket("localhost",pnumber);
@@ -31,13 +31,13 @@ public class Client {
 				System.out.println("message = " + str);
 				port.close();
 				if (str.equals("exit_game")) {
-					removeroom(pnumber);
+					removeRoom(pnumber);
 					break;
 				}
 			} catch (Exception e){System.out.println("[SERVER] " + e);}
 		}
 	}
-	public void removeroom(int port) {
+	public void removeRoom(int port) {
 		try {
 			File filename = new File("open-ports.log");
 			File filetemp = new File("open-ports.log.tmp");
@@ -57,7 +57,7 @@ public class Client {
 			filetemp.renameTo(filename);
 		} catch (Exception e){System.out.println("[SERVER] " + e);}
 	}
-	public void showlobby() {
+	public void showLobby() {
 		try {
 			FileReader fr = new FileReader("open-ports.log");
 			BufferedReader br = new BufferedReader(fr); String line;
@@ -65,7 +65,7 @@ public class Client {
 		} catch (IOException e){System.out.println("[SERVER] " + e);}
 	}
 	public static void main(String[] args) {
-		Client obj = new Client();
+		Peer obj = new Peer();
 		Scanner read = new Scanner(System.in);
 		System.out.print("1. create game\n2. join game\n---\n>> "); char opt = read.next().charAt(0);
 		switch(opt) {
@@ -74,7 +74,8 @@ public class Client {
 				obj.listen(createport);
 				break;
 			case '2':
-				System.out.println("---"); obj.showlobby(); System.out.println("---");
+				System.out.println("---"); obj.showLobby();
+				System.out.println("---");
 				System.out.print("join port : "); int joinport = read.nextInt();
 				System.out.print("send text : "); String msg = read.next();
 				obj.respond(joinport, msg);
