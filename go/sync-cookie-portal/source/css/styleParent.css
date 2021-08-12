@@ -63,12 +63,12 @@ body {
   padding: 10px;
 }
 .column.left {
-  width: 5%;
+  width: 7%;
   text-align: center;  
   background-color: var(--clr-white);
 }
 .column.right {
-  width: 95%;
+  width: 93%;
   text-align: center;
   background-color: var(--clr-white);
 }
@@ -199,6 +199,9 @@ body {
   background-repeat: no-repeat;
   background-position: center; 
   background-size: 22em;   
+}
+.textbox .topper {
+  text-shadow: 3px 2px #fff;
 }
 .textbox.less.two {
   background: url('../../asset/blob-3.svg');  
