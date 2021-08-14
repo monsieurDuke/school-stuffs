@@ -2,10 +2,10 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1", charset="utf-8">  	
-		<link rel="icon" type="image/png" sizes="32x32" href="asset/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="asset/favicon-16x16.png">
+		<link rel="shortcut icon" type="image/jpg" href="asset/favicon.ico">		
 		<link rel="stylesheet" type="text/css" href="source/css/styleParent.css">
 		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>		
 		<script src="https://kit.fontawesome.com/daf491ae14.js" crossorigin="anonymous"></script>
 		<title>Cookie Portal | @hotpotcookie</title>		
 	</head>
@@ -17,12 +17,21 @@
 				<div class="sidebar">
 					<ul class="nav-links">
 						<li><i class='bx bxs-home'></i></li>
-						<li><i class="fas fa-lightbulb"></i></li>						
+						<li><i class="fas fa-lightbulb"></i></li>					
 						<li><i class="fas fa-thumbtack"></i></li>
 						<li><i class="fas fa-file-alt"></i></li>
 						<li><i class="fas fa-user"></i></li>						
 					</ul>
 				</div>				
+				<div class="topbar">
+					<ul class="nav-links">
+						<li><i class='bx bxs-home'></i></li>
+						<li><i class="fas fa-lightbulb"></i></li>					
+						<li><i class="fas fa-thumbtack"></i></li>
+						<li><i class="fas fa-file-alt"></i></li>
+						<li><i class="fas fa-user"></i></li>						
+					</ul>
+				</div>								
 			</div>
 
 			<!-- MAIN DIV CONTENT -->			
@@ -45,33 +54,35 @@
 		  			<h1 class="topper">TRY OUT SOME COOL</h1>
 		  			<h1 class="headline"><span><a href="">TUTORIALS</a></span></h1>
 		  		</div>
-
+				
 				<!-- FLEXBOX CARD -->			
 		  		<div class="wrapper-flex">
 					<div class="container">
 			  			<div class='banner-img project'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
-						<h1 class="name">Anna Marie</h1>
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
+						<h1 class="name">HoneyPot</h1>
+						<p class="scope"><span class="pink">Cowrie</span> <span class="green">Medusa</span> <span class="green">Nmap</span> <span class="cyan">SSH</span></p>
 						<p class="description">Hi there! My name is Anna and I am a book lover.</p>
 						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img project'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
+						<p class="scope"><span class="pink">Squid Proxy</span> <span class="cyan">Apache2</span> <span class="cyan">Firewall</span></p>						
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover</p>
 						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img project'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is</p>
 						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>    
 					<div class="container">
 						<div class='banner-img project'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book lover</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
@@ -86,28 +97,28 @@
 		  		<div class="wrapper-flex">				
 					<div class="container">
 			  			<div class='banner-img article'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<h1 class="name">Anna Marie</h1>
 						<p class="description">Hi there! My name is Anna and I am a book lover.</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img article'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img article'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>    
 					<div class="container">
 						<div class='banner-img article'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
@@ -122,28 +133,28 @@
 		  		<div class="wrapper-flex">				
 					<div class="container">
 			  			<div class='banner-img journal'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<h1 class="name">Anna Marie</h1>
 						<p class="description">Hi there! My name is Anna and I am a book lover.</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img journal'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img journal'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>    
 					<div class="container">
 						<div class='banner-img journal'></div>
-						<img src='https://images.unsplash.com/photo-1444011283387-7b0f76371f12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='profile image' class="profile-img">
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<p class="name">Anna Marie</p>
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
@@ -179,13 +190,11 @@
 						</div>
 						<div class="footer-col media">
 							<h4>Social Media</h4>
-							<ul>
 								<a href="https://medium.com/@hotpotcookie"><i class="fab fa-medium"></i></a>
 								<a href="#"><i class="fab fa-linkedin"></i></a>
 								<a href="https://github.com/hotpotcookie"><i class="fab fa-github-square"></i></a>
 								<a href="mailto:hotpotcookie@gmail.com"><i class="fas fa-envelope-square"></i></a>
 								<a href="https://www.youtube.com/channel/UCYF37a-4I8r3R_CQ99uxw-A"><i class="fab fa-youtube-square"></i></a>							
-							</ul>
 						</div>					
 					</div>				
 				</div>			
