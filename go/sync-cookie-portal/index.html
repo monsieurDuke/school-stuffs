@@ -7,6 +7,7 @@
 		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>		
 		<script src="https://kit.fontawesome.com/daf491ae14.js" crossorigin="anonymous"></script>
+		<script src="source/js/main.js"></script>			
 		<title>Cookie Portal | @hotpotcookie</title>		
 	</head>
 	<body>
@@ -16,20 +17,20 @@
 			<div class="column left">
 				<div class="sidebar">
 					<ul class="nav-links">
-						<li><i class='bx bxs-home'></i></li>
-						<li><i class="fas fa-lightbulb"></i></li>					
-						<li><i class="fas fa-thumbtack"></i></li>
-						<li><i class="fas fa-file-alt"></i></li>
-						<li><i class="fas fa-user"></i></li>						
+						<li><a href="/"><i class='bx bxs-home'></i></a></li>
+						<li><a href="/tutorial"><i class="fas fa-lightbulb"></i></a></li>					
+						<li><a href="/article"><i class="fas fa-thumbtack"></i></a></li>
+						<li><a href="/publication"><i class="fas fa-file-alt"></i></a></li>
+						<li><a href="#"><i class="fas fa-user"></i></a></li>						
 					</ul>
 				</div>				
 				<div class="topbar">
 					<ul class="nav-links">
-						<li><i class='bx bxs-home'></i></li>
-						<li><i class="fas fa-lightbulb"></i></li>					
-						<li><i class="fas fa-thumbtack"></i></li>
-						<li><i class="fas fa-file-alt"></i></li>
-						<li><i class="fas fa-user"></i></li>						
+						<li><a href="/"><i class='bx bxs-home'></i></a></li>
+						<li><a href="/tutorial"><i class="fas fa-lightbulb"></i></a></li>					
+						<li><a href="/article"><i class="fas fa-thumbtack"></i></a></li>
+						<li><a href="/publication"><i class="fas fa-file-alt"></i></a></li>
+						<li><a href="#"><i class="fas fa-user"></i></a></li>						
 					</ul>
 				</div>								
 			</div>
@@ -52,7 +53,7 @@
 
 		  		<div class="textbox less one">
 		  			<h1 class="topper">TRY OUT SOME COOL</h1>
-		  			<h1 class="headline"><span><a href="">TUTORIALS</a></span></h1>
+		  			<h1 class="headline"><span><a href="/tutorial">TUTORIALS</a></span></h1>
 		  		</div>
 				
 				<!-- FLEXBOX CARD -->			
@@ -62,100 +63,124 @@
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
 						<h1 class="name">HoneyPot</h1>
 						<p class="scope"><span class="pink">Cowrie</span> <span class="green">Medusa</span> <span class="green">Nmap</span> <span class="cyan">SSH</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 15 mins read</p>
+						<p class="description">Pengamanan service <strong>SSH</strong> untuk mengurangi probe attack dengan <strong>HoneyPot</strong>. Dengan itu, kita dapat mempelajari serta counteract terhadap TTP dari penyerang</p>
+						<a href="#">
+							<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
+						</a>						
+					</div>
+					<div class="container">
+						<div class='banner-img project'></div>
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
+						<p class="name">Web Proxy</p>
+						<p class="scope"><span class="pink">Squid Proxy</span> <span class="cyan">Apache2</span> <span class="cyan">Firewall</span></p>						
+						<p class="time"><i class="far fa-clock"></i>&nbsp 10 mins read</p>
+						<p class="description">Manajemen akses client dalam jaringan LAN untuk tersambung ke dalam internet dalam level <strong>Browser</strong>. Contoh pengontrolan adalah pada domain, bandwith, serta scheduling access format datetime</p>
+						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
+					</div>
+					<div class="container">
+			  			<div class='banner-img project'></div>
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
+						<h1 class="name">Web Load Testing</h1>
+						<p class="scope"><span class="pink">Locust.io</span> <span class="green">PHP</span> <span class="cyan">NginX</span> <span class="cyan">MySQL</span></p> 
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>
+						<p class="description">Pengetesan kapabiltias web server dalam menghandle <strong>concurrent user</strong> pada meng-query database. Adapun optimasi yang dilakukan sehingga dapat memperbaik <strong>performa</strong> server dalam menghandle banyak client</p>
+						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
+					</div>
+					<div class="container">
+			  			<div class='banner-img project'></div>
+						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
+						<h1 class="name">PDF Attack</h1>
+						<p class="scope"><span class="pink">Metasploit</span> <span class="green">Netcat</span> <span class="cyan">Reverse TCP</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>
 						<p class="description">Hi there! My name is Anna and I am a book lover.</p>
 						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
-					<div class="container">
-						<div class='banner-img project'></div>
-						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
-						<p class="scope"><span class="pink">Squid Proxy</span> <span class="cyan">Apache2</span> <span class="cyan">Firewall</span></p>						
-						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover</p>
-						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
-					</div>
-					<div class="container">
-						<div class='banner-img project'></div>
-						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
-						<p class="description">Hi there! My name is</p>
-						<button class='btn project'>READ MORE <i class="fas fa-external-link-alt"></i></button>
-					</div>    
-					<div class="container">
-						<div class='banner-img project'></div>
-						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
-						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book lover</p>
-						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
-					</div>     
 				</div>
 
 		  		<div class="textbox less two">
 		  			<h1 class="topper">CHECK OUT OUR TAKES IN</h1>
-		  			<h1 class="headline"><span><a href="">ARTICLES</a></span></h1>
+		  			<h1 class="headline"><span><a href="/article">ARTICLES</a></span></h1>
 		  		</div>
 
 		  		<div class="wrapper-flex">				
 					<div class="container">
 			  			<div class='banner-img article'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<h1 class="name">Anna Marie</h1>
+						<h1 class="name">Apa itu Shebang ?</h1>
+						<p class="scope"><span class="pink">Shell</span> <span class="green">Unix</span> <span class="green">Interpreter</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>						
 						<p class="description">Hi there! My name is Anna and I am a book lover.</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img article'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
+						<h1 class="name">Linux dalam Windows</h1>
+						<p class="scope"><span class="pink">Virtual Machine</span> <span class="pink">WSL</span> <span class="green">Kernel</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>						
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img article'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
-						<p class="description">Hi there! My name is</p>
+						<h1 class="name">Waterfall vs Scrum</h1>
+						<p class="scope"><span class="pink">Project Management</span> <span class="green">Agile</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>						
+						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
-					</div>    
+					</div>     										
 					<div class="container">
 						<div class='banner-img article'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
-						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book</p>
+						<h1 class="name">Scrum Tool</h1>
+						<p class="scope"><span class="pink">Trello</span> <span class="green">Atlassian</span> <span class="green">Kanban Board</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>						
+						<p class="description">Hi there! My name is</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
-					</div>     					
+					</div>    
 				</div>
 
 		  		<div class="textbox less three">
-		  			<h1 class="topper">LEARN ABOUT THE COMMUNITY</h1>
-		  			<h1 class="headline"><span><a href="">PUBLICATIONS</a></span></h1>
+		  			<h1 class="topper">GET PROJECT DOCS IN</h1>
+		  			<h1 class="headline"><span><a href="/publication">PUBLICATIONS</a></span></h1>
 		  		</div>
 
 		  		<div class="wrapper-flex">				
 					<div class="container">
 			  			<div class='banner-img journal'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<h1 class="name">Anna Marie</h1>
+						<h1 class="name">UncleSurv</h1>
+						<p class="scope"><span class="pink">Bash</span> <span class="green">Automation</span> <span class="cyan">IPS</span> <span class="cyan">Firewall</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>												
 						<p class="description">Hi there! My name is Anna and I am a book lover.</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img journal'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
+						<p class="name">Sbinning Sgill</p>
+						<p class="scope"><span class="pink">Java</span> <span class="green">Threading</span> <span class="green">PVP</span> <span class="cyan">MySQL</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>																		
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover</p>
 						<button class='btn article'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>
 					<div class="container">
 						<div class='banner-img journal'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
+						<p class="name">Mama Laundry</p>
+						<p class="scope"><span class="pink">Frontend</span> <span class="green">Bot</span> <span class="cyan">MySQL</span> <span class="cyan">Node.JS</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>																								
 						<p class="description">Hi there! My name is</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>    
 					<div class="container">
 						<div class='banner-img journal'></div>
 						<img src='asset/content-logo.png' alt='profile image' class="profile-img">
-						<p class="name">Anna Marie</p>
+						<p class="name">Health Patrol</p>
+						<p class="scope"><span class="pink">Bash</span> <span class="pink">Python</span> <span class="green">STT</span> <span class="cyan">REST API</span></p>
+						<p class="time"><i class="far fa-clock"></i>&nbsp 6 mins read</p>																														
 						<p class="description">Hi there! My name is Anna and I am a book lover, traveler and professional blogger. READ MORE <i class="fas fa-external-link-alt"></i> me to stay connected! Hi there! My name is Anna and I am a book lover Hi there! My name is Anna and I am a book</p>
 						<button class='btn journal'>READ MORE <i class="fas fa-external-link-alt"></i></button>
 					</div>     					
@@ -173,15 +198,15 @@
 							<img src="asset/footer-logo.svg" alt="logo-header">		  			
 						</div>
 						<div class="footer-col link">
-							<h4>Web Feature</h4>
+							<p class="head">Web Feature</p>
 							<ul>
-								<li><a href="#">Tutorials</a></li>
-								<li><a href="#">Articles</a></li>
-								<li><a href="#">Publications</a></li>
+								<li><a href="/tutorial">Tutorials</a></li>
+								<li><a href="/article">Articles</a></li>
+								<li><a href="/publication">Publications</a></li>
 							</ul>
 						</div>					
 						<div class="footer-col link">
-							<h4>Organization</h4>
+							<p class="head">Organization<p>
 							<ul>
 								<li><a href="#">Profile</a></li>							
 								<li><a href="#">Merchandise</a></li>
@@ -189,12 +214,12 @@
 							</ul>
 						</div>
 						<div class="footer-col media">
-							<h4>Social Media</h4>
-								<a href="https://medium.com/@hotpotcookie"><i class="fab fa-medium"></i></a>
-								<a href="#"><i class="fab fa-linkedin"></i></a>
-								<a href="https://github.com/hotpotcookie"><i class="fab fa-github-square"></i></a>
-								<a href="mailto:hotpotcookie@gmail.com"><i class="fas fa-envelope-square"></i></a>
-								<a href="https://www.youtube.com/channel/UCYF37a-4I8r3R_CQ99uxw-A"><i class="fab fa-youtube-square"></i></a>							
+							<p class="head">Social Media<p>
+								<a href="https://twitter.com/itshotpotcookie" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter-square"></i></a>
+								<a href="https://www.linkedin.com/in/mnurirsyad/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+								<a href="https://github.com/hotpotcookie" target="_blank" rel="noopener noreferrer"><i class="fab fa-github-square"></i></a>
+								<a href="mailto:hotpotcookie@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope-square"></i></a>
+								<a href="https://www.youtube.com/channel/UCYF37a-4I8r3R_CQ99uxw-A" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube-square"></i></a>							
 						</div>					
 					</div>				
 				</div>			
