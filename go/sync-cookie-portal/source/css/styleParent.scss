@@ -2,6 +2,7 @@
 -------- */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import "compass/css3";
 
 /* ESSENTIALS 
 ------------- */
@@ -77,16 +78,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: space-between;
   padding: 1em;  
-}
-
-.wrapper-flex::before,
-.wrapper-flex::after {
-  content: "";
-  flex-basis: 100%;
-  width: 0;
-  order: 4;
+  @include columns(10em);
+  @include column-gap(1em);
 }
 
 /* CARDS CONTAINER 
@@ -103,11 +97,6 @@ body {
   height: 100%;
   background-color: #faffde;
 }
-
-.container:nth-child(4n+1) {order: 1;}
-.container:nth-child(4n+2) {order: 2;}
-.container:nth-child(4n) {order: 3;}
-
 
 /* CARDS COMPONENT 
 ------------------ */
