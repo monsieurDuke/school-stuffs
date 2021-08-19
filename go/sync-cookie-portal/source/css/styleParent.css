@@ -81,14 +81,6 @@ body {
   padding: 1em;  
 }
 
-.wrapper-flex::before,
-.wrapper-flex::after {
-  content: "";
-  flex-basis: 100%;
-  width: 0;
-  order: 4;
-}
-
 /* CARDS CONTAINER 
 ------------------ */
 .container {
@@ -103,11 +95,6 @@ body {
   height: 100%;
   background-color: #faffde;
 }
-
-.container:nth-child(4n+1) {order: 1;}
-.container:nth-child(4n+2) {order: 2;}
-.container:nth-child(4n) {order: 3;}
-
 
 /* CARDS COMPONENT 
 ------------------ */
@@ -163,6 +150,7 @@ body {
   margin: 0.5rem 1rem 1rem 1rem;
   font-size: 0.9rem;
   height: auto;
+  padding: 0em 0em 0.3em 0em;
 }
 .btn {
   width: 100%;
@@ -291,8 +279,22 @@ body {
   margin-top: 0.15em;
   cursor: pointer;
 }
+.sidebar p {
+  position: absolute;
+  margin-top: -2.5em;
+  margin-left: 3.5em;
+  background: var(--clr-yellow-light);
+  opacity: 0;
+  padding: 0em 0.3em;
+  box-shadow: 0 5px 0px 0px var(--clr-pink), 0 -5px 0px 0px var(--clr-pink), 5px 5px 0px 0px var(--clr-pink), 5px -5px 0px 0px var(--clr-pink);  
+  border-radius: 0em;
+}
+
 .sidebar i:hover {
   color: var(--clr-pink);  
+}
+.sidebar p:hover {
+  opacity: 1;
 }
 .topbar {
   visibility: hidden;
@@ -480,7 +482,7 @@ body {
     font-size: 1.8vw;
   }  
   .name {
-    font-size: 3.5vw;
+    font-size: 2.85vw;
   }
   .time {
     font-size: 1.8vw;    
